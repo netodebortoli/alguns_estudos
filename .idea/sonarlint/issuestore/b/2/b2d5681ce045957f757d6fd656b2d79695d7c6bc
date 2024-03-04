@@ -1,0 +1,9 @@
+
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ý่8ฑÜศาเ1
+L	java:S106"+Replace this use of System.out by a logger.(๚๕–แ๙ÿÿÿÿ8ผÜศาเ1
+G	java:S106	"+Replace this use of System.out by a logger.(ค”8ผÜศาเ1
+f
+java:S6206"DRefactor this class declaration to use 'record Pessoa(String name)'.(ูมชþÿÿÿÿ8ฝÜศาเ1
+b
+java:S6207;"@Remove this redundant method which is the same as a default one.(ลý€ฆþÿÿÿÿ8ยÜศาเ1
+]	java:S125K"<This block of commented-out lines of code should be removed.(ฃฅด๙ÿÿÿÿ8ฤÜศาเ1
