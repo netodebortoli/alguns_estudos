@@ -15,3 +15,5 @@ S
 #.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
 >
 .gitignore.txt,2\f\2fec9aef0e3f00490b19ac15f648af576a3dcd0e
+u
+EfeaturesJava8ao21/src/main/java/java15exemplos/ExemploTextBlocks.java,6\6\660e4b9e679c35ec692d522c305049c8437963b2

@@ -1,2 +1,3 @@
 /featuresJava8ao21/target/
 /featuresJava8ao21/.idea/
+.idea/
