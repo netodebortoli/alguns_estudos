@@ -17,3 +17,7 @@ S
 .gitignore.txt,2\f\2fec9aef0e3f00490b19ac15f648af576a3dcd0e
 u
 EfeaturesJava8ao21/src/main/java/java15exemplos/ExemploTextBlocks.java,6\6\660e4b9e679c35ec692d522c305049c8437963b2
+u
+EfeaturesJava8ao21/src/main/java/java17exemplos/ExemploSwitchCase.java,8\2\823d9c2c07aa23d1079dd67f816a65b7d37fad97
+I
+featuresJava8ao21/pom.xml,e\f\ef3f04c98d663f444485e4a904e5841d12892139
