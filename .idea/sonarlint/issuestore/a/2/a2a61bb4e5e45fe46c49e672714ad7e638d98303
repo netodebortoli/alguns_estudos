@@ -2,8 +2,8 @@
 d
 java:S1192"GDefine a constant instead of duplicating this literal "name='" 3 times.(ÅŠñ›8‚‹ŞÔà1
 {	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(´ÛËäùÿÿÿÿ8…‹ŞÔà1
-L	java:S106M"+Replace this use of System.out by a logger.(¶¥Ğáÿÿÿÿÿ8¨‹ŞÔà1
-G	java:S106O"+Replace this use of System.out by a logger.(ë¬µ·8©‹ŞÔà1
-L	java:S106Q"+Replace this use of System.out by a logger.(ñè—ûıÿÿÿÿ8«‹ŞÔà1
-L	java:S106S"+Replace this use of System.out by a logger.(³­âùÿÿÿÿ8¬‹ŞÔà1
-G	java:S106U"+Replace this use of System.out by a logger.(–Í°á8­‹ŞÔà1
+L	java:S106N"+Replace this use of System.out by a logger.(¶¥Ğáÿÿÿÿÿ8¨‹ŞÔà1
+G	java:S106P"+Replace this use of System.out by a logger.(ë¬µ·8©‹ŞÔà1
+L	java:S106R"+Replace this use of System.out by a logger.(ñè—ûıÿÿÿÿ8«‹ŞÔà1
+L	java:S106T"+Replace this use of System.out by a logger.(³­âùÿÿÿÿ8¬‹ŞÔà1
+G	java:S106V"+Replace this use of System.out by a logger.(–Í°á8­‹ŞÔà1

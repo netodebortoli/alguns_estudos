@@ -73,13 +73,14 @@ public class ExemploPatternMatching {
         exibe(obj);
     }
 
+    // PatternMatching com Guarded Pattern
     public static void exibe(Object obj) {
         System.out.println("\n" + obj);
         if (obj instanceof Carro carro && carro.name.equals("Golf GTI")) {
             System.out.println(carro.dirige());
         } else if (obj instanceof Moto moto && moto.name.equals("MT-03")) {
             System.out.println(moto.pilota());
-        } else if (obj instanceof Caminhao caminhao && caminhao.name.equals("Axxor")) {
+        } else if (obj instanceof Caminhao caminhao) {
             System.out.println(caminhao.conduzir());
         } else {
             System.out.println("Tipo do veiculo não encontrado");

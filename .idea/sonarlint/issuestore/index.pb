@@ -7,3 +7,11 @@ FfeaturesJava8ao21/src/main/java/java17exemplos/ExemploSealedClass.java,b\2\b2d
 OfeaturesJava8ao21/src/main/java/java8exemplos/ExemploLamdaEMethodReference.java,3\c\3cef926a185a000b644d9ab50298ee420f077c70
 z
 JfeaturesJava8ao21/src/main/java/java14exemplos/ExemploPatternMatching.java,a\2\a2a61bb4e5e45fe46c49e672714ad7e638d98303
+r
+BfeaturesJava8ao21/src/main/java/java14exemplos/ExemploRecords.java,6\2\62d854da168be55cd91f272bdd0ef8d6c2066a7c
+]
+-.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
+S
+#.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
+>
+.gitignore.txt,2\f\2fec9aef0e3f00490b19ac15f648af576a3dcd0e
