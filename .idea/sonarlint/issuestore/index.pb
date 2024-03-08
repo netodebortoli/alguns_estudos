@@ -21,3 +21,5 @@ u
 EfeaturesJava8ao21/src/main/java/java17exemplos/ExemploSwitchCase.java,8\2\823d9c2c07aa23d1079dd67f816a65b7d37fad97
 I
 featuresJava8ao21/pom.xml,e\f\ef3f04c98d663f444485e4a904e5841d12892139
+x
+HfeaturesJava8ao21/src/main/java/java21exemplos/ExemploRecordPattern.java,f\f\ffa8548de1821e5468ccd1639319a00577f85999
