@@ -3,3 +3,5 @@
 /featuresJava8ao21/.idea/
 /exemplothreads/.vscode/
 /exemplothreads/target/
+/hands_on_kotlin/target/
+/hands_on_kotlin/.idea/
