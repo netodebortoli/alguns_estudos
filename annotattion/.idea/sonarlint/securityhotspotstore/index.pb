@@ -19,3 +19,11 @@ u
 Esrc/main/java/org/aristides_debortoli/JsonSerializationException.java,3\c\3ccb9328e58d77ff6b07653f6cbf0d0439e5de0a
 p
 @src/main/java/org/aristides_debortoli/ObjectToJsonConverter.java,d\1\d1c632766b436ab359be54501d23226ae1cfef9a
+e
+5src/main/java/org/aristides_debortoli/AbouPessoa.java,9\6\96d4de4116fbd0121ab3a6ce622b1732c7468127
+f
+6src/main/java/org/aristides_debortoli/WhoIsPessoa.java,5\4\54368584d078c5674802192c753aec4539de707b
+a
+1src/main/java/org/aristides_debortoli/WhoIam.java,9\d\9d18a14b488cfc7aef6130b388ab40d6db20ea07
+_
+/src/main/java/org/aristides_debortoli/Name.java,3\a\3a78847b7e3f932d825e90fb023ddd8b40f817d2

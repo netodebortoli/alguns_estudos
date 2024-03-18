@@ -2,9 +2,11 @@ package org.aristides_debortoli;
 
 @JsonSerializable
 public class Pessoa {
+    @Name
     @JsonElement(key = "nome")
     private String firstName;
 
+    @Name
     @JsonElement(key = "sobrenome")
     private String lastName;
 
@@ -58,5 +60,16 @@ public class Pessoa {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    @WhoIam(times = 3)
+    @Override
+    public String toString() {
+        return "Pessoa{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age='" + age + '\'' +
+                ", address='" + address + '\'' +
+                '}';
     }
 }

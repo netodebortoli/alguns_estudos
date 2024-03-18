@@ -1,2 +1,9 @@
 
-G	java:S106	"+Replace this use of System.out by a logger.(ÆÀûý8¶àÃ–å1
+t
+java:S3776	"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(…ñáÀÿÿÿÿÿ8ª¨ƒ›å1
+G	java:S106"+Replace this use of System.out by a logger.(ÆÀûý8¤‡Ýšå1
+G	java:S106"+Replace this use of System.out by a logger.(ÆÀûý8¥‡Ýšå1
+L	java:S106"+Replace this use of System.out by a logger.(Å­ËÝúÿÿÿÿ8¨‡Ýšå1
+I
+java:S3011!",This accessibility update should be removed.(˜ÂÓ˜8¸¨ƒ›å1
+G	java:S106)"+Replace this use of System.out by a logger.(ÆÀûý8î¥…›å1
