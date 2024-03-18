@@ -5,3 +5,5 @@
 /exemplothreads/target/
 /hands_on_kotlin/target/
 /hands_on_kotlin/.idea/
+/annotattion/.idea/target/
+/annotattion/.idea/.idea/

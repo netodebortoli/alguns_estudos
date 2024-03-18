@@ -57,3 +57,15 @@ W
 'src/main/kotlin/colecoes/usando-maps.kt,f\d\fd4d548ef35e53853a699dbfefd144efe697af1a
 Z
 *src/main/kotlin/colecoes/prog-funcional.kt,3\f\3f7679f2b1c99ad1b85cdc86cc10a22b90d369cc
+X
+(src/main/kotlin/outros-topicos/Pessoa.kt,4\5\453b564a9e2c20bb898fd8a63c865985c6c9bc87
+^
+.src/main/kotlin/outros-topicos/uso-nullable.kt,a\7\a708e766d1f4203b3909923fd357f9b8138ec872
+c
+3src/main/kotlin/outros-topicos/metodos-especiais.kt,4\2\42dc22e050c522ebadcd4bd89155bcff35431d31
+Z
+*src/main/kotlin/outros-topicos/MeuVetor.kt,e\7\e7c9383ccc7ee8655704fee0e9a0cef643ccf9af
+W
+'src/main/kotlin/outros-topicos/Vetor.kt,f\9\f94bac39e298d25367d534bb535c197a7804cd46
+a
+1src/main/kotlin/outros-topicos/metodo-extensao.kt,a\9\a9d5e46cecdf01aa61321b105e043b2a9ec7e9f2

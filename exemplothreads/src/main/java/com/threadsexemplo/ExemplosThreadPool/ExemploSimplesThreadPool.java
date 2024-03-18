@@ -2,6 +2,7 @@ package com.threadsexemplo.ExemplosThreadPool;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import com.threadsexemplo.ExemplosThreadPool.Tarefa;
 
 public class ExemploSimplesThreadPool {
 

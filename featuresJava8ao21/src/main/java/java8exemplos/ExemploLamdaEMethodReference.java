@@ -1,7 +1,6 @@
 package java8exemplos;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ExemploLamdaEMethodReference {
@@ -32,7 +31,7 @@ public class ExemploLamdaEMethodReference {
         System.out.println(list);
 
         // Lambda com method reference implementando ordenação crescente.
-        list.sort(Integer::compareTo);
+        list.sort(Integer::compare);
         System.out.println(list);
     }
 

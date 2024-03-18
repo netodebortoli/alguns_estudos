@@ -14,6 +14,7 @@ public class ExemploThreadStructuredConcurrency {
       // Declara uma lista de tarefas
       Callable<String> tarefa1 = () -> "Task 1";
       Callable<String> tarefa2 = () -> "Task 2";
+      // Callable<String> tarefa3 = () -> "Task 3";
       Callable<String> tarefa4 = () -> "Task 4";
 
       // Introduz uma tarefa com erro proposital

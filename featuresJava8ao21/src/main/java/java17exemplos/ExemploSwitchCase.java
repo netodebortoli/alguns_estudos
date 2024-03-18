@@ -15,7 +15,7 @@ public class ExemploSwitchCase {
             Além disso, não é necessário o case 'default', pois o compilador já reconhece que todos os casos ja foram cobertos
          */
         switch (obj) {
-            case Animal a -> System.out.println(a);
+            case Animal a when a.getName() == "operaria" -> System.out.println(a);
             case Pessoa p -> System.out.println(p);
             case Inseto i -> System.out.println(i);
             case null -> System.out.println("objeto é nulo");
