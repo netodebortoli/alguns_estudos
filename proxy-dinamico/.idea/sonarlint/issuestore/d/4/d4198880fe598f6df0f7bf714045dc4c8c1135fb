@@ -1,0 +1,24 @@
+
+L
+java:S3740
+"/Provide the parametrized type for this generic.(Ü··Ú8·í™¿å1
+L
+java:S3740"/Provide the parametrized type for this generic.(‰Óðœ8·í™¿å1
+Q
+java:S3740""/Provide the parametrized type for this generic.(˜øÒíúÿÿÿÿ8·í™¿å1
+c
+java:S1192"FDefine a constant instead of duplicating this literal "hello" 3 times.(ý˜–ë8¸í™¿å1
+^
+java:S1854
+"ARemove this useless assignment to local variable "proxyInstance".(Ü··Ú8”æœ¿å1
+O
+java:S1481
+"2Remove this unused "proxyInstance" local variable.(Ü··Ú8—æœ¿å1
+]	java:S125"<This block of commented-out lines of code should be removed.(Œ²üÚüÿÿÿÿ8—æœ¿å1
+L	java:S106"+Replace this use of System.out by a logger.(®ýáëûÿÿÿÿ8Ëí™¿å1
+I
+java:S2201)"'The return value of "get" must be used.(£åªøûÿÿÿÿ8Éí™¿å1
+L
+java:S2201*"/The return value of "containsKey" must be used.(Ú‡Šå8Éí™¿å1
+L	java:S1063"+Replace this use of System.out by a logger.(òˆ—úÿÿÿÿ8Ëí™¿å1
+L	java:S1064"+Replace this use of System.out by a logger.(•—ñæþÿÿÿÿ8¾Ï ¿å1
