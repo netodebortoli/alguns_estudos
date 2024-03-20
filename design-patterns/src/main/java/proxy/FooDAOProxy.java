@@ -1,4 +1,4 @@
-package patterns.proxy;
+package proxy;
 
 public class FooDAOProxy implements BaseDAO<Foo> {
     // Normalmente, os Proxy possuem uma inicialização lenta do serviço original
