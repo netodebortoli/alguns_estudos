@@ -1,0 +1,21 @@
+
+7
+pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+R
+"src/main/java/proxy-pattern/FooDAO,f\7\f71104c2f5b78a5d87de24e285ce82a4bd6ec93a
+G
+src/main/java/Main.java,e\4\e44a8606ce010ad9b89aafdfcee2ab49afbf6d10
+O
+src/main/java/package-info.java,a\d\ad9bd4ccb9214167b95b4784e2edb54e4279f19e
+X
+(src/main/java/patterns/proxy/FooDAO.java,6\9\696910d4aa0308f952ccf9c01a948b011c66980e
+U
+%src/main/java/patterns/proxy/Foo.java,c\8\c8065cd2ac893e8fd6237c6ebdf0df6b19b578a2
+Y
+)src/main/java/patterns/proxy/BaseDAO.java,5\a\5a8bcf996b39f50e83a0370cba7766e78691ebfa
+\
+,src/main/java/patterns/proxy/FooDAOImpl.java,d\2\d20ae109d3413c7035d4246336c5f4ee700e3f59
+]
+-src/main/java/patterns/proxy/FooDAOProxy.java,a\6\a68002dc28831d620c94c6f3cb1a9f45c638a601
+U
+%src/main/java/patterns/proxy/App.java,0\2\021c7e85b233f5f78e714dda0d8acf4488b9cc88
