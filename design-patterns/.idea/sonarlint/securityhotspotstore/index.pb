@@ -45,3 +45,27 @@ c
 3src/main/java/abstractfactory/produtos/Cadeira.java,e\e\ee381be0071c68572db26a0f0359e47f08accda4
 g
 7src/main/java/abstractfactory/produtos/MesaVintage.java,6\8\68f9a792aa821e5201c6fec60919dcc74c671972
+O
+src/main/java/strategy/App.java,4\2\4290a10927c370feaca3c476013f0c89ee58791e
+W
+'src/main/java/strategy/Funcionario.java,f\7\f719c1aef75892bdaad34b9932252b31422cb68e
+[
++src/main/java/strategy/SalarioStrategy.java,8\8\885b2fcb28dd6a4743ac28403d4ee5612f9f71cb
+^
+.src/main/java/strategy/EstagiarioStrategy.java,9\d\9dd25414d60d6dd7537b51887d572bab037ac4b4
+Z
+*src/main/java/strategy/JuniorStrategy.java,7\9\798763918093d7fcb980cd649abed0e9759766c5
+`
+0src/main/java/strategy/SalarioPlenoStrategy.java,2\d\2de19ad7a11f46e41f311157810e36b0c10ee938
+a
+1src/main/java/strategy/SalarioSeniorStrategu.java,5\8\58e957c7155df5d73a968075bf5601043139b6a0
+a
+1src/main/java/strategy/SalarioSeniorStrategy.java,d\2\d2f37616c6df3d989c3d01741e6583d4098fc3d1
+R
+"src/main/java/strategy/Funcao.java,6\7\6724a7f4d0589831db7b3217f94f38f33e5eb263
+Q
+!src/main/java/strategy/Cargo.java,a\7\a7241b74b6dce2160801d705502ab404d9bb4cef
+a
+1src/main/java/strategy/SalarioJuniorStrategy.java,0\7\07cd7461005b95fd0d8c8bf12ed353b99616b19e
+e
+5src/main/java/strategy/SalarioEstagiarioStrategy.java,5\2\522bbcfe7e6eb1162c71644086e7711633e66d9a
