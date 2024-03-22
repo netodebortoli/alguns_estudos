@@ -1,14 +1,0 @@
-
-u
-java:S3008"XRename this field "sequencial_id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ú¿İ8Äû¶¹å1
-
-java:S1186*"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ø‡ë¯8Ëû¶¹å1
-:
-java:S1118*"Hide this public constructor.(ø‡ë¯8Ìû¶¹å1
-F	java:S1064"+Replace this use of System.out by a logger.(†ò ,8Îû¶¹å1
-I
-java:S30115",This accessibility update should be removed.(Ó«§¯8Îû¶¹å1
-F	java:S1067"+Replace this use of System.out by a logger.(‚¢ğ-8Ïû¶¹å1
-L	java:S1069"+Replace this use of System.out by a logger.(õœ‚şÿÿÿÿ8Ïû¶¹å1
-L	java:S106A"+Replace this use of System.out by a logger.(İĞ¿ìıÿÿÿÿ8Ğû¶¹å1
-L	java:S106B"+Replace this use of System.out by a logger.(¹±ä·ıÿÿÿÿ8Ñû¶¹å1
