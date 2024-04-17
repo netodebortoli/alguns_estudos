@@ -21,13 +21,20 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 
-@Path("/coffes")
+@Path("/coffees")
 public class CoffeeResource {
 
    private static final Logger LOGGER = Logger.getLogger(CoffeeResource.class);
 
    @Inject
    CoffeeService service;
+
+   @GET
+   @Path("/payment-methods")
+   @Fallback(fallbackMethod = "fallbackResultMethodPayment")
+   public String getPaymentMethods() {
+      return service.getPaymentMethos();
+   }
 
    @Retry(retryOn = RuntimeException.class, maxRetries = 3, delay = 500)
    @Fallback(fallbackMethod = "fallbackGetAllCoffesEmptyList")
@@ -71,6 +78,14 @@ public class CoffeeResource {
       return List.of(service.getById(1));
    }
 
+   private String fallbackResultMethodPayment() {
+      LOGGER.info("Fallback empty result to PaymentResource");
+      return "Service unavailable, please try again later.";
+   }
+
+   /*
+    * Helper methods
+    */
    private void introduceDelay() throws InterruptedException {
       Thread.sleep(new Random().nextInt(500));
    }

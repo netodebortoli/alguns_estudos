@@ -1,4 +1,4 @@
-# factorycoffee
+# payamentcoffe
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
@@ -43,19 +43,18 @@ Or, if you don't have GraalVM installed, you can run the native executable build
 ./mvnw package -Dnative -Dquarkus.native.container-build=true
 ```
 
-You can then execute your native executable with: `./target/factorycoffee-1.0.0-SNAPSHOT-runner`
+You can then execute your native executable with: `./target/payamentcoffe-1.0.0-SNAPSHOT-runner`
 
 If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.
 
 ## Related Guides
 
-- REST ([guide](https://quarkus.io/guides/rest)): A Jakarta REST implementation utilizing build time processing and Vert.x. This extension is not compatible with the quarkus-resteasy extension, or any of the extensions that depend on it.
-- REST JSON-B ([guide](https://quarkus.io/guides/rest#json-serialisation)): JSON-B serialization support for Quarkus REST. This extension is not compatible with the quarkus-resteasy extension, or any of the extensions that depend on it.
+- RESTEasy Classic ([guide](https://quarkus.io/guides/resteasy)): REST endpoint framework implementing Jakarta REST and more
 
 ## Provided Code
 
-### REST
+### RESTEasy JAX-RS
 
-Easily start your REST Web Services
+Easily start your RESTful Web Services
 
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+[Related guide section...](https://quarkus.io/guides/getting-started#the-jax-rs-resources)
