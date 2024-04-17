@@ -9,5 +9,8 @@
         <module name="features-java" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="principios-solid" target="21" />
+    </bytecodeTargetLevel>
   </component>
 </project>

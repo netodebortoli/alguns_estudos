@@ -13,8 +13,6 @@ BfeaturesJava8ao21/src/main/java/java14exemplos/ExemploRecords.java,6\2\62d854d
 -.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
 S
 #.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
->
-.gitignore.txt,2\f\2fec9aef0e3f00490b19ac15f648af576a3dcd0e
 u
 EfeaturesJava8ao21/src/main/java/java15exemplos/ExemploTextBlocks.java,6\6\660e4b9e679c35ec692d522c305049c8437963b2
 u
@@ -23,3 +21,7 @@ I
 featuresJava8ao21/pom.xml,e\f\ef3f04c98d663f444485e4a904e5841d12892139
 x
 HfeaturesJava8ao21/src/main/java/java21exemplos/ExemploRecordPattern.java,f\f\ffa8548de1821e5468ccd1639319a00577f85999
+H
+principios-solid/pom.xml,9\5\9564a4baf6647a6b6744fa57818c89b484f85ce9
+W
+'principios-solid/src/main/java/App.java,e\7\e7bb29662cb98204601f8ed5fe1732db7a5a3069
