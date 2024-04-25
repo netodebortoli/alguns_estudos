@@ -80,4 +80,7 @@ public class AccountAggregate extends AggregateRoot {
         this.active = false;
     }
 
+    public double getBalance() {
+        return balance;
+    }
 }
