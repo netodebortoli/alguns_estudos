@@ -13,9 +13,11 @@
 	<version>1.0.0</version>
 	<name>account.common</name>
 	<description>Bank Account Common Project</description>
+
 	<properties>
-		<java.version>16</java.version>
+		<java.version>17</java.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -31,7 +33,7 @@
 		<dependency>
 			<groupId>com.techbank</groupId>
 			<artifactId>cqrs.core</artifactId>
-			<version>1.0.0</version>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
@@ -40,4 +42,5 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
 </project>

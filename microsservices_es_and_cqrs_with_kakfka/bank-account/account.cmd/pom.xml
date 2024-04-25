@@ -13,9 +13,11 @@
 	<version>1.0.0</version>
 	<name>account.cmd</name>
 	<description>Bank Account Command API Project</description>
+
 	<properties>
 		<java.version>16</java.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -33,7 +35,7 @@
 		<dependency>
 			<groupId>com.techbank</groupId>
 			<artifactId>cqrs.core</artifactId>
-			<version>1.0.0</version>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
@@ -57,6 +59,7 @@
 			<artifactId>spring-kafka-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 	</dependencies>
 
 	<build>
