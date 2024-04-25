@@ -6,7 +6,7 @@ spring:
     mongodb:
       host: localhost
       port: 27017
-      database: bankAccount
+      database: mongo-from-container
   kafka:
     producer:
       bootstrap-servers: localhost:9092

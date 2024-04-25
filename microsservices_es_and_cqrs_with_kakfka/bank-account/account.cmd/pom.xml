@@ -10,14 +10,12 @@
 	</parent>
 	<groupId>com.techbank</groupId>
 	<artifactId>account.cmd</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>account.cmd</name>
 	<description>Bank Account Command API Project</description>
-
 	<properties>
-		<java.version>17</java.version>
+		<java.version>16</java.version>
 	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -31,11 +29,19 @@
 			<groupId>org.springframework.kafka</groupId>
 			<artifactId>spring-kafka</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>com.techbank</groupId>
 			<artifactId>cqrs.core</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>1.0.0</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.techbank</groupId>
+			<artifactId>account.common</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -50,11 +56,6 @@
 			<groupId>org.springframework.kafka</groupId>
 			<artifactId>spring-kafka-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.techbank</groupId>
-			<artifactId>account.common</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 

@@ -11,11 +11,11 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Entity
 public class BankAccount extends BaseEntity {
     @Id
     private String id;

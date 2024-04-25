@@ -8,6 +8,6 @@ import com.techbank.account.common.events.FundsWithdrawnEvent;
 public interface EventHandler {
     void on(AccountOpenedEvent event);
     void on(FundsDepositedEvent event);
-    void on(AccountClosedEvent event);
     void on(FundsWithdrawnEvent event);
+    void on(AccountClosedEvent event);
 }
