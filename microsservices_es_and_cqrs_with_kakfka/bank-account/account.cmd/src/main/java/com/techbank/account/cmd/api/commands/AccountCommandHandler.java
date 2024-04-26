@@ -2,13 +2,16 @@ package com.techbank.account.cmd.api.commands;
 
 import com.techbank.account.cmd.domain.AccountAggregate;
 import com.techbank.cqrs.core.handlers.EventSourcingHandler;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AccountCommandHandler implements CommandHandler {
-    @Autowired
-    private EventSourcingHandler<AccountAggregate> eventSourcingHandler;
+
+    private final EventSourcingHandler<AccountAggregate> eventSourcingHandler;
+
+    public AccountCommandHandler(EventSourcingHandler<AccountAggregate> eventSourcingHandler) {
+        this.eventSourcingHandler = eventSourcingHandler;
+    }
 
     @Override
     public void handle(OpenAccountCommand command) {

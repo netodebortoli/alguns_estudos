@@ -6,13 +6,12 @@ import jakarta.annotation.PostConstruct;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
 @SpringBootApplication
 public class CommandApplication {
 
     private final CommandDispatcher commandDispatcher;
 
-    private CommandHandler commandHandler;
+    private final CommandHandler commandHandler;
 
     public CommandApplication(CommandDispatcher commandDispatcher, CommandHandler commandHandler) {
         this.commandDispatcher = commandDispatcher;
