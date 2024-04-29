@@ -8,6 +8,7 @@ spring:
       port: 27017
       database: mongo-from-container
   kafka:
+    topic: BankAccountEvents
     producer:
       bootstrap-servers: localhost:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
