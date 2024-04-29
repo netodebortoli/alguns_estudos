@@ -86,9 +86,9 @@ public class AccountLookupController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    private ResponseEntity<AccountResponse> buildErrorResponse(String message, Exception e) {
-        logger.log(Level.SEVERE, message, e);
-        return new ResponseEntity<>(new AccountResponse(message), HttpStatus.INTERNAL_SERVER_ERROR);
+    private ResponseEntity<AccountResponse> buildErrorResponse(String safeMessage, Exception exception) {
+        logger.log(Level.SEVERE, safeMessage, exception);
+        return new ResponseEntity<>(new AccountResponse(safeMessage), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }
