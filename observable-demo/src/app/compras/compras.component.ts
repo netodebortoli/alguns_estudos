@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CarrinhoComponent } from './carrinho/carrinho.component';
 import { CarrinhoService } from './carrinho/carrinho.service';
@@ -13,11 +13,18 @@ import { CarrinhoService } from './carrinho/carrinho.service';
 })
 export class ComprasComponent {
   carrinhoService = inject(CarrinhoService)
-  itemAdicionado!: string
   mostrarBotao: boolean = true
 
+  /* ViewChild é um decorator que permite injetar uma referência a um elemento do DOM
+  *  Assim, o valor do input no Template HTML pode ser acessado diretamente no componente
+  *  itemAdd é o nome da váriavel que faz referência ao campo input no Template HTML deste componente
+  *  Essa é uma abordagem alternativa ao invés de usar binding
+  */
+  @ViewChild('itemAdd') itemAdd!: ElementRef
+
   adicionarItem() {
-    this.carrinhoService.adicionarItem(this.itemAdicionado)
-    this.itemAdicionado = ''
+    const item = this.itemAdd.nativeElement.value
+    this.carrinhoService.adicionarItem(item)
+    this.itemAdd.nativeElement.value = ''
   }
 }

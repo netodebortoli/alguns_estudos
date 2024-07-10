@@ -1,7 +1,7 @@
 <div>
   <label for="input" style="font-weight: bold;">Adicionar Item</label>
   &nbsp;
-  <input id="input" type="text" [(ngModel)]="itemAdicionado" (keyup.enter)="adicionarItem()">
+  <input id="input" type="text" (keyup.enter)="adicionarItem()" #itemAdd>
   &nbsp;&nbsp;
   <button (click)="mostrarBotao = !mostrarBotao">
     Ocultar/Mostrar quantidade de pedidos
