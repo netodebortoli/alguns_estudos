@@ -1,0 +1,16 @@
+<h2>Cold Observable</h2>
+<p>
+  {{ (produto$ | async )?.title }}
+</p>
+<!-- Em um cold observable é feito uma nova requisição para cada inscrito -->
+<p>
+  {{ (produto$ | async )?.title }}
+</p>
+<br><br>
+<h2>Cold Observable atuando como Hot Observable</h2>
+<p>
+  {{ (produto$_hotObservable | async )?.title }}
+</p>
+<p>
+  {{ (produto$_hotObservable | async )?.title }}
+</p>
