@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { CompraModel } from '../compra.model';
 
 @Injectable({
@@ -7,8 +7,8 @@ import { CompraModel } from '../compra.model';
 })
 export class CarrinhoService {
 
-  // Declaro um observable do tipo Subject para emitir eventos
-  private itemAdicionado$ = new Subject<number>
+  // Declaro um observable do tipo BehaviorSubject para emitir eventos e passa um valor inicial
+  private itemAdicionado$ = new BehaviorSubject(0)
 
   carrinho: CompraModel[] = []
 

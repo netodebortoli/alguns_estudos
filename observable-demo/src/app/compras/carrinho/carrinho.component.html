@@ -1,2 +1,4 @@
 <span>Quantidade de itens adicionados:&nbsp;</span>
-<span>{{ quantidadeItens }}</span>
+<!-- Pipe async -->
+ <!-- Ele automaticamente se incresve e desinscreve no observable -->
+<span>{{ itemAdicionado$ | async }}</span>
