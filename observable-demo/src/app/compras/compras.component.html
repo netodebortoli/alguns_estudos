@@ -1,0 +1,15 @@
+<div>
+  <label for="input" style="font-weight: bold;">Adicionar Item</label>
+  &nbsp;
+  <input id="input" type="text" [(ngModel)]="itemAdicionado" (keyup.enter)="adicionarItem()">
+  &nbsp;&nbsp;
+  <button (click)="mostrarBotao = !mostrarBotao">
+    Ocultar/Mostrar quantidade de pedidos
+  </button>
+</div>
+
+@if (mostrarBotao) {
+<div>
+  <app-carrinho />
+</div>
+}
