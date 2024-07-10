@@ -1,4 +1,5 @@
 import { Component, inject, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { CarrinhoService } from './carrinho.service';
 
 @Component({
@@ -14,16 +15,22 @@ export class CarrinhoComponent implements OnDestroy {
   itemAdicionado$ = this.carrinhoService.getItemAdicionado()
   quantidadeItens = 0
 
+  subItemAdicionado!: Subscription
+
   constructor() {
     // Se inscreve no observable para receber notificações
-    // No entanto, se o componente morrer, o observable ainda estará na memória
-    this.itemAdicionado$.subscribe(value => {
+    // Guarda o valor em um subscription (retorno de um observable.subscribe())
+    // Quando o componente for destruido, esse código não será mais ouvido pois terá sido desinscrito
+    this.subItemAdicionado = this.itemAdicionado$.subscribe(value => {
+      console.log('Novo valor recebido')
       this.quantidadeItens = value
     })
   }
 
   ngOnDestroy(): void {
     console.log('ngOnDestroy')
+    // Unsuscribe do observable para evitar memory leaks
+    this.subItemAdicionado.unsubscribe()
   }
 
 }

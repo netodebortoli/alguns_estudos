@@ -15,8 +15,6 @@ export class CarrinhoService {
   adicionarItem(nome: string) {
     const novoItem: CompraModel = { id: this.carrinho.length + 1, nome }
     this.carrinho.push(novoItem)
-
-    console.log('Novo item add', novoItem)
     console.log(this.carrinho)
 
     // Emito um evento para todos aqueles que estão o observando
