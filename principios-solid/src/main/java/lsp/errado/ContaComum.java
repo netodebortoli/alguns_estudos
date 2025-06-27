@@ -23,8 +23,6 @@ public class ContaComum {
 
     public void rende() {
         this.saldo *= 1.1;
-        System.out.println(
-                String.format("Novo saldo: R$%.2f", this.saldo)
-        );
+        System.out.printf("Novo saldo: R$%.2f%n", this.saldo);
     }
 }

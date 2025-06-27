@@ -1,6 +1,6 @@
 package ocp.errado;
 
-// Para cada regra de negócio, uma nova condição é adicionada ao método calcula.
+// Para cada regra de negócio, uma nova condição é adicionada ao metodo calcula.
 // A classe está aberta para modificação, o que viola o princípio do Open/Closed Principle.
 public class CalculadoraDePrecos {
 
