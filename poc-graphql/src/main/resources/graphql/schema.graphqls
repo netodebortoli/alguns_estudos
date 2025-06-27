@@ -1,16 +1,26 @@
-type Query {
-    bookById(id: ID): Book
+# O tipo 'Mutation' define as operações do tipo mutação (criar, deletar, excluir).
+type Mutation {
+    createBook(name: String, pageCount: Int, authorId: ID): Book
+    updateBook(id: ID, name: String, pageCount: Int, authorId: ID): Book
+    deleteBook(id: ID): Boolean
 }
 
+# O tipo 'Query' define as operações do tipo consulta.
+type Query {
+    bookById(id: ID): Book
+    authorById(id: ID): Author
+}
+
+# O operador '!' indica que o campo é obrigatório e não pode ser nulo.
 type Book {
-    id: ID
-    name: String
-    pageCount: Int
-    author: Author
+    id: ID!
+    name: String!
+    pageCount: Int!
+    author: Author!
 }
 
 type Author {
-    id: ID
-    firstName: String
-    lastName: String
+    id: ID!
+    firstName: String!
+    lastName: String!
 }
