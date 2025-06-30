@@ -9,6 +9,7 @@ type Mutation {
 type Query {
     bookById(id: ID): Book
     authorById(id: ID): Author
+    findAllBooks: [Book]
 }
 
 # O operador '!' indica que o campo é obrigatório e não pode ser nulo.
