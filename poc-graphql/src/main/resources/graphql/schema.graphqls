@@ -1,17 +1,3 @@
-# O tipo 'Mutation' define as operações do tipo mutação (criar, deletar, excluir).
-type Mutation {
-    createBook(name: String, pageCount: Int, authorId: ID): Book
-    updateBook(id: ID, name: String, pageCount: Int, authorId: ID): Book
-    deleteBook(id: ID): Boolean
-}
-
-# O tipo 'Query' define as operações do tipo consulta.
-type Query {
-    bookById(id: ID): Book
-    authorById(id: ID): Author
-    findAllBooks: [Book]
-}
-
 # O operador '!' indica que o campo é obrigatório e não pode ser nulo.
 type Book {
     id: ID!
@@ -24,4 +10,25 @@ type Author {
     id: ID!
     firstName: String!
     lastName: String!
+}
+
+# Input é um tipo de objeto usado para agrupar argumentos em mutações ou outros campos, tornando-os mais claros e organizados.
+input UpdatedBook {
+    name: String!
+    pageCount: Int!
+    authorId: ID!
+}
+
+# O tipo 'Query' define as operações do tipo consulta.
+type Query {
+    bookById(id: ID): Book
+    authorById(id: ID): Author
+    findAllBooks: [Book]
+}
+
+# O tipo 'Mutation' define as operações do tipo mutação (criar, deletar, excluir).
+type Mutation {
+    createBook(book: UpdatedBook): Book
+    updateBook(id: ID, book: UpdatedBook): Book
+    deleteBook(id: ID): Boolean
 }

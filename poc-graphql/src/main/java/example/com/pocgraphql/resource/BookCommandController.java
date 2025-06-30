@@ -1,6 +1,7 @@
 package example.com.pocgraphql.resource;
 
 import example.com.pocgraphql.entity.Book;
+import example.com.pocgraphql.resource.dtos.BookRequest;
 import example.com.pocgraphql.service.BookService;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
@@ -14,16 +15,26 @@ public class BookCommandController {
         this.bookService = bookService;
     }
 
-    // Usando @MutationMapping para mapear mutações GraphQL, semelhante ao @QueryMapping
+    /**
+     * Usando @MutationMapping para mapear mutações GraphQL, semelhante ao @QueryMapping
+     */
 
     @MutationMapping
-    public Book createBook(@Argument String name, @Argument int pageCount, @Argument String authorId) {
-        return bookService.create(name, pageCount, authorId);
+    public Book createBook(@Argument(name = "book") BookRequest bookRequest) {
+        return bookService.create(
+                bookRequest.name(),
+                bookRequest.pageCount(),
+                bookRequest.authorId()
+        );
     }
 
     @MutationMapping(name = "updateBook")
-    public Book update(@Argument String id, @Argument String name, @Argument int pageCount, @Argument String authorId) {
-        return bookService.update(id, name, pageCount, authorId);
+    public Book update(@Argument String id, @Argument BookRequest book) {
+        return bookService.update(
+                id, book.name(),
+                book.pageCount(),
+                book.authorId()
+        );
     }
 
     @MutationMapping(name = "deleteBook")
@@ -31,19 +42,29 @@ public class BookCommandController {
         bookService.delete(id);
     }
 
-    // Usando @SchemaMapping para mapear mutações GraphQL
+    /**
+     * Usando @SchemaMapping para mapear mutações GraphQL
+     */
 
- //   @SchemaMapping(typeName = "Mutation", field = "createBook")
-    public Book create(@Argument String name, @Argument int pageCount, @Argument String authorId) {
-        return bookService.create(name, pageCount, authorId);
+    //   @SchemaMapping(typeName = "Mutation", field = "createBook")
+    public Book create(@Argument BookRequest book) {
+        return bookService.create(
+                book.name(),
+                book.pageCount(),
+                book.authorId()
+        );
     }
 
-  //  @SchemaMapping(typeName = "Mutation")
-    public Book updateBook(@Argument String id, @Argument String name, @Argument int pageCount, @Argument String authorId) {
-        return bookService.update(id, name, pageCount, authorId);
+    //  @SchemaMapping(typeName = "Mutation")
+    public Book updateBook(@Argument String id, @Argument BookRequest book) {
+        return bookService.create(
+                book.name(),
+                book.pageCount(),
+                book.authorId()
+        );
     }
 
-   // @SchemaMapping(typeName = "Mutation", field = "deleteBook")
+    // @SchemaMapping(typeName = "Mutation", field = "deleteBook")
     public void deleteBook(@Argument String id) {
         bookService.delete(id);
     }
