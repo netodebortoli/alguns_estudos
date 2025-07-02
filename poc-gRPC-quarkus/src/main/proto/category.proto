@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option java_multiple_files = true; // Generate separate .java files for each message and service
+option java_package = "io.quarkus.example"; // Java package for generated classes
+option java_outer_classname = "CategoryProto"; // Outer class name for generated classes
+
+package category.course;
+
+service CategoryService {
+  rpc CreateCategory(CreateCategoryRequest) returns (CategoryResponse) {}
+}
+
+message Category {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+}
+
+message CreateCategoryRequest {
+  string name = 1;
+  string description = 2;
+}
+
+message CategoryResponse {
+  Category category = 1;
+}
+

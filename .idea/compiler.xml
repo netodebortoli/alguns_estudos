@@ -7,7 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="poc-graphql" />
-        <module name="poc-grpc" />
+        <module name="poc-grpc-quarkus" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -23,6 +23,7 @@
       <module name="features-java" target="21" />
       <module name="hands_on_kotlin" target="1.8" />
       <module name="payamentcoffe" target="21" />
+      <module name="poc-grpc-java" target="21" />
       <module name="principios-solid" target="21" />
       <module name="proxy-dinamico" target="21" />
     </bytecodeTargetLevel>
@@ -37,7 +38,7 @@
       <module name="fault-tolerance-quarkus" options="-parameters" />
       <module name="payamentcoffe" options="-parameters" />
       <module name="poc-graphql" options="-parameters" />
-      <module name="poc-grpc" options="-parameters" />
+      <module name="poc-grpc-quarkus" options="-parameters" />
     </option>
   </component>
 </project>

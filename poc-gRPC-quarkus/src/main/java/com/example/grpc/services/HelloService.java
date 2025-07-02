@@ -1,4 +1,4 @@
-package com.example;
+package com.example.grpc.services;
 
 import io.grpc.stub.StreamObserver;
 import io.quarkus.example.GreeterGrpc;

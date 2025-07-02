@@ -19,9 +19,12 @@
     <file url="file://$PROJECT_DIR$/microsservices_es_and_cqrs_with_kakfka/bank-account/account.common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/microsservices_es_and_cqrs_with_kakfka/bank-account/account.query/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/microsservices_es_and_cqrs_with_kakfka/cqrs.core/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/poc-gRPC/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/poc-gRPC/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/poc-gRPC-quarkus/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/poc-gRPC-quarkus/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/poc-gRPC-quarkus/target/generated-sources/grpc" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/poc-graphql/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/poc-grpc-java/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/poc-grpc-java/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/principios-solid/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/principios-solid/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/proxy-dinamico/src/main/java" charset="UTF-8" />

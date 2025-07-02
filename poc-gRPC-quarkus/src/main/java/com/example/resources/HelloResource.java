@@ -1,4 +1,4 @@
-package com.example;
+package com.example.resources;
 
 import io.quarkus.example.Greeter;
 import io.quarkus.example.GreeterGrpc;
@@ -11,9 +11,9 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 
 @Path("/hello")
-public class ExampleResource {
+public class HelloResource {
 
-    @GrpcClient("hello")
+    @GrpcClient("hello") // O bind refere-se ao valor definido no application.properties
     Greeter helloService;
 
     @GrpcClient("hello")
