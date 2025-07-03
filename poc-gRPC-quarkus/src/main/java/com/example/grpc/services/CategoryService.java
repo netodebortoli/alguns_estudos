@@ -1,55 +1,72 @@
 package com.example.grpc.services;
 
 import com.example.model.CategoryEntity;
+import com.example.repository.CategoryRepository;
 import io.grpc.stub.StreamObserver;
 import io.quarkus.example.*;
 import io.quarkus.grpc.GrpcService;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
-
 @GrpcService
 public class CategoryService extends CategoryServiceGrpc.CategoryServiceImplBase {
-    // memory database
-    Map<String, CategoryEntity> categoriesDb = new HashMap<>();
 
-    public CategoryService() {
-        CategoryEntity cat1 = new CategoryEntity(UUID.randomUUID().toString(), "Curso de Angular", "Curso Front-end Angular.");
-        CategoryEntity cat2 = new CategoryEntity(UUID.randomUUID().toString(), "Curso de Java com Spring", "Curso Back-end Java com Spring.");
-        categoriesDb.put(cat1.id(), cat1);
-        categoriesDb.put(cat2.id(), cat2);
+    private final CategoryRepository repository;
+
+    public CategoryService(CategoryRepository repository) {
+        this.repository = repository;
     }
 
     @Override
     public void createCategory(CreateCategoryRequest request, StreamObserver<Category> responseObserver) {
-        String id = UUID.randomUUID().toString();
-        CategoryEntity newCategory = new CategoryEntity(id, request.getName(), request.getDescription());
-        categoriesDb.put(id, newCategory);
-        Category response = Category.newBuilder()
-                .setId(id)
-                .setName(newCategory.name())
-                .setDescription(newCategory.description())
-                .build();
+        CategoryEntity newCategory = repository.create(request);
+        Category response = toProtoCategory(newCategory);
         responseObserver.onNext(response);
         responseObserver.onCompleted();
     }
 
-
     @Override
     public void listAllCategories(Empty request, StreamObserver<ListCategoriesResponse> responseObserver) {
         ListCategoriesResponse.Builder responseBuilder = ListCategoriesResponse.newBuilder();
-        for (CategoryEntity category : categoriesDb.values()) {
-            Category response = Category
-                    .newBuilder()
-                    .setId(category.id())
-                    .setName(category.name())
-                    .setDescription(category.description())
-                    .build();
-
+        for (CategoryEntity category : repository.findAll()) {
+            Category response = toProtoCategory(category);
             responseBuilder.addCategories(response);
         }
         responseObserver.onNext(responseBuilder.build());
         responseObserver.onCompleted();
+    }
+
+    @Override
+    public StreamObserver<CreateCategoryRequest> createCategories(StreamObserver<ListCategoriesResponse> responseObserver) {
+        return new StreamObserver<>() {
+            private final ListCategoriesResponse.Builder responseBuilder = ListCategoriesResponse.newBuilder();
+
+            @Override
+            public void onNext(CreateCategoryRequest request) {
+                System.out.println("Received request to create category: " + request.getName());
+                CategoryEntity newCategory = repository.create(request);
+                Category response = toProtoCategory(newCategory);
+                responseBuilder.addCategories(response);
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                responseObserver.onError(t);
+            }
+
+            @Override
+            public void onCompleted() {
+                // Envia todas as categorias criadas de uma vez
+                responseObserver.onNext(responseBuilder.build());
+                responseObserver.onCompleted();
+            }
+        };
+    }
+
+    // Metodo auxiliar para criar um Category (proto) a partir do CategoryEntity
+    private static Category toProtoCategory(CategoryEntity category) {
+        return Category.newBuilder()
+                .setId(category.id())
+                .setName(category.name())
+                .setDescription(category.description())
+                .build();
     }
 }

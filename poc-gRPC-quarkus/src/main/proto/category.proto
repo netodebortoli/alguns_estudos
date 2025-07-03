@@ -9,6 +9,7 @@ package category.course;
 service CategoryService {
   rpc CreateCategory(CreateCategoryRequest) returns (Category) {}
   rpc ListAllCategories(Empty) returns (ListCategoriesResponse) {}
+  rpc CreateCategories(stream CreateCategoryRequest) returns (ListCategoriesResponse) {} // Implementacao com inputs em stream
 }
 
 message Category {
@@ -22,7 +23,7 @@ message CreateCategoryRequest {
   string description = 2;
 }
 
-// Repeated representa uma lista de algum tipo
+// Repeated é uma palavra-chave que representa uma lista
 message ListCategoriesResponse {
   repeated Category categories = 1;
 }

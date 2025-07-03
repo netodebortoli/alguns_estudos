@@ -6,10 +6,12 @@ import io.quarkus.example.CategoryService;
 import io.quarkus.example.CreateCategoryRequest;
 import io.quarkus.example.Empty;
 import io.quarkus.grpc.GrpcClient;
+import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.Uni;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 
+import java.time.Duration;
 import java.util.List;
 
 @Path("/categories")
@@ -21,13 +23,9 @@ public class CategoryResource {
     CategoryService categoryServiceClient;
 
     @POST
-    public Uni<CategoryEntity> createCategory(CreateCategory createCategory) {
-        CreateCategoryRequest request = CreateCategoryRequest.newBuilder()
-                .setName(createCategory.name())
-                .setDescription(createCategory.description())
-                .build();
+    public Uni<CategoryEntity> createCategory(CreateCategory newCategory) {
         return categoryServiceClient
-                .createCategory(request)
+                .createCategory(fromRequest(newCategory))
                 .onItem()
                 .transform(CategoryEntity::from);
     }
@@ -35,15 +33,42 @@ public class CategoryResource {
     @GET
     @Path("/all")
     public Uni<List<CategoryEntity>> listAllCategories() {
-        Empty request = Empty.getDefaultInstance();
+        Empty emptyRequest = Empty.getDefaultInstance();
         return categoryServiceClient
-                .listAllCategories(request)
+                .listAllCategories(emptyRequest)
                 .onItem()
                 .transform(response ->
                         response.getCategoriesList()
                                 .stream()
                                 .map(CategoryEntity::from)
                                 .toList());
+    }
+
+    @POST
+    @Path("/batch")
+    public Uni<List<CategoryEntity>> createCategories(List<CreateCategory> categories) {
+        return categoryServiceClient
+                .createCategories(
+                        Multi.createFrom()
+                                .iterable(categories)
+                                .onItem()
+                                .call(item -> Uni.createFrom().nullItem().onItem().delayIt().by(Duration.ofMillis(500))) // Simulating delay for each item
+                                .map(this::fromRequest)
+                )
+                .onItem()
+                .transform(response ->
+                        response.getCategoriesList()
+                                .stream()
+                                .map(CategoryEntity::from)
+                                .toList());
+    }
+
+    private CreateCategoryRequest fromRequest(CreateCategory createCategory) {
+        return CreateCategoryRequest
+                .newBuilder()
+                .setName(createCategory.name())
+                .setDescription(createCategory.description())
+                .build();
     }
 
 }
