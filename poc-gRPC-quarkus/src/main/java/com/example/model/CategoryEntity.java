@@ -1,14 +1,14 @@
 package com.example.model;
 
-import io.quarkus.example.CategoryResponse;
+import io.quarkus.example.Category;
 
 public record CategoryEntity(String id, String name, String description) {
 
-    public static CategoryEntity from(CategoryResponse c) {
+    public static CategoryEntity from(Category c) {
         return new CategoryEntity(
-                c.getCategory().getId(),
-                c.getCategory().getName(),
-                c.getCategory().getDescription()
+                c.getId(),
+                c.getName(),
+                c.getDescription()
         );
     }
 }

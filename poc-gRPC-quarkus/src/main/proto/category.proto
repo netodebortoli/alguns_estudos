@@ -7,7 +7,8 @@ option java_outer_classname = "CategoryProto"; // Outer class name for generated
 package category.course;
 
 service CategoryService {
-  rpc CreateCategory(CreateCategoryRequest) returns (CategoryResponse) {}
+  rpc CreateCategory(CreateCategoryRequest) returns (Category) {}
+  rpc ListAllCategories(Empty) returns (ListCategoriesResponse) {}
 }
 
 message Category {
@@ -21,7 +22,10 @@ message CreateCategoryRequest {
   string description = 2;
 }
 
-message CategoryResponse {
-  Category category = 1;
+// Repeated representa uma lista de algum tipo
+message ListCategoriesResponse {
+  repeated Category categories = 1;
 }
 
+// Metodos sem parametros precisa passar uma message vazia
+message Empty {}
