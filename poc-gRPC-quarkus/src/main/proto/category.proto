@@ -7,9 +7,10 @@ option java_outer_classname = "CategoryProto"; // Outer class name for generated
 package category.course;
 
 service CategoryService {
-  rpc CreateCategory(CreateCategoryRequest) returns (Category) {}
+  rpc CreateCategory(CreateCategoryRequest) returns (Category) {} // unary api
   rpc ListAllCategories(Empty) returns (ListCategoriesResponse) {}
-  rpc CreateCategories(stream CreateCategoryRequest) returns (ListCategoriesResponse) {} // Implementacao com inputs em stream
+  rpc CreateCategories(stream CreateCategoryRequest) returns (ListCategoriesResponse) {} // stream client-side
+  rpc CreateCategoryBidirectional(stream CreateCategoryRequest) returns (stream Category) {} // stream bi-directional
 }
 
 message Category {

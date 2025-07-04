@@ -61,6 +61,30 @@ public class CategoryService extends CategoryServiceGrpc.CategoryServiceImplBase
         };
     }
 
+    @Override
+    public StreamObserver<CreateCategoryRequest> createCategoryBidirectional(StreamObserver<Category> responseObserver) {
+        return new StreamObserver<>() {
+            @Override
+            public void onNext(CreateCategoryRequest request) {
+                System.out.println("Received request to create category: " + request.getName());
+                CategoryEntity newCategory = repository.create(request);
+                Category response = toProtoCategory(newCategory);
+                // Envia a categoria criada imediatamente
+                responseObserver.onNext(response);
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                responseObserver.onError(t);
+            }
+
+            @Override
+            public void onCompleted() {
+                responseObserver.onCompleted();
+            }
+        };
+    }
+
     // Metodo auxiliar para criar um Category (proto) a partir do CategoryEntity
     private static Category toProtoCategory(CategoryEntity category) {
         return Category.newBuilder()

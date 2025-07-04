@@ -63,6 +63,22 @@ public class CategoryResource {
                                 .toList());
     }
 
+    @POST
+    @Path("/batch/async")
+    @Produces("application/stream+json") // Using a streaming response
+    public Multi<CategoryEntity> createCategoriesAsync(List<CreateCategory> categories) {
+        return categoryServiceClient
+                .createCategoryBidirectional(
+                        Multi.createFrom()
+                                .iterable(categories)
+                                .onItem()
+                                .call(item -> Uni.createFrom().nullItem().onItem().delayIt().by(Duration.ofSeconds(1)))
+                                .map(this::fromRequest)
+                )
+                .onItem()
+                .transform(CategoryEntity::from);
+    }
+
     private CreateCategoryRequest fromRequest(CreateCategory createCategory) {
         return CreateCategoryRequest
                 .newBuilder()
