@@ -1,4 +1,4 @@
-package aristides.dev.apihello;
+package aristides.dev.service.a;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,18 +7,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
-public class ApiHelloApplication {
+public class ApplicationServiceA {
     public static void main(String[] args) {
-        SpringApplication.run(ApiHelloApplication.class, args);
+        SpringApplication.run(ApplicationServiceA.class, args);
     }
 }
 
 @RestController
-@RequestMapping("/hello")
-class HelloController {
+@RequestMapping("/service-a")
+class SimpleController {
 
     @GetMapping
     public String hello() {
-        return "Hello, World!";
+        return "Hello, World, from Service A!";
     }
 }

@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>aristides.dev</groupId>
-	<artifactId>api-ola</artifactId>
+	<artifactId>service-b</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>api-ola</name>
 	<description>api-ola</description>
