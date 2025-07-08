@@ -6,8 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="poc-graphql" />
+        <module name="api-gateway" />
+        <module name="api-ola" />
+        <module name="api-hello" />
         <module name="poc-grpc-quarkus" />
+        <module name="service-discovery" />
+        <module name="poc-graphql" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -33,12 +37,16 @@
       <module name="account.cmd" options="-parameters" />
       <module name="account.common" options="-parameters" />
       <module name="account.query" options="-parameters" />
+      <module name="api-gateway" options="-parameters" />
+      <module name="api-hello" options="-parameters" />
+      <module name="api-ola" options="-parameters" />
       <module name="cqrs.core" options="-parameters" />
       <module name="demo-jms-quarkus" options="-parameters" />
       <module name="fault-tolerance-quarkus" options="-parameters" />
       <module name="payamentcoffe" options="-parameters" />
       <module name="poc-graphql" options="-parameters" />
       <module name="poc-grpc-quarkus" options="-parameters" />
+      <module name="service-discovery" options="-parameters" />
     </option>
   </component>
 </project>

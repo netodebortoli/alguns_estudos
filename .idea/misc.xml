@@ -8,6 +8,10 @@
         <option value="$PROJECT_DIR$/poc-gRPC/pom.xml" />
         <option value="$PROJECT_DIR$/poc-grpc-java/pom.xml" />
         <option value="$PROJECT_DIR$/poc-gRPC-quarkus/pom.xml" />
+        <option value="$PROJECT_DIR$/service-discovery/api-hello/pom.xml" />
+        <option value="$PROJECT_DIR$/service-discovery/server-service-discovery/pom.xml" />
+        <option value="$PROJECT_DIR$/service-discovery/api-ola/pom.xml" />
+        <option value="$PROJECT_DIR$/service-discovery/api-gateway/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
