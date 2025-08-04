@@ -4,26 +4,33 @@
 export default class Client {
     private _id: string;
     private _name: string;
-    private _status: boolean;
+    private _address?: string;
+    private _status: boolean = false;
 
     constructor(
         id: string,
         name: string,
+        address?: string
     ) {
         this._id = id;
         this._name = name;
-        this._status = true;
+        if (address) {
+            this._address = address;
+        }
         this.validate();
     }
 
     changeName(name: string): void {
-        if (name.length === 0) {
-            throw new Error('Name cannot be empty');
-        }
         this._name = name;
+        this.validate();
     }
 
+    // A entidade pode ter um endereço opcional.
+    // Mas para ativar o usuario, o endereço é obrigatório.
     activate() {
+        if (this._address?.length === 0) {
+            throw new Error('Address cannot be empty when activating');
+        }
         this._status = true;
     }
 
