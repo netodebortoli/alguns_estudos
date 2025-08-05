@@ -31,11 +31,35 @@ export default class Address {
             throw new Error('Field zip must be provided');
         }
         if (!this.validateFormatterZip(this._zip)) {
-            throw new Error('Invalid zip format, expected format is XXXXX-XXX');
+            throw new Error('Invalid zip format, expected 8 numbers digits');
         }
     }
 
     private validateFormatterZip(zip: string): boolean {
-        return zip.match(/^\d{5}-\d{3}$/) !== null;
+        return zip.length === 8 && /^\d+$/.test(zip);
+    }
+
+    get street() {
+        return this._street;
+    }
+
+    get number() {
+        return this._number;
+    }
+
+    get city() {
+        return this._city;
+    }
+
+    get state() {
+        return this._state;
+    }
+
+    get zip() {
+        return this._zip;
+    }
+
+    get formattedZip() {
+        return this._zip.replace(/(\d{5})(\d{3})/, '$1-$2');
     }
 }

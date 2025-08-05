@@ -12,10 +12,28 @@ export default class Client {
     private _status: boolean = false;
 
     constructor(
-        name: string
+        name: string,
+        address?: Address
     ) {
         this._id = UUID.create();
         this._name = new Name(name);
+        if (address) this._address = address;
+    }
+
+    get id() {
+        return this._id.getValue();
+    }
+
+    get name() {
+        return this._name.getValue();
+    }
+
+    get isActive() {
+        return this._status;
+    }
+
+    get address() {
+        return this._address;
     }
 
     changeName(name: string): void {
