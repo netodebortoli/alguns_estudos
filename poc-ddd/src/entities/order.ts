@@ -24,7 +24,7 @@ export default class Order {
     }
 
     get totalOrder() {
-        return this._itens.reduce((acc, item) => acc + item.price, 0);
+        return this._itens.reduce((acc, item) => acc + item.totalPrice, 0);
     }
 
     get createdDt() {

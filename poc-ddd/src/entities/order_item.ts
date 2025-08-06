@@ -6,11 +6,16 @@ export default class OrderItem {
     private _id: UUID;
     private _name: Name;
     private _price: Price;
+    private _productId: UUID;
+    private _quantity: number;
 
-    constructor(itemName: string, price: number) {
+    constructor(itemName: string, price: number, productId: string, quantity: number) {
         this._id = UUID.create();
         this._name = new Name(itemName);
         this._price = new Price(price);
+        this._productId = new UUID(productId);
+        this._quantity = quantity;
+        this.validate();
     }
 
     get name(): string {
@@ -19,5 +24,19 @@ export default class OrderItem {
 
     get price(): number {
         return this._price.getValue();
+    }
+
+    get quantity(): number {
+        return this._quantity;
+    }
+
+    get totalPrice(): number {
+        return this._price.getValue() * this._quantity;
+    }
+
+    private validate() {
+        if (this._quantity <= 0) {
+            throw new Error("Quantity must be greater than zero");
+        }
     }
 }
