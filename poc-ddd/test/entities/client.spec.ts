@@ -16,7 +16,7 @@ describe('Client entity unit tests', () => {
     }); 
 
     it('should throw error when client name is invalid', () => {
-        expect(() => new Client('Jhon')).toThrow();        
+        expect(() => new Client('')).toThrow();        
     });
 
     it('should throw error when change client name is invalid', () => {

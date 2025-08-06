@@ -13,7 +13,7 @@ describe('Order Item entity unit tests', () => {
     })
 
     it('should throw error when create ordem item without price', () => {
-        expect(() => new OrderItem('Item 1', -10)).toThrow()
+        expect(() => new OrderItem('Item 1', -1)).toThrow("Price value must be greater or equal zero");
     })
 
 })
