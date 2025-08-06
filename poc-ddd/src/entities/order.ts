@@ -7,23 +7,39 @@ export default class Order {
     private _customerId: UUID;
     private _createdDt: Date;
 
-    constructor(customerId: UUID, orderItens: OrderItem[]) {
+    constructor(customerId: string, orderItens: OrderItem[]) {
         this._id = UUID.create();
         this._createdDt = new Date();
-        this._customerId = customerId;
+        this._customerId = new UUID(customerId);
         this._itens = orderItens;
         this.validate();
     }
 
-    addNewItem(item: OrderItem) {
-        if (!item) {
-            throw new Error("Ordem item must be not null")
-        }
-        this._itens.push(item);
+    get id() {
+        return this._id.getValue();
+    }
+
+    get customerId() {
+        return this._customerId.getValue();
     }
 
     get totalOrder() {
         return this._itens.reduce((acc, item) => acc + item.price, 0);
+    }
+
+    get createdDt() {
+        return this._createdDt;
+    }
+
+    get orderItens() {
+        return this._itens
+    }
+
+    addNewItem(item?: OrderItem) {
+        if (!item) {
+            throw new Error("Ordem item must be not null")
+        }
+        this._itens.push(item);
     }
 
     private validate() {

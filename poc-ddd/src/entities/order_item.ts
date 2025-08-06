@@ -16,9 +16,13 @@ export default class OrderItem {
         if (!this._name || this._name.length === 0) {
             throw new Error("Name of order item is required")
         }
-        if (!this._price || this._price <= 0) {
-            throw new Error("Price of order item is required")
+        if (!this._price || this._price < 0) {
+            throw new Error("Price must be greater or equal zero")
         }
+    }
+
+    get name(): string {
+        return this._name;
     }
 
     get price(): number {
