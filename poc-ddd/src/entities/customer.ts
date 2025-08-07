@@ -1,48 +1,72 @@
-// Exemplo de entidade anemica.
-// Ela nao carrega regras de negocios, apenas armazena dados.
+import Address from "../vos/address";
+import Name from "../vos/name";
+import UUID from "../vos/uuid";
+
+// Classe com domínio rico.
+// As funções dessa classe expressam a intenção do cliente.
+// As funçoes possuem validaçoes de negócio, o mantem a integridade do objeto.
 export default class Customer {
-    private _id: string;
-    private _name: string;
-    private _email: string;
-    private _phone: string;
+    private _id: UUID;
+    private _name: Name;
+    private _address?: Address;
+    private _status: boolean = false;
+    private _rewardPoints: number;
 
     constructor(
-        id: string,
         name: string,
-        email: string,
-        phone: string
+        address?: Address
     ) {
-        this._id = id;
-        this._name = name;
-        this._email = email;
-        this._phone = phone;
+        this._id = UUID.create();
+        this._name = new Name(name);
+        this._rewardPoints = 0;
+        if (address) this._address = address;
     }
 
-    get id(): string {
-        return this._id;
+    get id() {
+        return this._id.getValue();
     }
 
-    get name(): string {
-        return this._name;
+    get name() {
+        return this._name.getValue();
     }
 
-    get email(): string {
-        return this._email;
+    get isActive() {
+        return this._status;
     }
 
-    get phone(): string {
-        return this._phone;
+    get address() {
+        return this._address;
     }
 
-    set name(name: string) {
-        this._name = name;
+    get rewardPoints() {
+        return this._rewardPoints;
     }
 
-    set email(email: string) {
-        this._email = email;
+    changeName(name: string): void {
+        this._name = new Name(name);
     }
 
-    set phone(phone: string) {
-        this._phone = phone;
+    updateAddres(street: string, number: string, city: string, state: string, zip: string): void {
+        const address = new Address(street, number, city, state, zip);
+        this._address = address;
     }
+
+    addRewardPoints(rewardPoints: number) {
+        if (rewardPoints <= 0) throw new Error("Rewards points should be greater zero");
+        this._rewardPoints += rewardPoints; 
+    }
+
+    // A entidade pode ter um endereço opcional.
+    // Mas para ativar o usuario, o endereço é obrigatório.
+    activate() {
+        if (!this._address) {
+            throw new Error('Address cannot be empty when activating');
+        }
+        this._status = true;
+    }
+
+    deactivate() {
+        this._status = false;
+    }
+
 }

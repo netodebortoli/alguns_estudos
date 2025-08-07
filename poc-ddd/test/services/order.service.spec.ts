@@ -1,8 +1,8 @@
 import Order from '../../src/entities/order';
-import Client from '../../src/entities/client';
 import OrderItem from '../../src/entities/order_item';
 import UUID from '../../src/vos/uuid';
 import OrderService from '../../src/domain-services/order.service';
+import Customer from '../../src/entities/customer';
 
 describe('Order domain service unit tests', () => {
     it('should get total amount froms orders', () => {
@@ -30,7 +30,7 @@ describe('Order domain service unit tests', () => {
 
     it('should place a new order and defined rewards points of client', () => {
         const productId = UUID.create().getValue();
-        const client = new Client('John Doe');
+        const client = new Customer('John Doe');
         const itens = [
             new OrderItem('Item 1', 10, productId, 1),
             new OrderItem('Item 2', 20, productId, 1),
@@ -39,6 +39,7 @@ describe('Order domain service unit tests', () => {
         const order = OrderService.placeOrder(client, itens);
 
         expect(order).toBeDefined()
+        expect(order.totalOrder).toBe(30)
         expect(order.customerId).toBe(client.id)
         expect(order.orderItens.length).toBe(itens.length)
         expect(client.rewardPoints).toBe(15)
