@@ -10,6 +10,7 @@ export default class Client {
     private _name: Name;
     private _address?: Address;
     private _status: boolean = false;
+    private _rewardPoints: number;
 
     constructor(
         name: string,
@@ -17,6 +18,7 @@ export default class Client {
     ) {
         this._id = UUID.create();
         this._name = new Name(name);
+        this._rewardPoints = 0;
         if (address) this._address = address;
     }
 
@@ -36,6 +38,10 @@ export default class Client {
         return this._address;
     }
 
+    get rewardPoints() {
+        return this._rewardPoints;
+    }
+
     changeName(name: string): void {
         this._name = new Name(name);
     }
@@ -43,6 +49,11 @@ export default class Client {
     updateAddres(street: string, number: string, city: string, state: string, zip: string): void {
         const address = new Address(street, number, city, state, zip);
         this._address = address;
+    }
+
+    updateRewardPoints(totalAmount: number) {
+        if (!totalAmount || totalAmount === 0) throw new Error('Total amount is required to update rewards points');
+        this._rewardPoints = this._rewardPoints + (totalAmount/2); 
     }
 
     // A entidade pode ter um endereço opcional.
