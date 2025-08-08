@@ -10,9 +10,21 @@ export default class ProductModel extends Model {
     @Column
     declare id: string;
 
-    @Column({allowNull: false})
+    @Column({ allowNull: false })
     declare name: string;
 
-    @Column({allowNull: false})
+    @Column({ allowNull: false })
     declare price: number;
+
+    getId(): string {
+        return this.id;
+    }
+
+    getName(): string {
+        return this.name;
+    }
+
+    getPrice(): number {
+        return this.price;
+    }
 }

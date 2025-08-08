@@ -1,3 +1,4 @@
+import ProductModel from "../../infrastructure/db/sequelize/model/product.model";
 import Name from "../vos/name";
 import Price from "../vos/price";
 import UUID from "../vos/uuid";
@@ -11,6 +12,12 @@ export default class Product {
         this._id = UUID.create();
         this._name = new Name(name);
         this._price = new Price(price);
+    }
+
+    static fromModel(model: ProductModel): Product {
+        let product = new Product(model.name, model.price);
+        product._id = new UUID(model.id);
+        return product;
     }
 
     get id() {
