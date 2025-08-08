@@ -1,5 +1,5 @@
-import OrderItem from "../../src/entities/order_item"
-import UUID from "../../src/vos/uuid"
+import OrderItem from "../../../src/domain/entities/order_item"
+import UUID from "../../../src/domain/vos/uuid"
 
 describe('Order Item entity unit tests', () => {
     it('should create a order item', () => {

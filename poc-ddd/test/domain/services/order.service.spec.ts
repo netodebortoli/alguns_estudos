@@ -1,8 +1,8 @@
-import Order from '../../src/entities/order';
-import OrderItem from '../../src/entities/order_item';
-import UUID from '../../src/vos/uuid';
-import OrderService from '../../src/domain-services/order.service';
-import Customer from '../../src/entities/customer';
+import Customer from "../../../src/domain/entities/customer";
+import Order from "../../../src/domain/entities/order";
+import OrderItem from "../../../src/domain/entities/order_item";
+import OrderService from "../../../src/domain/services/order.service";
+import UUID from "../../../src/domain/vos/uuid";
 
 describe('Order domain service unit tests', () => {
     it('should get total amount froms orders', () => {
