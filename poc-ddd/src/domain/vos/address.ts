@@ -14,6 +14,14 @@ export default class Address {
         this.validate();
     }
 
+    static fromModel(street: string, number: string, city: string, state: string, zip: string) : Address | undefined {
+        try {
+            return new Address(street, number, city, state, zip);
+        } catch (error) {
+            return;
+        }
+    }
+
     private validate() {
         if (!this._street || this._street.length === 0) {
             throw new Error('Field street must be provided');
