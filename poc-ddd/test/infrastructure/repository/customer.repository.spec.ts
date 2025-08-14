@@ -107,17 +107,14 @@ describe("Customer repository integration test", () => {
         // given
         const customerRepository = new CustomerRepositoryImpl();
         const address = new Address("Rua Belarmino Pinto", "374", "Baixo Guandu", "ES", "29730000");
-        const newCustomer = new Customer("Aristides D. Neto", address);
-        await customerRepository.create(newCustomer);
+        const customer = new Customer("Aristides D. Neto", address);
+        await customerRepository.create(customer);
 
         // when
-        const customerModel = await CustomerModel.findOne({ where: { id: newCustomer.id } });
-        const customer = await customerRepository.findById(customerModel?.getId()!)
+        const customerResult = await customerRepository.findById(customer.id);
 
         expect(customer).toBeDefined()
-        expect(customer.id).toBe(customerModel?.getId())
-        expect(customer.name).toBe(customerModel?.getName())
-        expect(customer).toStrictEqual(newCustomer)
+        expect(customer).toStrictEqual(customerResult)
     });
 
     it('should throw error when not find customer by id', async () => {

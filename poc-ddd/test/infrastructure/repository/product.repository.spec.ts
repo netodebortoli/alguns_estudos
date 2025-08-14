@@ -71,13 +71,10 @@ describe("Product repository integration test", () => {
         await productRepository.create(product);
 
         // when
-        const productModel = await ProductModel.findOne({ where: { id: product.id } });
-        const foundProduct = await productRepository.findById(productModel?.getId()!)
+        const foundProduct = await productRepository.findById(product.id)
 
         expect(foundProduct).toBeDefined()
-        expect(foundProduct.id).toBe(productModel?.getId())
-        expect(foundProduct.name).toBe(productModel?.getName())
-        expect(foundProduct.price).toBe(productModel?.getPrice())
+        expect(foundProduct).toStrictEqual(product)
     });
 
     it('should throw error when not find product by id', async () => {

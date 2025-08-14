@@ -36,16 +36,16 @@ export default class CustomerRepositoryImpl implements CustomerRepository {
     }
 
     async findById(id: string): Promise<Customer> {
-        const customer = await CustomerModel.findOne({ where: { id } });
-        if (!customer) {
+        const customerModel = await CustomerModel.findOne({ where: { id } });
+        if (!customerModel) {
             throw new Error("Customer not found");
         }
-        return Customer.fromModel(customer);
+        return CustomerModel.toDomain(customerModel);
     }
 
     async findAll(): Promise<Customer[]> {
         const result = await CustomerModel.findAll();
-        return result.map(it => Customer.fromModel(it));
+        return result.map(CustomerModel.toDomain);
     }
 
 }

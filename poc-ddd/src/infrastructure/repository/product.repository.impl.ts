@@ -26,12 +26,12 @@ export default class ProductRepositoryImpl implements ProductRepository {
         if (!productModel) {
             throw new Error("Product not found");
         }
-        return Product.fromModel(productModel);
+        return ProductModel.toDomain(productModel);
     }
 
     async findAll(): Promise<Product[]> {
         const result = await ProductModel.findAll();
-        return result.map(it => Product.fromModel(it));
+        return result.map(ProductModel.toDomain);
     }
 
 }
