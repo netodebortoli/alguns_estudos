@@ -14,7 +14,7 @@ export default class Address {
         this.validate();
     }
 
-    static fromModel(street: string, number: string, city: string, state: string, zip: string) : Address | undefined {
+    static of(street: string, number: string, city: string, state: string, zip: string) : Address | undefined {
         try {
             return new Address(street, number, city, state, zip);
         } catch (error) {

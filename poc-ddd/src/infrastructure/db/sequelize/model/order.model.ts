@@ -1,6 +1,7 @@
 import { Column, PrimaryKey, Table, Model, HasMany, BelongsTo, ForeignKey } from "sequelize-typescript";
-import OrdemItemModel from "./ordem-item.model";
+import OrderItemModel from "./order-item.model";
 import CustomerModel from "./customer.model";
+import Order from "../../../../domain/entities/order";
 
 @Table({
     tableName: "orders",
@@ -12,12 +13,12 @@ export default class OrderModel extends Model {
     @Column
     declare id: string;
 
-    @HasMany(() => OrdemItemModel) // 1 Order para N Itens ...
-    declare itens: OrdemItemModel[];
+    @HasMany(() => OrderItemModel) // 1 Order para N Itens ...
+    declare itens: OrderItemModel[];
 
     @ForeignKey(() => CustomerModel) // Faz o relacionamento apenas do campo ID
     @Column({ allowNull: false, field: "customer_id" })
-    declare customerId: String;
+    declare customerId: string;
 
     // Para recuperar todos os dados de um objeto, precisa fazer o mapeamento completo
     @BelongsTo(() => CustomerModel)
@@ -25,4 +26,12 @@ export default class OrderModel extends Model {
 
     @Column({ allowNull: false })
     declare total: number;
+
+    static toDomain(from: OrderModel): Order {
+        return new Order(
+            from.customerId,
+            from.itens.map(OrderItemModel.toDomain),
+            from.id
+        )
+    }
 }

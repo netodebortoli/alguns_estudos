@@ -1,12 +1,13 @@
-import { Column, PrimaryKey, Table, Model, BelongsTo, ForeignKey } from "sequelize-typescript";
+import { BelongsTo, Column, ForeignKey, Model, PrimaryKey, Table } from "sequelize-typescript";
+import OrderItem from "../../../../domain/entities/order_item";
+import OrderModel from "./order.model";
 import ProductModel from "./product.model";
-import OrderModel from "./ordem.model";
 
 @Table({
     tableName: "order_itens",
     timestamps: false // Nao gera as colunas de auditoria (createdDt, updatedAt)
 })
-export default class OrdemItemModel extends Model {
+export default class OrderItemModel extends Model {
 
     @PrimaryKey
     @Column
@@ -34,4 +35,24 @@ export default class OrdemItemModel extends Model {
 
     @Column({ allowNull: false })
     declare quantity: number;
+
+    static toModel(from: OrderItem): OrderItemModel {
+        return new OrderItemModel({
+            id: from.id,
+            productId: from.productId,
+            name: from.name,
+            price: from.price,
+            quantity: from.quantity
+        })
+    }
+
+    static toDomain(from: OrderItemModel): OrderItem {
+        return new OrderItem(
+            from.product.name,
+            from.price,
+            from.productId,
+            from.quantity,
+            from.id
+        )
+    }
 }

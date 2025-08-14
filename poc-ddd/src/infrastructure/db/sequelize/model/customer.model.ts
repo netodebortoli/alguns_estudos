@@ -1,4 +1,6 @@
-import { Column, PrimaryKey, Table, Model } from "sequelize-typescript";
+import { Column, Model, PrimaryKey, Table } from "sequelize-typescript";
+import Customer from "../../../../domain/entities/customer";
+import Address from "../../../../domain/vos/address";
 
 @Table({
     tableName: "customers",
@@ -21,7 +23,7 @@ export default class CustomerModel extends Model {
 
     @Column
     declare city: string;
-    
+
     @Column
     declare zip: string;
 
@@ -40,6 +42,14 @@ export default class CustomerModel extends Model {
 
     getName() {
         return this.name;
+    }
+
+    static toDomain(from: CustomerModel): Customer {
+        const address = Address.of(from.street, from.number, from.city, from.state, from.zip);
+        const customer = new Customer(from.name, address, from.id);
+        if (from.status) customer.activate()
+        if (from.rewardPoints > 0) customer.addRewardPoints(from.rewardPoints)
+        return customer;
     }
 
 }

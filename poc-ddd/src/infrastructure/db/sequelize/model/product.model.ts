@@ -1,4 +1,5 @@
-import { Column, PrimaryKey, Table, Model } from "sequelize-typescript";
+import { Column, Model, PrimaryKey, Table } from "sequelize-typescript";
+import Product from "../../../../domain/entities/product";
 
 @Table({
     tableName: "products",
@@ -26,5 +27,9 @@ export default class ProductModel extends Model {
 
     getPrice(): number {
         return this.price;
+    }
+
+    static toDomain(from: ProductModel): Product {
+        return new Product(from.name, from.price, from.id);
     }
 }
