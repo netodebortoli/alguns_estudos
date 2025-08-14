@@ -22,4 +22,9 @@ describe('Product domain service unit tests', () => {
         expect(() => ProductService.updatePricesInBatch(products, 0))
             .toThrow('Percentage value should be greater than zero')
     });
+
+    it('should throw error when update products price in batch with invalid products', () => {
+        expect(() => ProductService.updatePricesInBatch([], 50))
+            .toThrow('Products should be required to update price')
+    });
 })

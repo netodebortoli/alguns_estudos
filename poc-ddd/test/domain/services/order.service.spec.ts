@@ -44,4 +44,13 @@ describe('Order domain service unit tests', () => {
         expect(order.orderItens.length).toBe(itens.length)
         expect(client.rewardPoints).toBe(15)
     })
+
+    it('should throw error when placeOrder with invalid customer', () => {
+        expect(() => OrderService.placeOrder(undefined, [])).toThrow('Client must be required to place a new order')
+    })
+
+    it('should throw error when placeOrder with invalid itens', () => {
+        const customer = new Customer('Aristides D. Neto');
+        expect(() => OrderService.placeOrder(customer, [])).toThrow('At lest one order item is required to place a new order')
+    })
 })

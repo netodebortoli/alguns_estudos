@@ -16,7 +16,9 @@ export default class OrderRepositoryImpl implements OrderRepository {
             itens: entity.orderItens.map(OrderItemModel.toModel)
         },
             {
-                include: [{ model: OrderItemModel }] // para incluir o objeto aninhado
+                // para incluir o objeto aninhado.
+                // alem disso, gera o valor automaticamente do orderId nos itens para o relacionamento
+                include: [{ model: OrderItemModel }]
             }
         )
     }
@@ -43,7 +45,7 @@ export default class OrderRepositoryImpl implements OrderRepository {
                 name: item.name,
                 price: item.price,
                 quantity: item.quantity,
-                orderId: entity.id
+                orderId: entity.id // campo obrigatorio pra incluir o relacionamento
             }))
         );
     }

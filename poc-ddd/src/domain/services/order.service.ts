@@ -18,7 +18,7 @@ export default class OrderService {
         if (!customer) throw new Error('Client must be required to place a new order');
         if (!itens || itens.length === 0) throw new Error('At lest one order item is required to place a new order');
         const newOrder = new Order(customer.id, itens)
-        // 50% do custo total de um pedido é convertido em pontos de fidelidadet
+        // 50% do custo total de um pedido é convertido em pontos de fidelidade
         customer.addRewardPoints(newOrder.totalOrder * this.PERCENTAGE_REWARDS_POINTS)
         return newOrder;
     }
