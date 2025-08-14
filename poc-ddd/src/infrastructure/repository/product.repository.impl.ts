@@ -1,8 +1,11 @@
 import Product from "../../domain/entities/product";
 import ProductRepository from "../../domain/repositories/product.repository";
 import ProductModel from "../db/sequelize/model/product.model";
+import { Sequelize } from "sequelize-typescript";
 
 export default class ProductRepositoryImpl implements ProductRepository {
+
+    constructor(private sequelize?: Sequelize) {}
 
     async create(entity: Product): Promise<void> {
         await ProductModel.create({

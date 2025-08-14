@@ -1,8 +1,11 @@
 import Customer from "../../domain/entities/customer";
 import CustomerRepository from "../../domain/repositories/customer.repository";
 import CustomerModel from "../db/sequelize/model/customer.model";
+import { Sequelize } from "sequelize-typescript";
 
 export default class CustomerRepositoryImpl implements CustomerRepository {
+
+    constructor(private sequelize?: Sequelize) {}
 
     async create(entity: Customer): Promise<void> {
         // Modelo de dados !== do modelo do dominio
