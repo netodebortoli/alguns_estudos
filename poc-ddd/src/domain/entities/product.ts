@@ -8,16 +8,10 @@ export default class Product {
     private _name: Name;
     private _price: Price;
 
-    constructor(name: string, price: number) {
-        this._id = UUID.create();
+    constructor(name: string, price: number, id?: string) {
+        this._id = !id ? UUID.create() : new UUID(id);
         this._name = new Name(name);
         this._price = new Price(price);
-    }
-
-    static fromModel(model: ProductModel): Product {
-        let product = new Product(model.name, model.price);
-        product._id = new UUID(model.id);
-        return product;
     }
 
     get id() {

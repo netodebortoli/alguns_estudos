@@ -2,14 +2,13 @@ import UUID from "../vos/uuid";
 import OrderItem from "./order_item";
 
 export default class Order {
+
     private _id: UUID;
     private _itens: OrderItem[];
     private _customerId: UUID;
-    private _createdDt: Date;
 
-    constructor(customerId: string, orderItens: OrderItem[]) {
-        this._id = UUID.create();
-        this._createdDt = new Date();
+    constructor(customerId: string, orderItens: OrderItem[], id?: string) {
+        this._id = !id ? UUID.create() : new UUID(id);
         this._customerId = new UUID(customerId);
         this._itens = orderItens;
         this.validate();
@@ -25,10 +24,6 @@ export default class Order {
 
     get totalOrder() {
         return this._itens.reduce((acc, item) => acc + item.totalPrice, 0);
-    }
-
-    get createdDt() {
-        return this._createdDt;
     }
 
     get orderItens() {

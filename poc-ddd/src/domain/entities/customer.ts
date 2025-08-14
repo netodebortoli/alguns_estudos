@@ -15,21 +15,13 @@ export default class Customer {
 
     constructor(
         name: string,
-        address?: Address
+        address?: Address,
+        id?: string
     ) {
-        this._id = UUID.create();
+        this._id = !id ? UUID.create() : new UUID(id);
         this._name = new Name(name);
         this._rewardPoints = 0;
         if (address) this._address = address;
-    }
-
-    static fromModel(model: CustomerModel): Customer {
-        const address = Address.fromModel(model.street, model.number, model.city, model.state, model.zip);
-        const customer = new Customer(model.name, address);
-        customer._id = new UUID(model.id);
-        customer._status = model.status;
-        customer._rewardPoints = model.rewardPoints;
-        return customer;
     }
 
     get id() {

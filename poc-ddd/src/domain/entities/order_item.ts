@@ -1,3 +1,4 @@
+import OrderItemModel from "../../infrastructure/db/sequelize/model/order-item.model";
 import Name from "../vos/name";
 import Price from "../vos/price";
 import UUID from "../vos/uuid";
@@ -9,13 +10,17 @@ export default class OrderItem {
     private _productId: UUID;
     private _quantity: number;
 
-    constructor(itemName: string, price: number, productId: string, quantity: number) {
-        this._id = UUID.create();
+    constructor(itemName: string, price: number, productId: string, quantity: number, id?: string) {
+        this._id = !id ? UUID.create() : new UUID(id);
         this._name = new Name(itemName);
         this._price = new Price(price);
         this._productId = new UUID(productId);
         this._quantity = quantity;
         this.validate();
+    }
+
+    get id(): string {
+        return this._id.getValue();
     }
 
     get name(): string {
@@ -32,6 +37,10 @@ export default class OrderItem {
 
     get totalPrice(): number {
         return this._price.getValue() * this._quantity;
+    }
+
+    get productId(): string {
+        return this._productId.getValue();
     }
 
     private validate() {
