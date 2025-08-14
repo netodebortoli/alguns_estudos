@@ -1,4 +1,3 @@
-import ProductModel from "../../infrastructure/db/sequelize/model/product.model";
 import Name from "../vos/name";
 import Price from "../vos/price";
 import UUID from "../vos/uuid";

@@ -1,4 +1,3 @@
-import OrderItemModel from "../../infrastructure/db/sequelize/model/order-item.model";
 import Name from "../vos/name";
 import Price from "../vos/price";
 import UUID from "../vos/uuid";

@@ -1,4 +1,3 @@
-import CustomerModel from "../../infrastructure/db/sequelize/model/customer.model";
 import Address from "../vos/address";
 import Name from "../vos/name";
 import UUID from "../vos/uuid";
