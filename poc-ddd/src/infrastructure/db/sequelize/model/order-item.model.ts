@@ -48,7 +48,7 @@ export default class OrderItemModel extends Model {
 
     static toDomain(from: OrderItemModel): OrderItem {
         return new OrderItem(
-            from.product.name,
+            from.name,
             from.price,
             from.productId,
             from.quantity,
