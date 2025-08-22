@@ -1,10 +1,9 @@
 import { Sequelize } from 'sequelize-typescript';
-import Customer from '../../../src/domain/entities/customer';
-import Order from '../../../src/domain/entities/order';
-import OrderItem from '../../../src/domain/entities/order_item';
-import Product from '../../../src/domain/entities/product';
-import Address from '../../../src/domain/vos/address';
-import UUID from '../../../src/domain/vos/uuid';
+import Order from '../../../src/domain/checkout-module/entity/order';
+import OrderItem from '../../../src/domain/checkout-module/entity/order_item';
+import Customer from '../../../src/domain/customer-module/entity/customer';
+import Address from '../../../src/domain/customer-module/vo/address';
+import Product from '../../../src/domain/product-module/entity/product';
 import CustomerModel from '../../../src/infrastructure/db/sequelize/model/customer.model';
 import OrderItemModel from '../../../src/infrastructure/db/sequelize/model/order-item.model';
 import OrderModel from '../../../src/infrastructure/db/sequelize/model/order.model';
@@ -12,6 +11,7 @@ import ProductModel from '../../../src/infrastructure/db/sequelize/model/product
 import CustomerRepositoryImpl from '../../../src/infrastructure/repository/customer.repository.impl';
 import OrderRepositoryImpl from '../../../src/infrastructure/repository/order.repository.impl';
 import ProductRepositoryImpl from '../../../src/infrastructure/repository/product.repository.impl';
+import UUID from '../../../src/domain/@shared/vo/uuid';
 
 describe("Order repository integration test", () => {
 

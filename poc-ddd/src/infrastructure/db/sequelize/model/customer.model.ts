@@ -1,6 +1,6 @@
 import { Column, Model, PrimaryKey, Table } from "sequelize-typescript";
-import Customer from "../../../../domain/entities/customer";
-import Address from "../../../../domain/vos/address";
+import Address from "../../../../domain/customer-module/vo/address";
+import Customer from "../../../../domain/customer-module/entity/customer";
 
 @Table({
     tableName: "customers",

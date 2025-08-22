@@ -1,7 +1,7 @@
-import OrderItem from "../../../src/domain/entities/order_item"
-import Order from "../../../src/domain/entities/order"
-import Product from "../../../src/domain/entities/product"
-import Customer from "../../../src/domain/entities/customer"
+import Order from "../../../src/domain/checkout-module/entity/order"
+import OrderItem from "../../../src/domain/checkout-module/entity/order_item"
+import Customer from "../../../src/domain/customer-module/entity/customer"
+import Product from "../../../src/domain/product-module/entity/product"
 
 describe('Order entity unit tests', () => {
     it('should create a order', () => {

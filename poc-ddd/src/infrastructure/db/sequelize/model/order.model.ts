@@ -1,7 +1,7 @@
 import { Column, PrimaryKey, Table, Model, HasMany, BelongsTo, ForeignKey } from "sequelize-typescript";
 import OrderItemModel from "./order-item.model";
 import CustomerModel from "./customer.model";
-import Order from "../../../../domain/entities/order";
+import Order from "../../../../domain/checkout-module/entity/order";
 
 @Table({
     tableName: "orders",

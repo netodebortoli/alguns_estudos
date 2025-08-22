@@ -1,6 +1,6 @@
-import Event from "./event";
 import EventDispatcher from "./event.dispatcher";
 import EventHandler from "./event.handler";
+import Event from "./event";
 
 export default class EventDispatcherImpl implements EventDispatcher {
     private eventHandlers = new Map<string, EventHandler[]>();

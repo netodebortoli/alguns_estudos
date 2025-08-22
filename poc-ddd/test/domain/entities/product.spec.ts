@@ -1,4 +1,4 @@
-import Product from "../../../src/domain/entities/product"
+import Product from "../../../src/domain/product-module/entity/product"
 
 describe('Product entity unit tests', () => {
     it('should create product', () => {

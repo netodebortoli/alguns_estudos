@@ -1,5 +1,5 @@
 import { Column, Model, PrimaryKey, Table } from "sequelize-typescript";
-import Product from "../../../../domain/entities/product";
+import Product from "../../../../domain/product-module/entity/product";
 
 @Table({
     tableName: "products",

@@ -1,6 +1,6 @@
 import { Sequelize } from 'sequelize-typescript';
-import Product from '../../../src/domain/entities/product';
-import UUID from '../../../src/domain/vos/uuid';
+import UUID from '../../../src/domain/@shared/vo/uuid';
+import Product from '../../../src/domain/product-module/entity/product';
 import ProductModel from '../../../src/infrastructure/db/sequelize/model/product.model';
 import ProductRepositoryImpl from '../../../src/infrastructure/repository/product.repository.impl';
 

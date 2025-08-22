@@ -1,6 +1,6 @@
-import Address from "../vos/address";
-import Name from "../vos/name";
-import UUID from "../vos/uuid";
+import Name from "../../@shared/vo/name";
+import UUID from "../../@shared/vo/uuid";
+import Address from "../vo/address";
 
 // Classe com domínio rico.
 // As funções dessa classe expressam a intenção do cliente.

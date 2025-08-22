@@ -1,4 +1,4 @@
-import Event from "../@shared/event";
+import Event from "../../@shared/event/event";
 
 export default class ProductCreatedEvent implements Event {
     timestamp: Date;

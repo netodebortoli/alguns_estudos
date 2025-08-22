@@ -1,5 +1,5 @@
-import Event from "./event";
 import EventHandler from "./event.handler";
+import Event from "./event";
 
 // Contrato que define quem registra e notifica todos os handlers
 export default interface EventDispatcher {

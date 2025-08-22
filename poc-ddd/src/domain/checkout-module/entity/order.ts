@@ -1,4 +1,4 @@
-import UUID from "../vos/uuid";
+import UUID from "../../@shared/vo/uuid";
 import OrderItem from "./order_item";
 
 export default class Order {

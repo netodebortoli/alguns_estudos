@@ -1,6 +1,6 @@
-import Name from "../vos/name";
-import Price from "../vos/price";
-import UUID from "../vos/uuid";
+import Name from "../../@shared/vo/name";
+import UUID from "../../@shared/vo/uuid";
+import Price from "../vo/price";
 
 export default class OrderItem {
     private _id: UUID;

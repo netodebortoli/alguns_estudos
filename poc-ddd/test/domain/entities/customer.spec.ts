@@ -1,5 +1,5 @@
-import Customer from '../../../src/domain/entities/customer';
-import Address from '../../../src/domain/vos/address';
+import Customer from '../../../src/domain/customer-module/entity/customer';
+import Address from '../../../src/domain/customer-module/vo/address';
 
 describe('Customer entity unit tests', () => {
     it('should create customer', () => {

@@ -1,12 +1,12 @@
-import Customer from "../entities/customer";
-import Order from "../entities/order";
-import OrderItem from "../entities/order_item";
+import Customer from "../../customer-module/entity/customer";
+import Order from "../entity/order";
+import OrderItem from "../entity/order_item";
 
 // Os domain services são responsáveis por regras de negócio que envolvem múltiplas entidades ou agregados.
 // Eles encapsulam a lógica que não pertence a uma única entidade, mas sim ao domínio como um todo.
 // Eles devem ser stateless, ou seja, não devem manter estado entre as chamadas de método.
 export default class OrderService {
-    
+
     private static PERCENTAGE_REWARDS_POINTS = 0.5;
 
     static getTotalAmount(orders: Order[]): number {
