@@ -1,7 +1,7 @@
 
-import EventDispatcherImpl from '../../../src/domain/@shared/event/event.dispatcher.impl';
-import SendEmailWhenProductCreatedHandler from '../../../src/domain/product-module/event/handlers/send-email-product-created.handler';
-import ProductCreatedEvent from '../../../src/domain/product-module/event/product-created.event';
+import EventDispatcherImpl from '../../../../src/domain/@shared/event/event.dispatcher.impl';
+import SendEmailWhenProductCreatedHandler from '../../../../src/domain/product-module/event/handlers/send-email-product-created.handler';
+import ProductCreatedEvent from '../../../../src/domain/product-module/event/product-created.event';
 
 describe("Event Dispatcher tests unit", () => {
 

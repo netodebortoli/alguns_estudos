@@ -1,4 +1,4 @@
-import UUID from "../../../src/domain/@shared/vo/UUID"
+import UUID from "../../../src/domain/@shared/vo/uuid"
 import OrderItem from "../../../src/domain/checkout-module/entity/order_item"
 
 describe('Order Item entity unit tests', () => {
