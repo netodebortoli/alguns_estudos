@@ -1,8 +1,8 @@
 import { Sequelize } from 'sequelize-typescript';
 import UUID from '../../../src/domain/@shared/vo/uuid';
 import Product from '../../../src/domain/product-module/entity/product';
-import ProductModel from '../../../src/infrastructure/db/sequelize/model/product.model';
-import ProductRepositoryImpl from '../../../src/infrastructure/repository/product.repository.impl';
+import ProductModel from '../../../src/infrastructure/product-module/repository/sequelize/product.model';
+import ProductRepositoryImpl from '../../../src/infrastructure/product-module/repository/sequelize/product.repository.impl';
 
 describe("Product repository integration test", () => {
 

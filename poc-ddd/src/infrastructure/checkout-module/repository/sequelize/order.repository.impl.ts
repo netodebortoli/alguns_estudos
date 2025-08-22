@@ -1,8 +1,8 @@
 import { Sequelize } from "sequelize-typescript";
-import Order from "../../domain/checkout-module/entity/order";
-import OrderRepository from "../../domain/checkout-module/repository/order.repository";
-import OrderItemModel from "../db/sequelize/model/order-item.model";
-import OrderModel from "../db/sequelize/model/order.model";
+import Order from "../../../../domain/checkout-module/entity/order";
+import OrderRepository from "../../../../domain/checkout-module/repository/order.repository";
+import OrderItemModel from "./order-item.model";
+import OrderModel from "./order.model";
 
 export default class OrderRepositoryImpl implements OrderRepository {
 

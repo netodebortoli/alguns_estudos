@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize-typescript";
-import Product from "../../domain/product-module/entity/product";
-import ProductRepository from "../../domain/product-module/repository/product.repository";
-import ProductModel from "../db/sequelize/model/product.model";
+import Product from "../../../../domain/product-module/entity/product";
+import ProductRepository from "../../../../domain/product-module/repository/product.repository";
+import ProductModel from "./product.model";
 
 export default class ProductRepositoryImpl implements ProductRepository {
 

@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize-typescript";
-import Customer from "../../domain/customer-module/entity/customer";
-import CustomerRepository from "../../domain/customer-module/repository/customer.repository";
-import CustomerModel from "../db/sequelize/model/customer.model";
+import Customer from "../../../../domain/customer-module/entity/customer";
+import CustomerRepository from "../../../../domain/customer-module/repository/customer.repository";
+import CustomerModel from "./customer.model";
 
 export default class CustomerRepositoryImpl implements CustomerRepository {
 

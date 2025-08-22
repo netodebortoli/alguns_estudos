@@ -1,17 +1,17 @@
 import { Sequelize } from 'sequelize-typescript';
+import UUID from '../../../src/domain/@shared/vo/uuid';
 import Order from '../../../src/domain/checkout-module/entity/order';
 import OrderItem from '../../../src/domain/checkout-module/entity/order_item';
 import Customer from '../../../src/domain/customer-module/entity/customer';
 import Address from '../../../src/domain/customer-module/vo/address';
 import Product from '../../../src/domain/product-module/entity/product';
-import CustomerModel from '../../../src/infrastructure/db/sequelize/model/customer.model';
-import OrderItemModel from '../../../src/infrastructure/db/sequelize/model/order-item.model';
-import OrderModel from '../../../src/infrastructure/db/sequelize/model/order.model';
-import ProductModel from '../../../src/infrastructure/db/sequelize/model/product.model';
-import CustomerRepositoryImpl from '../../../src/infrastructure/repository/customer.repository.impl';
-import OrderRepositoryImpl from '../../../src/infrastructure/repository/order.repository.impl';
-import ProductRepositoryImpl from '../../../src/infrastructure/repository/product.repository.impl';
-import UUID from '../../../src/domain/@shared/vo/uuid';
+import OrderItemModel from '../../../src/infrastructure/checkout-module/repository/sequelize/order-item.model';
+import OrderModel from '../../../src/infrastructure/checkout-module/repository/sequelize/order.model';
+import OrderRepositoryImpl from '../../../src/infrastructure/checkout-module/repository/sequelize/order.repository.impl';
+import CustomerModel from '../../../src/infrastructure/customer-module/repository/sequelize/customer.model';
+import CustomerRepositoryImpl from '../../../src/infrastructure/customer-module/repository/sequelize/customer.repository.impl';
+import ProductModel from '../../../src/infrastructure/product-module/repository/sequelize/product.model';
+import ProductRepositoryImpl from '../../../src/infrastructure/product-module/repository/sequelize/product.repository.impl';
 
 describe("Order repository integration test", () => {
 
