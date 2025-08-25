@@ -1,6 +1,6 @@
 import Event from "../../@shared/event/event";
 
-export default class ConsumerCreatedEvent implements Event {
+export default class CustomerChangedAddressEvent implements Event {
     timestamp: Date;
     data: any;
 
