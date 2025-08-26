@@ -3,7 +3,7 @@ import UUID from "../../@shared/vo/uuid";
 import Price from "../../checkout-module/vo/price";
 import ProductInterface from "./product.interface";
 
-export default class Product implements ProductInterface {
+export default class OtherProduct implements ProductInterface {
     private _id: UUID;
     private _name: Name;
     private _price: Price;
@@ -11,7 +11,7 @@ export default class Product implements ProductInterface {
     constructor(name: string, price: number, id?: string) {
         this._id = !id ? UUID.create() : new UUID(id);
         this._name = new Name(name);
-        this._price = new Price(price);
+        this._price = new Price(price * 2);
     }
 
     get id() {
