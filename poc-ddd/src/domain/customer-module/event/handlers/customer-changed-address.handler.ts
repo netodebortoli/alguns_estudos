@@ -8,5 +8,4 @@ export default class CustomerChangedAddresHandler implements EventHandler {
         const endereco = event.data.address;
         console.log(`Endereço do cliente: ${id}, ${nome} alterado para: ${JSON.stringify(endereco)}`);
     }
-
 }
