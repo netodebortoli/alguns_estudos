@@ -4,8 +4,7 @@ import aristides.dev.portsadapters.product.core.entity.Product;
 import aristides.dev.portsadapters.product.core.entity.ProductStatus;
 import aristides.dev.portsadapters.product.core.exception.ProductNotFoundException;
 import aristides.dev.portsadapters.product.core.factory.ProductFactory;
-import aristides.dev.portsadapters.product.core.ports.out.ProductReader;
-import aristides.dev.portsadapters.product.core.ports.out.ProductWriter;
+import aristides.dev.portsadapters.product.core.repository.ProductRepository;
 import aristides.dev.portsadapters.product.core.vo.UUID;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,10 +25,7 @@ class ProductServiceImplTest {
     private ProductServiceImpl service;
 
     @Mock
-    private ProductReader productReader;
-
-    @Mock
-    private ProductWriter productWriter;
+    private ProductRepository repository;
 
     @Test
     @DisplayName("Should create product and persist it")
@@ -39,7 +35,7 @@ class ProductServiceImplTest {
 
         // then
         assertNotNull(idNewProduct);
-        verify(productWriter, times(1)).save(any(Product.class));
+        verify(repository, times(1)).save(any(Product.class));
     }
 
     @Test
@@ -48,7 +44,7 @@ class ProductServiceImplTest {
         // given
         String id = UUID.create().value();
         Product product = ProductFactory.create("Notebook", new BigDecimal(10));
-        when(productReader.getById(id)).thenReturn(Optional.of(product));
+        when(repository.getById(id)).thenReturn(Optional.of(product));
 
         // when
         Product result = service.findById(id);
@@ -61,7 +57,7 @@ class ProductServiceImplTest {
     @Test
     @DisplayName("Should throw error when product is not found")
     void testFindProductByIdNotFound() {
-        when(productReader.getById(anyString())).thenReturn(Optional.empty());
+        when(repository.getById(anyString())).thenReturn(Optional.empty());
         assertThrows(ProductNotFoundException.class, () -> service.findById(anyString()));
     }
 
@@ -71,7 +67,7 @@ class ProductServiceImplTest {
         // given
         String id = UUID.create().value();
         Product product = ProductFactory.create("Mouse", new BigDecimal("120.00"));
-        when(productReader.getById(id)).thenReturn(Optional.of(product));
+        when(repository.getById(id)).thenReturn(Optional.of(product));
 
         assertSame(ProductStatus.DISABLED, product.getStatus());
 
@@ -80,8 +76,8 @@ class ProductServiceImplTest {
 
         // then
         assertSame(ProductStatus.ENABLED, product.getStatus());
-        verify(productReader, times(1)).getById(id);
-        verify(productWriter, times(1)).save(product);
+        verify(repository, times(1)).getById(id);
+        verify(repository, times(1)).save(product);
     }
 
     @Test
@@ -91,15 +87,15 @@ class ProductServiceImplTest {
         String id = UUID.create().value();
         Product product = ProductFactory.create("Teclado", new BigDecimal("250.00"));
         product.enable();
-        when(productReader.getById(id)).thenReturn(Optional.of(product));
+        when(repository.getById(id)).thenReturn(Optional.of(product));
 
         // when
         product.changePrice(new BigDecimal("0"));
         service.disable(id);
 
         assertSame(ProductStatus.DISABLED, product.getStatus());
-        verify(productReader, times(1)).getById(id);
-        verify(productWriter, times(1)).save(product);
+        verify(repository, times(1)).getById(id);
+        verify(repository, times(1)).save(product);
     }
 
 }

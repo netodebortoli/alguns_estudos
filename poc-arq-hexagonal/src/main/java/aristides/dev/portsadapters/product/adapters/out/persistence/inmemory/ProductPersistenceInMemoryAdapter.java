@@ -1,14 +1,13 @@
 package aristides.dev.portsadapters.product.adapters.out.persistence.inmemory;
 
 import aristides.dev.portsadapters.product.core.entity.Product;
-import aristides.dev.portsadapters.product.core.ports.out.ProductReader;
-import aristides.dev.portsadapters.product.core.ports.out.ProductWriter;
+import aristides.dev.portsadapters.product.core.repository.ProductRepository;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class ProductPersistenceInMemoryAdapter implements ProductWriter, ProductReader {
+public class ProductPersistenceInMemoryAdapter implements ProductRepository {
 
     private final Map<String, Product> database = new HashMap<>();
 
