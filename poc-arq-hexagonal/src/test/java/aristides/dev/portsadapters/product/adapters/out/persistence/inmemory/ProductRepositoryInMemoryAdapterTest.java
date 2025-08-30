@@ -9,9 +9,9 @@ import java.math.BigDecimal;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
 
-class ProductPersistenceInMemoryAdapterTest {
+class ProductRepositoryInMemoryAdapterTest {
 
-    private final ProductPersistenceInMemoryAdapter adapter = new ProductPersistenceInMemoryAdapter();
+    private final ProductRepositoryInMemoryAdapter adapter = new ProductRepositoryInMemoryAdapter();
 
     @Test
     @DisplayName("Should save product and find product")

@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class ProductPersistenceInMemoryAdapter implements ProductRepository {
+public class ProductRepositoryInMemoryAdapter implements ProductRepository {
 
     private final Map<String, Product> database = new HashMap<>();
 
