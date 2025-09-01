@@ -1,7 +1,7 @@
 package aristides.dev.portsadapters.product.adapters.out.persistence.inmemory;
 
 import aristides.dev.portsadapters.product.core.entity.Product;
-import aristides.dev.portsadapters.product.core.repository.ProductRepository;
+import aristides.dev.portsadapters.product.core.ports.out.repository.ProductRepository;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package aristides.dev.portsadapters.product.core.repository;
+package aristides.dev.portsadapters.product.core.ports.out.repository;
 
 import aristides.dev.portsadapters.product.core.entity.Product;
 

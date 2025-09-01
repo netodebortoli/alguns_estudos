@@ -6,7 +6,7 @@ import aristides.dev.portsadapters.product.core.factory.ProductFactory;
 import aristides.dev.portsadapters.product.core.ports.in.ChangeProductStatusUseCase;
 import aristides.dev.portsadapters.product.core.ports.in.CreateProductUseCase;
 import aristides.dev.portsadapters.product.core.ports.in.FindProductUseCase;
-import aristides.dev.portsadapters.product.core.repository.ProductRepository;
+import aristides.dev.portsadapters.product.core.ports.out.repository.ProductRepository;
 
 import java.math.BigDecimal;
 

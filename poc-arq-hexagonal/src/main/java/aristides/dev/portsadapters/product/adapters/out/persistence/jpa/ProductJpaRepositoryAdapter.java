@@ -2,7 +2,7 @@ package aristides.dev.portsadapters.product.adapters.out.persistence.jpa;
 
 import aristides.dev.portsadapters.product.adapters.out.persistence.jpa.model.ProductEntity;
 import aristides.dev.portsadapters.product.core.entity.Product;
-import aristides.dev.portsadapters.product.core.repository.ProductRepository;
+import aristides.dev.portsadapters.product.core.ports.out.repository.ProductRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;

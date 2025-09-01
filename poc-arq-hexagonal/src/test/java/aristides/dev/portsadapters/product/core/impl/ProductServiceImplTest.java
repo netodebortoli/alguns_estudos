@@ -4,7 +4,7 @@ import aristides.dev.portsadapters.product.core.entity.Product;
 import aristides.dev.portsadapters.product.core.entity.ProductStatus;
 import aristides.dev.portsadapters.product.core.exception.ProductNotFoundException;
 import aristides.dev.portsadapters.product.core.factory.ProductFactory;
-import aristides.dev.portsadapters.product.core.repository.ProductRepository;
+import aristides.dev.portsadapters.product.core.ports.out.repository.ProductRepository;
 import aristides.dev.portsadapters.product.core.vo.UUID;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
