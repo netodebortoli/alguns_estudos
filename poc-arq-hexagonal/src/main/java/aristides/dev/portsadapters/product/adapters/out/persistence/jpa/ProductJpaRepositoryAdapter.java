@@ -5,6 +5,7 @@ import aristides.dev.portsadapters.product.core.entity.Product;
 import aristides.dev.portsadapters.product.core.ports.out.repository.ProductRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -26,4 +27,10 @@ public class ProductJpaRepositoryAdapter implements ProductRepository {
         var productEntity = repository.findById(id);
         return productEntity.map(ProductEntity::toDomain);
     }
+
+    @Override
+    public List<Product> getAll() {
+        return this.repository.findAll().stream().map(ProductEntity::toDomain).toList();
+    }
+
 }

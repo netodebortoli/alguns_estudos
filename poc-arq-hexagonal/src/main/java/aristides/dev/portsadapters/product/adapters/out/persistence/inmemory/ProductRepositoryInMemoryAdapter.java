@@ -4,6 +4,7 @@ import aristides.dev.portsadapters.product.core.entity.Product;
 import aristides.dev.portsadapters.product.core.ports.out.repository.ProductRepository;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -18,6 +19,11 @@ public class ProductRepositoryInMemoryAdapter implements ProductRepository {
             return Optional.of(product);
         }
         return Optional.empty();
+    }
+
+    @Override
+    public List<Product> getAll() {
+        return database.values().stream().toList();
     }
 
     @Override
