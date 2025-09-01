@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.anyString;
 
 @DataJpaTest
 @Import(ProductJpaRepositoryAdapter.class)
@@ -32,6 +33,14 @@ class ProductJpaRepositoryAdapterIT {
         var savedProduct = adapter.getById(product.getId());
         assertTrue(savedProduct.isPresent());
         assertEquals(product.getId(), savedProduct.get().getId());
+    }
+
+    @Test
+    @DisplayName("Should return a empty product when not exists")
+    void testFindProductNotFound() {
+        // when & then
+        var notFoundProduct = adapter.getById(anyString());
+        assertTrue(notFoundProduct.isEmpty());
     }
 
 }

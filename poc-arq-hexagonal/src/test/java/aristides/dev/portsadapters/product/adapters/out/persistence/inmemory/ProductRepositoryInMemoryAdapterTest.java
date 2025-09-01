@@ -31,9 +31,8 @@ class ProductRepositoryInMemoryAdapterTest {
     @Test
     @DisplayName("Should return a empty product when not exists")
     void testFindProductNotFound() {
-        // when
+        // when & then
         var notFoundProduct = adapter.getById(anyString());
-
         assertTrue(notFoundProduct.isEmpty());
     }
 
