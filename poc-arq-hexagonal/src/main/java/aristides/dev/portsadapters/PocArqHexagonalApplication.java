@@ -9,5 +9,4 @@ public class PocArqHexagonalApplication {
     public static void main(String[] args) {
         SpringApplication.run(PocArqHexagonalApplication.class, args);
     }
-
 }
