@@ -7,9 +7,11 @@ import aristides.dev.portsadapters.product.core.ports.in.ChangeProductStatusUseC
 import aristides.dev.portsadapters.product.core.ports.in.CreateProductUseCase;
 import aristides.dev.portsadapters.product.core.ports.in.FindProductUseCase;
 import aristides.dev.portsadapters.product.core.ports.out.repository.ProductRepository;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
+@Service
 public class ProductServiceImpl implements FindProductUseCase, CreateProductUseCase, ChangeProductStatusUseCase {
     private final ProductRepository repository;
 
