@@ -19,11 +19,11 @@ public class Product {
         this.status = ProductStatus.DISABLED;
     }
 
-    public Product(String id, String name, BigDecimal price) {
+    public Product(String id, String name, BigDecimal price, String status) {
         this.id = new UUID(id);
         this.name = new Name(name);
         this.price = new Price(price);
-        this.status = ProductStatus.DISABLED;
+        this.status = ProductStatus.valueOf(status);
     }
 
     public String getId() {

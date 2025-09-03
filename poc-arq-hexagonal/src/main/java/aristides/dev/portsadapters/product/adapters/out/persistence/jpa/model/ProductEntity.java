@@ -54,11 +54,7 @@ public class ProductEntity {
     }
 
     public Product toDomain() {
-        var product = ProductFactory.create(id, name, price);
-        if (status.equals(ProductStatusEnum.ENABLED)) {
-            product.enable();
-        }
-        return product;
+        return new Product(id, name, price, status.name());
     }
 
 }
