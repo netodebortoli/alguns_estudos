@@ -6,13 +6,14 @@ import aristides.dev.portsadapters.product.core.factory.ProductFactory;
 import aristides.dev.portsadapters.product.core.ports.in.ChangeProductStatusUseCase;
 import aristides.dev.portsadapters.product.core.ports.in.CreateProductUseCase;
 import aristides.dev.portsadapters.product.core.ports.in.FindProductUseCase;
+import aristides.dev.portsadapters.product.core.ports.in.UpdateProductUseCase;
 import aristides.dev.portsadapters.product.core.ports.out.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
 @Service
-public class ProductServiceImpl implements FindProductUseCase, CreateProductUseCase, ChangeProductStatusUseCase {
+public class ProductServiceImpl implements CreateProductUseCase, UpdateProductUseCase, FindProductUseCase, ChangeProductStatusUseCase {
     private final ProductRepository repository;
 
     public ProductServiceImpl(ProductRepository repository) {
@@ -24,6 +25,15 @@ public class ProductServiceImpl implements FindProductUseCase, CreateProductUseC
         var product = ProductFactory.create(name, price);
         repository.save(product);
         return product.getId();
+    }
+
+    @Override
+    public Product update(String id, String name, BigDecimal price) {
+        var product = findById(id);
+        product.changeName(name);
+        product.changePrice(price);
+        repository.save(product);
+        return product;
     }
 
     @Override

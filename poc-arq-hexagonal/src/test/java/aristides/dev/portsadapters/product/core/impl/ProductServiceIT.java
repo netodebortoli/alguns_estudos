@@ -15,6 +15,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 import java.math.BigDecimal;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -37,6 +38,21 @@ class ProductServiceIT {
         // then
         var productFound = service.findById(id);
         assertNotNull(productFound);
+    }
+
+    @Test
+    @DisplayName("Should update product")
+    void testeUpdateProduct() {
+        var id = service.create("Monitor", new BigDecimal("999.90"));
+
+        // when
+        service.update(id, "LG Monitor", new BigDecimal("1099.99"));
+
+        // then
+        var productFound = service.findById(id);
+        assertNotNull(productFound);
+        assertEquals(new BigDecimal("1099.99"), productFound.getPrice());
+        assertEquals("LG Monitor", productFound.getName());
     }
 
 }

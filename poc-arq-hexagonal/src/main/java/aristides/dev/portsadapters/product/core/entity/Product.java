@@ -50,7 +50,7 @@ public class Product {
     }
 
     public void disable() {
-        if (!this.price.value().equals(BigDecimal.ZERO)) {
+        if (!(this.price.value().compareTo(BigDecimal.ZERO) == 0)) {
             throw new IllegalStateException("The price should be zero to disable the product");
         }
         this.status = ProductStatus.DISABLED;
