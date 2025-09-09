@@ -8,7 +8,7 @@ describe("Customer repository integration test", () => {
 
     let sequelize: Sequelize;
 
-    // Inicializa o sequelize a cada teste
+    // Inicializa o sequelize em cada teste
     beforeEach(async () => {
         sequelize = new Sequelize({
             dialect: 'sqlite',
