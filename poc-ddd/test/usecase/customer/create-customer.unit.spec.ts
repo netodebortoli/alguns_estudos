@@ -30,8 +30,8 @@ describe('Create customer use case unit test', () => {
         expect(result.address?.zip).toBe('29730000');
     });
 
-    it('should throw error when create customer without address', async () => {
-        const input = {
+    it('should throw error when create customer with invalid data', async () => {
+        const inputInvalidAddress = {
             name: 'Aristides D. Neto',
             street: '',
             number: '',
@@ -39,7 +39,17 @@ describe('Create customer use case unit test', () => {
             zip: '',
             state: ''
         };
-        expect(async () => useCase.execute(input)).rejects.toThrow()
+        expect(async () => useCase.execute(inputInvalidAddress)).rejects.toThrow()
+        
+        const inputInvalidName = {
+            name: '',
+            street: 'Street',
+            number: 'Number',
+            city: 'City',
+            zip: '29730000',
+            state: ''
+        };
+        expect(async () => useCase.execute(inputInvalidName)).rejects.toThrow('Invalid name')
     });
 
 });
