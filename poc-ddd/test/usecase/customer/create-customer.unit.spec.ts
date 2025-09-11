@@ -39,7 +39,7 @@ describe('Create customer use case unit test', () => {
             zip: '',
             state: ''
         };
-        expect(async () => useCase.execute(inputInvalidAddress)).rejects.toThrow()
+        await expect(() => useCase.execute(inputInvalidAddress)).rejects.toThrow()
         
         const inputInvalidName = {
             name: '',
@@ -49,7 +49,7 @@ describe('Create customer use case unit test', () => {
             zip: '29730000',
             state: ''
         };
-        expect(async () => useCase.execute(inputInvalidName)).rejects.toThrow('Invalid name')
+        await expect(() => useCase.execute(inputInvalidName)).rejects.toThrow('Invalid name')
     });
 
 });

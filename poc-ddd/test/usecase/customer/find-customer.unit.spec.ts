@@ -38,7 +38,7 @@ describe('Find customer use case unit test', () => {
         const input = {
             id: ''
         };
-        expect(async () => useCase.execute(input)).rejects.toThrow('Customer not found')
+        await expect(() => useCase.execute(input)).rejects.toThrow('Customer not found')
     });
 
 });

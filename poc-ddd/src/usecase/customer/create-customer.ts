@@ -30,7 +30,6 @@ export default class CreateCustomer {
     }
 }
 
-
 type Input = {
     name: string,
     street: string,
