@@ -1,7 +1,7 @@
-import Product from "../entity/product";
+import ProductInterface from "../entity/product.interface";
 
 export default class ProductService {
-    static updatePricesInBatch(products: Product[], percentage: number) {
+    static updatePricesInBatch(products: ProductInterface[], percentage: number) {
         if (percentage <= 0) throw new Error('Percentage value should be greater than zero');
         if (!products || products.length <= 0) throw new Error('Products should be required to update prices');
             products.forEach(product => {
