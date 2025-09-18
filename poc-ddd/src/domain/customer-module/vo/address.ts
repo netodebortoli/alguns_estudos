@@ -1,3 +1,5 @@
+import DomainError from "../../@shared/errors/domain.error";
+
 export default class Address {
     private _street: string;
     private _number: string;
@@ -24,22 +26,22 @@ export default class Address {
 
     private validate() {
         if (!this._street || this._street.length === 0) {
-            throw new Error('Field street must be provided');
+            throw new DomainError('Field street must be provided');
         }
         if (!this._number || this._number.length === 0) {
-            throw new Error('Field number must be provided');
+            throw new DomainError('Field number must be provided');
         }
         if (!this._city || this._city.length === 0) {
-            throw new Error('Field city must be provided');
+            throw new DomainError('Field city must be provided');
         }
         if (!this._state || this._state.length === 0) {
-            throw new Error('Field state must be provided');
+            throw new DomainError('Field state must be provided');
         }
         if (!this._zip || this._zip.length === 0) {
-            throw new Error('Field zip must be provided');
+            throw new DomainError('Field zip must be provided');
         }
         if (!this.validateFormatterZip(this._zip)) {
-            throw new Error('Invalid zip format, expected 8 numbers digits');
+            throw new DomainError('Invalid zip format, expected 8 numbers digits');
         }
     }
 

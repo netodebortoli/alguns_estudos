@@ -1,8 +1,10 @@
+import DomainError from "../errors/domain.error";
+
 export default class UUID {
     private value: string;
 
     constructor(uuid: string) {
-        if (!this.validateUUID(uuid)) throw new Error("Invalid UUID");
+        if (!this.validateUUID(uuid)) throw new DomainError("Invalid UUID");
         this.value = uuid;
     }
 

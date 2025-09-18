@@ -1,8 +1,10 @@
+import DomainError from "../../@shared/errors/domain.error";
+
 export default class Price {
     private _value: number;
 
     constructor(value: number) {
-        if (!this.validate(value)) throw new Error("Price value must be greater or equal zero");
+        if (!this.validate(value)) throw new DomainError("Price value must be greater or equal zero");
         this._value = value;
     }
 

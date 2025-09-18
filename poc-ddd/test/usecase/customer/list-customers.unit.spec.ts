@@ -40,10 +40,10 @@ describe('List all customers use case unit test', () => {
         const result = await useCase.execute();
         
         // then
-        expect(result).toBeDefined();
-        expect(result).toHaveLength(2);
-        expect(result[0]).toEqual(customer1)
-        expect(result[1]).toEqual(customer2)
+        expect(result.customers).toBeDefined();
+        expect(result.customers).toHaveLength(2);
+        expect(result.customers[0]).toEqual(customer1)
+        expect(result.customers[1]).toEqual(customer2)
     });
 
 });
