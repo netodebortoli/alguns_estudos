@@ -1,3 +1,4 @@
+import DomainError from "../../domain/@shared/errors/domain.error";
 import ProductInterface from "../../domain/product-module/entity/product.interface";
 import ProductRepository from "../../domain/product-module/repository/product.repository";
 import ProductService from "../../domain/product-module/service/product.service";
@@ -15,8 +16,11 @@ export default class BatchProductPriceUpdate {
                 products.push(product)
             }
             ProductService.updatePricesInBatch(products, input.percentage)
+            for (const product of products) {
+                await this.productRepository.update(product);
+            }
         } catch (error) {
-            throw new Error(`An error occurred while update price of products. ${error}`)
+            throw new DomainError(`An error occurred while update price of products. ${error}`)
         }
     }
 }

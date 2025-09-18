@@ -6,12 +6,14 @@ export default class ListProducts {
     constructor(private productRepository: ProductRepository) {
     }
 
-    public async execute(): Promise<Output[]> {
+    public async execute(): Promise<Output> {
         const products = await this.productRepository.findAll();
-        return products.map(p => this.toOutput(p));
+        return {
+            products: products.map(this.toProductOutput)
+        } as Output;
     }
 
-    private toOutput(p: ProductInterface): Output {
+    private toProductOutput(p: ProductInterface): ProductOutput {
         return {
             id: p.id,
             name: p.name,
@@ -21,6 +23,10 @@ export default class ListProducts {
 }
 
 type Output = {
+    products: ProductOutput[]
+}
+
+type ProductOutput = {
     id: string,
     name: string,
     price: number

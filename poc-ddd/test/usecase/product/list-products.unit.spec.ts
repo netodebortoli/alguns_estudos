@@ -1,4 +1,3 @@
-import ProductRepository from '../../../src/domain/product-module/repository/product.repository';
 import ProductRepositoryMemoryImpl from '../../../src/infrastructure/product-module/repository/memory/product.memory-repository.impl';
 import CreateProduct from '../../../src/usecase/product/create-product';
 import ListProducts from '../../../src/usecase/product/list-products';
@@ -24,10 +23,10 @@ describe('List all products use case unit test', () => {
         const result = await useCase.execute();
 
         // then
-        expect(result).toBeDefined();
-        expect(result).toHaveLength(2);
-        expect(result[0]).toEqual(product1)
-        expect(result[1]).toEqual(product2)
+        expect(result.products).toBeDefined();
+        expect(result.products).toHaveLength(2);
+        expect(result.products[0]).toEqual(product1)
+        expect(result.products[1]).toEqual(product2)
     });
 
 });

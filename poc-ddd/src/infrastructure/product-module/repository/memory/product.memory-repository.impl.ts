@@ -1,9 +1,10 @@
+import DomainError from "../../../../domain/@shared/errors/domain.error";
 import Product from "../../../../domain/product-module/entity/product";
 import ProductRepository from "../../../../domain/product-module/repository/product.repository";
 
 export default class ProductRepositoryMemoryImpl implements ProductRepository {
 
-    private products: Map<String,Product>;
+    private products: Map<String, Product>;
 
     constructor() {
         this.products = new Map();
@@ -21,7 +22,7 @@ export default class ProductRepositoryMemoryImpl implements ProductRepository {
     async findById(id: string): Promise<Product> {
         const product = this.products.get(id);
         if (!product) {
-            throw new Error("Product not found");
+            throw new DomainError("Product not found");
         }
         return product;
     }

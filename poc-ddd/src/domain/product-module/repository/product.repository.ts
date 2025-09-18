@@ -7,5 +7,4 @@ import ProductInterface from "../entity/product.interface";
 // O repositorio parte do pressuposto que o estado do objeto persistido/buscado esta valido.
 // É responsabilidade do modelo de domínio (produto) que o estado do objeto persistido/buscado esteja valido.
 export default interface ProductRepository extends Repository<ProductInterface> {
-    
 }

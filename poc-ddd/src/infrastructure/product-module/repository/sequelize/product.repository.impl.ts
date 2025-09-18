@@ -1,11 +1,12 @@
 import { Sequelize } from "sequelize-typescript";
+import DomainError from "../../../../domain/@shared/errors/domain.error";
 import Product from "../../../../domain/product-module/entity/product";
 import ProductRepository from "../../../../domain/product-module/repository/product.repository";
 import ProductModel from "./product.model";
 
 export default class ProductRepositoryImpl implements ProductRepository {
 
-    constructor(private sequelize?: Sequelize) {}
+    constructor(private sequelize?: Sequelize) { }
 
     async create(entity: Product): Promise<void> {
         await ProductModel.create({
@@ -27,7 +28,7 @@ export default class ProductRepositoryImpl implements ProductRepository {
     async findById(id: string): Promise<Product> {
         const productModel = await ProductModel.findOne({ where: { id } });
         if (!productModel) {
-            throw new Error("Product not found");
+            throw new DomainError("Product not found");
         }
         return ProductModel.toDomain(productModel);
     }
