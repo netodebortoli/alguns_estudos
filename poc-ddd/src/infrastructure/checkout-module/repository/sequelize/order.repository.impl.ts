@@ -3,6 +3,7 @@ import Order from "../../../../domain/checkout-module/entity/order";
 import OrderRepository from "../../../../domain/checkout-module/repository/order.repository";
 import OrderItemModel from "./order-item.model";
 import OrderModel from "./order.model";
+import NotFoundError from "../../../../domain/@shared/errors/not.found";
 
 export default class OrderRepositoryImpl implements OrderRepository {
 
@@ -53,7 +54,7 @@ export default class OrderRepositoryImpl implements OrderRepository {
     async findById(id: string): Promise<Order> {
         const orderModel = await OrderModel.findOne({ where: { id }, include: ["itens"] });
         if (!orderModel) {
-            throw new Error("Order not found");
+            throw new NotFoundError("Order not found");
         }
         return OrderModel.toDomain(orderModel);
     }

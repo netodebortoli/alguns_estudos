@@ -69,12 +69,14 @@ describe('end-to-end tests for product module', () => {
                 price: 150
             });
 
-        await request(app)
+        const updateResponse = await request(app)
             .post('/products/update/prices/batch')
             .send({
                 productIds: [product1.body.id, product2.body.id],
                 percentage: 10
             });
+
+        expect(updateResponse.status).toBe(200);
 
         const response = await request(app)
             .get('/products');

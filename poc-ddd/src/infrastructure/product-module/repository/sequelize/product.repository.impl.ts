@@ -3,6 +3,7 @@ import DomainError from "../../../../domain/@shared/errors/domain.error";
 import Product from "../../../../domain/product-module/entity/product";
 import ProductRepository from "../../../../domain/product-module/repository/product.repository";
 import ProductModel from "./product.model";
+import NotFoundError from "../../../../domain/@shared/errors/not.found";
 
 export default class ProductRepositoryImpl implements ProductRepository {
 
@@ -28,7 +29,7 @@ export default class ProductRepositoryImpl implements ProductRepository {
     async findById(id: string): Promise<Product> {
         const productModel = await ProductModel.findOne({ where: { id } });
         if (!productModel) {
-            throw new DomainError("Product not found");
+            throw new NotFoundError("Product not found");
         }
         return ProductModel.toDomain(productModel);
     }

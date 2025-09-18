@@ -1,4 +1,5 @@
 import DomainError from "../../domain/@shared/errors/domain.error";
+import NotFoundError from "../../domain/@shared/errors/not.found";
 import ProductInterface from "../../domain/product-module/entity/product.interface";
 import ProductRepository from "../../domain/product-module/repository/product.repository";
 import ProductService from "../../domain/product-module/service/product.service";
@@ -20,7 +21,13 @@ export default class BatchProductPriceUpdate {
                 await this.productRepository.update(product);
             }
         } catch (error) {
-            throw new DomainError(`An error occurred while update price of products. ${error}`)
+            if (error instanceof DomainError) {
+                throw new DomainError(`An error occurred while update price of products: ${error.message}`)
+            }
+            if (error instanceof NotFoundError) {
+                throw error;
+            }
+            throw new Error(`An unexpected error occurred: ${error}`)
         }
     }
 }

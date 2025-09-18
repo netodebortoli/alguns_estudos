@@ -1,4 +1,5 @@
 import DomainError from "../../../../domain/@shared/errors/domain.error";
+import NotFoundError from "../../../../domain/@shared/errors/not.found";
 import Product from "../../../../domain/product-module/entity/product";
 import ProductRepository from "../../../../domain/product-module/repository/product.repository";
 
@@ -22,7 +23,7 @@ export default class ProductRepositoryMemoryImpl implements ProductRepository {
     async findById(id: string): Promise<Product> {
         const product = this.products.get(id);
         if (!product) {
-            throw new DomainError("Product not found");
+            throw new NotFoundError("Product not found");
         }
         return product;
     }

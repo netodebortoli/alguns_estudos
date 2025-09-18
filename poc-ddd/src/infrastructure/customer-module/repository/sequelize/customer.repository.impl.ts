@@ -2,6 +2,7 @@ import { Sequelize } from "sequelize-typescript";
 import Customer from "../../../../domain/customer-module/entity/customer";
 import CustomerRepository from "../../../../domain/customer-module/repository/customer.repository";
 import CustomerModel from "./customer.model";
+import NotFoundError from "../../../../domain/@shared/errors/not.found";
 
 export default class CustomerRepositoryImpl implements CustomerRepository {
 
@@ -41,7 +42,7 @@ export default class CustomerRepositoryImpl implements CustomerRepository {
     async findById(id: string): Promise<Customer> {
         const customerModel = await CustomerModel.findOne({ where: { id } });
         if (!customerModel) {
-            throw new Error("Customer not found");
+            throw new NotFoundError("Customer not found");
         }
         return CustomerModel.toDomain(customerModel);
     }

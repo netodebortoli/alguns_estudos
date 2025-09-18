@@ -1,3 +1,4 @@
+import NotFoundError from "../../../../domain/@shared/errors/not.found";
 import Customer from "../../../../domain/customer-module/entity/customer";
 import CustomerRepository from "../../../../domain/customer-module/repository/customer.repository";
 
@@ -21,7 +22,7 @@ export default class CustomerMemoryRepository implements CustomerRepository {
     async findById(id: string): Promise<Customer> {
         const customer = this.db.get(id);
         if (!customer) {
-            throw new Error("Customer not found");
+            throw new NotFoundError("Customer not found");
         }
         return customer;
     }

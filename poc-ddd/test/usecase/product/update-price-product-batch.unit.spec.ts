@@ -51,7 +51,7 @@ describe('Update price products in batch use case test', () => {
 
         // when
         await expect(useCase.execute(input)).rejects
-            .toThrow('An error occurred while update price of products. Error: Product not found')
+            .toThrow('Product not found')
     });
 
     it('should throw error when update product prices in batch with empty product ids', async () => {
@@ -62,7 +62,7 @@ describe('Update price products in batch use case test', () => {
 
         // when
         await expect(useCase.execute(input)).rejects
-            .toThrow('An error occurred while update price of products. Error: Products should be required to update prices')
+            .toThrow('An error occurred while update price of products: Products should be required to update prices')
     });
 
 });
