@@ -1,4 +1,4 @@
-import ProductInterface from "../../domain/product-module/entity/product.interface";
+import Product from "../../domain/product-module/entity/product";
 import ProductRepository from "../../domain/product-module/repository/product.repository";
 
 export default class UpdateProduct {
@@ -17,13 +17,13 @@ export default class UpdateProduct {
         } as Output;
     }
 
-    private updatePrice(input: Input, product: ProductInterface) {
+    private updatePrice(input: Input, product: Product) {
         if (input.price !== undefined) {
             product.changePrice(input.price);
         }
     }
 
-    private updateName(input: Input, product: ProductInterface) {
+    private updateName(input: Input, product: Product) {
         if (input.name !== undefined) {
             product.changeName(input.name);
         }

@@ -1,4 +1,4 @@
-import ProductInterface from "../../domain/product-module/entity/product.interface";
+import Product from "../../domain/product-module/entity/product";
 import ProductRepository from "../../domain/product-module/repository/product.repository";
 
 export default class ListProducts {
@@ -13,11 +13,11 @@ export default class ListProducts {
         } as Output;
     }
 
-    private toProductOutput(p: ProductInterface): ProductOutput {
+    private toProductOutput(p: Product): ProductOutput {
         return {
             id: p.id,
             name: p.name,
-            price: p.price
+            price: p.price || 0
         };
     }
 }

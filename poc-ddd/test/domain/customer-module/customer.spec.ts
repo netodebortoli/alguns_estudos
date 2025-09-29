@@ -1,5 +1,4 @@
 import Customer from '../../../src/domain/customer-module/entity/customer';
-import Address from '../../../src/domain/customer-module/vo/address';
 
 describe('Customer entity unit tests', () => {
     it('should create customer', () => {
@@ -16,8 +15,8 @@ describe('Customer entity unit tests', () => {
         expect(customer.name).toBe("Jane Doe");
     }); 
 
-    it('should throw error when customer name is invalid', () => {
-        expect(() => new Customer('')).toThrow();        
+    it('should throw error when customer is invalid', () => {
+        expect(() => new Customer("", "")).toThrow('Customer: Invalid UUID, Customer: Invalid name')
     });
 
     it('should throw error when change customer name is invalid', () => {
@@ -49,15 +48,17 @@ describe('Customer entity unit tests', () => {
     });
 
     it('should be activate customer', () => {
-        const address = new Address("Rua Belarmino Pinto", "374", "Baixo Guandu", "ES", "29730000");
-        const customer = new Customer("John Doe", address);
+        const customer = new Customer("John Doe");
+        customer.updateAddres("Rua Belarmino Pinto", "374", "Baixo Guandu", "ES", "29730000");
+
         customer.activate();
+
         expect(customer.isActive).toBe(true);
     });
 
     it('should update reward points of customer', () => {
-        const address = new Address("Rua Belarmino Pinto", "374", "Baixo Guandu", "ES", "29730000");
-        const customer = new Customer("John Doe", address);
+        const customer = new Customer("John Doe");
+        customer.updateAddres("Rua Belarmino Pinto", "374", "Baixo Guandu", "ES", "29730000")
         const totalAmount = 100;        
         customer.addRewardPoints(totalAmount);
         expect(customer.rewardPoints).toBe(100);
@@ -67,12 +68,13 @@ describe('Customer entity unit tests', () => {
 
     it('should throw error when activating customer without address', () => {
         const customer = new Customer("John Doe");
-        expect(() => customer.activate()).toThrow();
+        expect(() => customer.activate()).toThrow('Customer: Address cannot be empty when activating')
     });
 
     it('should throw error when update rewards points with invalid value', () => {
-        const address = new Address("Rua Belarmino Pinto", "374", "Baixo Guandu", "ES", "29730000");
-        const customer = new Customer("John Doe", address);
-        expect(() => customer.addRewardPoints(0)).toThrow("Rewards points should be greater zero");
+        const customer = new Customer("John Doe");
+        customer.updateAddres("Rua Belarmino Pinto", "374", "Baixo Guandu", "ES", "29730000")
+        
+        expect(() => customer.addRewardPoints(0)).toThrow('Customer: Rewards points should be greater zero')
     });
 });

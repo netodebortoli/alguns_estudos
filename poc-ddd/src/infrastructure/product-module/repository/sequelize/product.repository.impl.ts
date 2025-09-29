@@ -1,9 +1,8 @@
 import { Sequelize } from "sequelize-typescript";
-import DomainError from "../../../../domain/@shared/errors/domain.error";
+import NotFoundError from "../../../../domain/@shared/errors/not.found";
 import Product from "../../../../domain/product-module/entity/product";
 import ProductRepository from "../../../../domain/product-module/repository/product.repository";
 import ProductModel from "./product.model";
-import NotFoundError from "../../../../domain/@shared/errors/not.found";
 
 export default class ProductRepositoryImpl implements ProductRepository {
 

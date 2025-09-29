@@ -29,8 +29,8 @@ describe('Find customer use case integration test', () => {
         const repository = new CustomerRepositoryImpl();
         const useCase = new FindCustomer(repository);
         // given
-        const addres = new Address('Street', '1', 'City', 'State', '29730000')
-        const newCustomer = new Customer('Aristides D. Neto', addres);
+        const newCustomer = new Customer('Aristides D. Neto');
+        newCustomer.updateAddres('Street', '1', 'City', 'State', '29730000')
         await repository.create(newCustomer);
 
         // when

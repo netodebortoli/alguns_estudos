@@ -17,7 +17,8 @@ describe('Product entity unit tests', () => {
 
     it('should throw error when name is empty', () => {
         const product = new Product("Produto", 10);
-        expect(() => product.changeName("")).toThrow("Invalid name");
+        
+        expect(() => product.changeName("")).toThrow('Product: Invalid name')
     });
 
     it('should change product price', () => {
@@ -28,6 +29,6 @@ describe('Product entity unit tests', () => {
 
     it('should throw error when price is invalid', () => {
         const product = new Product("Product", 10);
-        expect(() => product.changePrice(-1)).toThrow("Price value must be greater or equal zero");
+        expect(() => product.changePrice(-1)).toThrow('Product: Price value must be greater or equal zero')
     });
 })

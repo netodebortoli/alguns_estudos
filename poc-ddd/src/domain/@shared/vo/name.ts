@@ -1,10 +1,13 @@
-import DomainError from "../errors/domain.error";
+import Entity from "../entity/abstract-entity";
 
 export default class Name {
-    private value: string;
+    private value!: string;
 
-    constructor(name: string) {
-        if (!this.validateName(name)) throw new DomainError("Invalid name");
+    constructor(name: string, entity?: Entity) {
+        if (!this.validateName(name)) {
+            entity?.notification.addError({context: entity.constructor.name, message: 'Invalid name'})
+            return;
+        }
         this.value = name;
     }
 

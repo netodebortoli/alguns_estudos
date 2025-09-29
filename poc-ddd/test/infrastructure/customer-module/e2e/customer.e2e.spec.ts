@@ -45,7 +45,7 @@ describe('end-to-end tests for customer module', () => {
 
         expect(response.status).toBe(400)
         expect(response.body.error).toBeDefined()
-        expect(response.body.error).toBe('Invalid name')
+        expect(response.body.error).toBe('Customer: Invalid name')
     })
 
     it('should list customers', async () => {

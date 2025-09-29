@@ -1,3 +1,4 @@
+import Entity from "../../@shared/entity/abstract-entity";
 import Name from "../../@shared/vo/name";
 import UUID from "../../@shared/vo/uuid";
 import Address from "../vo/address";
@@ -5,8 +6,7 @@ import Address from "../vo/address";
 // Classe com domínio rico.
 // As funções dessa classe expressam a intenção do cliente.
 // As funçoes possuem validaçoes de negócio, o mantem a integridade do objeto.
-export default class Customer {
-    private _id: UUID;
+export default class Customer extends Entity {
     private _name: Name;
     private _address?: Address;
     private _status: boolean = false;
@@ -14,17 +14,13 @@ export default class Customer {
 
     constructor(
         name: string,
-        address?: Address,
         id?: string
     ) {
-        this._id = !id ? UUID.create() : new UUID(id);
-        this._name = new Name(name);
+        super();
+        this._id = id === undefined ? UUID.create() : new UUID(id, this);
+        this._name = new Name(name, this);
         this._rewardPoints = 0;
-        if (address) this._address = address;
-    }
-
-    get id() {
-        return this._id.getValue();
+        this.validate();
     }
 
     get name() {
@@ -44,25 +40,31 @@ export default class Customer {
     }
 
     changeName(name: string): void {
-        this._name = new Name(name);
+        this._name = new Name(name, this);
+        this.validate();
     }
 
     updateAddres(street: string, number: string, city: string, state: string, zip: string): void {
-        const address = new Address(street, number, city, state, zip);
+        const address = new Address(street, number, city, state, zip, this);
+        this.validate()
         this._address = address;
     }
 
     addRewardPoints(rewardPoints: number) {
-        if (rewardPoints <= 0) throw new Error("Rewards points should be greater zero");
-        this._rewardPoints += rewardPoints; 
+        if (rewardPoints <= 0) {
+            this.notification.addError({ context: this.constructor.name, message: 'Rewards points should be greater zero' });
+        }
+        this.validate()
+        this._rewardPoints += rewardPoints;
     }
 
     // A entidade pode ter um endereço opcional.
     // Mas para ativar o usuario, o endereço é obrigatório.
     activate() {
         if (!this._address) {
-            throw new Error('Address cannot be empty when activating');
+            this.notification.addError({ context: this.constructor.name, message: 'Address cannot be empty when activating' });
         }
+        this.validate()
         this._status = true;
     }
 

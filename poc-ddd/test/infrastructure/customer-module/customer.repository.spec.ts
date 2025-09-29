@@ -28,8 +28,8 @@ describe("Customer repository integration test", () => {
     it('should create a customer', async () => {
         // given
         const customerRepository = new CustomerRepositoryImpl();
-        const address = new Address("Rua Belarmino Pinto", "374", "Baixo Guandu", "ES", "29730000");
-        const customer = new Customer("Aristides D. Neto", address);
+        const customer = new Customer("Aristides D. Neto");
+        customer.updateAddres("Rua Belarmino Pinto", "374", "Baixo Guandu", "ES", "29730000")
 
         // when
         await customerRepository.create(customer);
@@ -77,8 +77,8 @@ describe("Customer repository integration test", () => {
     it('should update a customer', async () => {
         // given
         const customerRepository = new CustomerRepositoryImpl();
-        const address = new Address("Rua Belarmino Pinto", "374", "Baixo Guandu", "ES", "29730000");
-        const customer = new Customer("Aristides D. Neto", address);
+        const customer = new Customer("Aristides D. Neto");
+        customer.updateAddres("Rua Belarmino Pinto", "374", "Baixo Guandu", "ES", "29730000")
         await customerRepository.create(customer);
 
         // when
@@ -106,8 +106,8 @@ describe("Customer repository integration test", () => {
     it('should find customer by id', async () => {
         // given
         const customerRepository = new CustomerRepositoryImpl();
-        const address = new Address("Rua Belarmino Pinto", "374", "Baixo Guandu", "ES", "29730000");
-        const customer = new Customer("Aristides D. Neto", address);
+        const customer = new Customer("Aristides D. Neto");
+        customer.updateAddres("Rua Belarmino Pinto", "374", "Baixo Guandu", "ES", "29730000")
         await customerRepository.create(customer);
 
         // when
@@ -128,10 +128,12 @@ describe("Customer repository integration test", () => {
     it('should find all customers', async () => {
         // given
         const customerRepository = new CustomerRepositoryImpl();
-        const address = new Address("Rua Belarmino Pinto", "374", "Baixo Guandu", "ES", "29730000");
-        const customer1 = new Customer("Aristides D. Neto", address);
-        const customer2 = new Customer("Aristides D. Filho", address);
-        const customer3 = new Customer("Elisabete Boone de Souza", address);
+        const customer1 = new Customer("Aristides D. Neto");
+        const customer2 = new Customer("Aristides D. Filho");
+        const customer3 = new Customer("Elisabete Boone de Souza");
+        customer1.updateAddres("Rua Belarmino Pinto", "374", "Baixo Guandu", "ES", "29730000")
+        customer2.updateAddres("Rua Belarmino Pinto", "374", "Baixo Guandu", "ES", "29730000")
+        customer3.updateAddres("Rua Belarmino Pinto", "374", "Baixo Guandu", "ES", "29730000")
         await customerRepository.create(customer1);
         await customerRepository.create(customer2);
         await customerRepository.create(customer3);

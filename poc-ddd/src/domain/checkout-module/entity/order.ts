@@ -1,15 +1,16 @@
+import Entity from "../../@shared/entity/abstract-entity";
 import UUID from "../../@shared/vo/uuid";
 import OrderItem from "./order_item";
 
-export default class Order {
+export default class Order extends Entity {
 
-    private _id: UUID;
     private _itens: OrderItem[];
     private _customerId: UUID;
 
     constructor(customerId: string, orderItens: OrderItem[], id?: string) {
-        this._id = !id ? UUID.create() : new UUID(id);
-        this._customerId = new UUID(customerId);
+        super();
+        this._id = id === undefined ? UUID.create() : new UUID(id, this);
+        this._customerId = new UUID(customerId, this);
         this._itens = orderItens;
         this.validate();
     }
@@ -37,12 +38,19 @@ export default class Order {
         this._itens.push(item);
     }
 
-    private validate() {
+    protected override validate() {
         if (!this._customerId) {
-            throw new Error("Customer is required");
+            this.notification.addError({
+                context: this.constructor.name,
+                message: 'Customer is required'
+            })
         }
         if (!this._itens || this._itens.length === 0) {
-            throw new Error("A order requires at least one item");
+            this.notification.addError({
+                context: this.constructor.name,
+                message: 'A order requires at least one item'
+            })
         }
+        super.validate();
     }
 }

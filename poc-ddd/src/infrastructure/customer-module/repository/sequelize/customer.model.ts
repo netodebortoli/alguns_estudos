@@ -1,5 +1,4 @@
 import { Column, Model, PrimaryKey, Table } from "sequelize-typescript";
-import Address from "../../../../domain/customer-module/vo/address";
 import Customer from "../../../../domain/customer-module/entity/customer";
 
 @Table({
@@ -45,8 +44,8 @@ export default class CustomerModel extends Model {
     }
 
     static toDomain(from: CustomerModel): Customer {
-        const address = Address.of(from.street, from.number, from.city, from.state, from.zip);
-        const customer = new Customer(from.name, address, from.id);
+        const customer = new Customer(from.name, from.id);
+        customer.updateAddres(from.street, from.number, from.city, from.state, from.zip)
         if (from.status) customer.activate()
         if (from.rewardPoints > 0) customer.addRewardPoints(from.rewardPoints)
         return customer;

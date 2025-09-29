@@ -1,10 +1,13 @@
-import DomainError from "../errors/domain.error";
+import Entity from "../entity/abstract-entity";
 
 export default class UUID {
-    private value: string;
+    private value!: string;
 
-    constructor(uuid: string) {
-        if (!this.validateUUID(uuid)) throw new DomainError("Invalid UUID");
+    constructor(uuid: string, entity?: Entity) {
+        if (!this.validateUUID(uuid)) {
+            entity?.notification.addError({ context: entity.constructor.name, message: 'Invalid UUID' });
+            return;
+        }
         this.value = uuid;
     }
 

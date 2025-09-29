@@ -1,10 +1,13 @@
-import DomainError from "../../@shared/errors/domain.error";
+import Entity from "../../@shared/entity/abstract-entity";
 
 export default class Price {
-    private _value: number;
+    private _value!: number;
 
-    constructor(value: number) {
-        if (!this.validate(value)) throw new DomainError("Price value must be greater or equal zero");
+    constructor(value: number, entity?: Entity) {
+        if (!this.validate(value)) {
+            entity?.notification.addError({context: entity.constructor.name, message: "Price value must be greater or equal zero"})
+            return;
+        } 
         this._value = value;
     }
 

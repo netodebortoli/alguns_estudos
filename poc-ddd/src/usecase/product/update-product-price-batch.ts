@@ -1,6 +1,6 @@
 import DomainError from "../../domain/@shared/errors/domain.error";
 import NotFoundError from "../../domain/@shared/errors/not.found";
-import ProductInterface from "../../domain/product-module/entity/product.interface";
+import Product from "../../domain/product-module/entity/product";
 import ProductRepository from "../../domain/product-module/repository/product.repository";
 import ProductService from "../../domain/product-module/service/product.service";
 
@@ -11,7 +11,7 @@ export default class BatchProductPriceUpdate {
 
     public async execute(input: Input): Promise<void> {
         try {
-            let products: ProductInterface[] = []
+            let products: Product[] = []
             for (const index of input.ids) {
                 const product = await this.productRepository.findById(index);
                 products.push(product)

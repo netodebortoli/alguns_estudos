@@ -1,19 +1,21 @@
+import Entity from "../../@shared/entity/abstract-entity";
+import DomainError from "../../@shared/errors/domain.error";
 import Name from "../../@shared/vo/name";
 import UUID from "../../@shared/vo/uuid";
 import Price from "../vo/price";
 
-export default class OrderItem {
-    private _id: UUID;
+export default class OrderItem extends Entity {
     private _name: Name;
     private _price: Price;
     private _productId: UUID;
     private _quantity: number;
 
     constructor(itemName: string, price: number, productId: string, quantity: number, id?: string) {
-        this._id = !id ? UUID.create() : new UUID(id);
-        this._name = new Name(itemName);
-        this._price = new Price(price);
-        this._productId = new UUID(productId);
+        super();
+        this._id = id === undefined ? UUID.create() : new UUID(id, this);
+        this._name = new Name(itemName, this);
+        this._price = new Price(price, this);
+        this._productId = new UUID(productId, this);
         this._quantity = quantity;
         this.validate();
     }
@@ -42,9 +44,13 @@ export default class OrderItem {
         return this._productId.getValue();
     }
 
-    private validate() {
+    override validate() {
         if (this._quantity <= 0) {
-            throw new Error("Quantity must be greater than zero");
+            this.notification.addError({
+                context: this.constructor.name,
+                message: 'Quantity must be greater than zero'
+            })
         }
+        super.validate();
     }
 }

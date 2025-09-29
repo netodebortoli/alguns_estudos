@@ -3,7 +3,6 @@ import UUID from '../../../src/domain/@shared/vo/uuid';
 import Order from '../../../src/domain/checkout-module/entity/order';
 import OrderItem from '../../../src/domain/checkout-module/entity/order_item';
 import Customer from '../../../src/domain/customer-module/entity/customer';
-import Address from '../../../src/domain/customer-module/vo/address';
 import Product from '../../../src/domain/product-module/entity/product';
 import OrderItemModel from '../../../src/infrastructure/checkout-module/repository/sequelize/order-item.model';
 import OrderModel from '../../../src/infrastructure/checkout-module/repository/sequelize/order.model';
@@ -37,8 +36,8 @@ describe("Order repository integration test", () => {
     it('should create a order', async () => {
         // given
         const customerRepository = new CustomerRepositoryImpl(sequelize);
-        const address = new Address("Rua Belarmino Pinto", "374", "Baixo Guandu", "ES", "29730000");
-        const customer = new Customer("Aristides D. Neto", address);
+        const customer = new Customer("Aristides D. Neto");
+        customer.updateAddres("Rua Belarmino Pinto", "374", "Baixo Guandu", "ES", "29730000")
         await customerRepository.create(customer);
 
         const productRepository = new ProductRepositoryImpl(sequelize);
@@ -78,8 +77,8 @@ describe("Order repository integration test", () => {
     it('should update order', async () => {
         // given
         const customerRepository = new CustomerRepositoryImpl(sequelize);
-        const address = new Address("Rua Belarmino Pinto", "374", "Baixo Guandu", "ES", "29730000");
-        const customer = new Customer("Aristides D. Neto", address);
+        const customer = new Customer("Aristides D. Neto");
+        customer.updateAddres("Rua Belarmino Pinto", "374", "Baixo Guandu", "ES", "29730000")
         await customerRepository.create(customer);
 
         const productRepository = new ProductRepositoryImpl(sequelize);
@@ -109,8 +108,8 @@ describe("Order repository integration test", () => {
     it('should find order by id', async () => {
         // given
         const customerRepository = new CustomerRepositoryImpl(sequelize);
-        const address = new Address("Rua Belarmino Pinto", "374", "Baixo Guandu", "ES", "29730000");
-        const customer = new Customer("Aristides D. Neto", address);
+        const customer = new Customer("Aristides D. Neto");
+        customer.updateAddres("Rua Belarmino Pinto", "374", "Baixo Guandu", "ES", "29730000")
         await customerRepository.create(customer);
 
         const productRepository = new ProductRepositoryImpl(sequelize);
@@ -143,8 +142,8 @@ describe("Order repository integration test", () => {
     it('should find all order', async () => {
         // given
         const customerRepository = new CustomerRepositoryImpl(sequelize);
-        const address = new Address("Rua Belarmino Pinto", "374", "Baixo Guandu", "ES", "29730000");
-        const customer = new Customer("Aristides D. Neto", address);
+        const customer = new Customer("Aristides D. Neto");
+        customer.updateAddres("Rua Belarmino Pinto", "374", "Baixo Guandu", "ES", "29730000")
         await customerRepository.create(customer);
 
         const productRepository = new ProductRepositoryImpl(sequelize);

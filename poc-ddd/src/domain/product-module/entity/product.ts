@@ -1,17 +1,20 @@
+import Entity from "../../@shared/entity/abstract-entity";
 import Name from "../../@shared/vo/name";
 import UUID from "../../@shared/vo/uuid";
 import Price from "../../checkout-module/vo/price";
-import ProductInterface from "./product.interface";
 
-export default class Product implements ProductInterface {
-    private _id: UUID;
+export default class Product extends Entity {
+
     private _name: Name;
     private _price: Price;
 
     constructor(name: string, price: number, id?: string) {
-        this._id = !id ? UUID.create() : new UUID(id);
-        this._name = new Name(name);
-        this._price = new Price(price);
+        super();
+        this._id = id === undefined ? UUID.create() : new UUID(id, this);
+        this._name = new Name(name, this);
+        this._price = new Price(price, this);
+        this.validate();
+
     }
 
     get id() {
@@ -27,10 +30,13 @@ export default class Product implements ProductInterface {
     }
 
     changeName(name: string): void {
-        this._name = new Name(name);
+        this._name = new Name(name, this);
+        this.validate();
     }
 
     changePrice(price: number): void {
-        this._price = new Price(price);
+        this._price = new Price(price, this);
+        this.validate();
     }
+
 }

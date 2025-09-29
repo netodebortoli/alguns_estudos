@@ -1,5 +1,4 @@
 import Customer from '../../../src/domain/customer-module/entity/customer';
-import Address from '../../../src/domain/customer-module/vo/address';
 import CustomerMemoryRepository from '../../../src/infrastructure/customer-module/repository/memory/customer.memory-repository.impl';
 import FindCustomer from '../../../src/usecase/customer/find-customer';
 
@@ -9,8 +8,7 @@ describe('Find customer use case unit test', () => {
     
     it('should find a customer', async () => {
         // given
-        const addres = new Address('Street', '1', 'City', 'State', '29730000')
-        const newCustomer = new Customer('Aristides D. Neto', addres);
+        const newCustomer = new Customer('Aristides D. Neto');
         await repository.create(newCustomer);
 
         // when
@@ -25,11 +23,11 @@ describe('Find customer use case unit test', () => {
             id: newCustomer.id,
             name: newCustomer.name,
             address: {
-                street: newCustomer.address?.street,
-                number: newCustomer.address?.number,
-                city: newCustomer.address?.city,
-                state: newCustomer.address?.state,
-                zip: newCustomer.address?.formattedZip
+                street: "",
+                number: "",
+                city: "",
+                state: "",
+                zip: ""
             }
         })
     });

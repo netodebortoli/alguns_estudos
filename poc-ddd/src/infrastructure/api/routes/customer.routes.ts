@@ -1,10 +1,9 @@
 import express, { Request, Response } from 'express';
 import DomainError from '../../../domain/@shared/errors/domain.error';
+import NotFoundError from '../../../domain/@shared/errors/not.found';
 import CreateCustomer from '../../../usecase/customer/create-customer';
 import ListCustomers from '../../../usecase/customer/list-customers';
 import CustomerRepositoryImpl from '../../customer-module/repository/sequelize/customer.repository.impl';
-import { Not } from 'sequelize-typescript';
-import NotFoundError from '../../../domain/@shared/errors/not.found';
 
 // Exporta o router para ser usado na aplicação principal
 export const customerRoute = express.Router();

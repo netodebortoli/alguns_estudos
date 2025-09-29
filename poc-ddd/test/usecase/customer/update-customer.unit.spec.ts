@@ -141,7 +141,7 @@ describe('Update customer use case unit test', () => {
         }
 
         // then
-        await expect(useCase.execute(input)).rejects.toThrow("Invalid name")
+        await expect(useCase.execute(input)).rejects.toThrow("Customer: Invalid name")
     });
 
     it('should throw error when update customer with invalid address', async () => {
@@ -244,7 +244,7 @@ describe('Update customer use case unit test', () => {
         }
 
         // then
-        await expect(useCase.execute(input)).rejects.toThrow("Rewards points should be greater zero")
+        await expect(useCase.execute(input)).rejects.toThrow("Customer: Rewards points should be greater zero")
     });
 
 });

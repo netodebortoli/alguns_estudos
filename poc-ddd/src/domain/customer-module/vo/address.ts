@@ -1,4 +1,4 @@
-import DomainError from "../../@shared/errors/domain.error";
+import Entity from "../../@shared/entity/abstract-entity";
 
 export default class Address {
     private _street: string;
@@ -7,16 +7,16 @@ export default class Address {
     private _state: string;
     private _zip: string;
 
-    constructor(street: string, number: string, city: string, state: string, zip: string) {
+    constructor(street: string, number: string, city: string, state: string, zip: string, entity?: Entity) {
         this._street = street;
         this._number = number;
         this._city = city;
         this._state = state;
         this._zip = zip;
-        this.validate();
+        this.validate(entity);
     }
 
-    static of(street: string, number: string, city: string, state: string, zip: string) : Address | undefined {
+    static of(street: string, number: string, city: string, state: string, zip: string): Address | undefined {
         try {
             return new Address(street, number, city, state, zip);
         } catch (error) {
@@ -24,24 +24,36 @@ export default class Address {
         }
     }
 
-    private validate() {
+    private validate(entity?: Entity) {
         if (!this._street || this._street.length === 0) {
-            throw new DomainError('Field street must be provided');
+            entity?.notification.addError(
+                { context: entity.constructor.name, message: 'Field street must be provided' }
+            )
         }
         if (!this._number || this._number.length === 0) {
-            throw new DomainError('Field number must be provided');
+            entity?.notification.addError(
+                { context: entity.constructor.name, message: 'Field number must be provided' }
+            )
         }
         if (!this._city || this._city.length === 0) {
-            throw new DomainError('Field city must be provided');
+            entity?.notification.addError(
+                { context: entity.constructor.name, message: 'Field city must be provided' }
+            )
         }
         if (!this._state || this._state.length === 0) {
-            throw new DomainError('Field state must be provided');
+            entity?.notification.addError(
+                { context: entity.constructor.name, message: 'Field state must be provided' }
+            )
         }
         if (!this._zip || this._zip.length === 0) {
-            throw new DomainError('Field zip must be provided');
+            entity?.notification.addError(
+                { context: entity.constructor.name, message: 'Field zip must be provided' }
+            )
         }
         if (!this.validateFormatterZip(this._zip)) {
-            throw new DomainError('Invalid zip format, expected 8 numbers digits');
+            entity?.notification.addError(
+                { context: entity.constructor.name, message: 'Invalid zip format, expected 8 numbers digits' }
+            )
         }
     }
 
