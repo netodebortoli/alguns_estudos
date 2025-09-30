@@ -62,7 +62,9 @@ export default class Customer extends Entity {
     // Mas para ativar o usuario, o endereço é obrigatório.
     activate() {
         if (!this._address) {
-            this.notification.addError({ context: this.constructor.name, message: 'Address cannot be empty when activating' });
+            this.notification.addError(
+                { context: this.constructor.name, message: 'Address cannot be empty when activating' }
+            );
         }
         this.validate()
         this._status = true;

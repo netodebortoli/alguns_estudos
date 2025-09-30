@@ -1,5 +1,5 @@
-import DomainError from "../errors/domain.error";
 import Notification from "../notification/notification";
+import NotificationError from "../notification/notification.error";
 import UUID from "../vo/uuid";
 
 export default abstract class Entity {
@@ -25,7 +25,7 @@ export default abstract class Entity {
 
     protected validate() {
         if (!this.isValid()) {
-            throw new DomainError(this.notification.getMessages(this.constructor.name));
+            throw new NotificationError(this.notification.errors);
         }
     }
 

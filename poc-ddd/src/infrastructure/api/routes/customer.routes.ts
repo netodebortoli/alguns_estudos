@@ -4,6 +4,7 @@ import NotFoundError from '../../../domain/@shared/errors/not.found';
 import CreateCustomer from '../../../usecase/customer/create-customer';
 import ListCustomers from '../../../usecase/customer/list-customers';
 import CustomerRepositoryImpl from '../../customer-module/repository/sequelize/customer.repository.impl';
+import NotificationError from '../../../domain/@shared/notification/notification.error';
 
 // Exporta o router para ser usado na aplicação principal
 export const customerRoute = express.Router();
@@ -31,7 +32,10 @@ customerRoute.post('/', async (req: Request, res: Response) => {
         }
         if (error instanceof DomainError) {
             res.status(400).send({ error: error.message });
-        }  
+        }
+        if (error instanceof NotificationError) {
+            res.status(400).send({ error: error.message })
+        }
         res.status(500).send({ error: 'Internal server error' });
     }
 });
@@ -47,7 +51,10 @@ customerRoute.get('/', async (req: Request, res: Response) => {
         }
         if (error instanceof DomainError) {
             res.status(400).send({ error: error.message });
-        }  
+        }
+        if (error instanceof NotificationError) {
+            res.status(400).send({ error: error.message })
+        }
         res.status(500).send({ error: 'Internal server error' });
     }
 });

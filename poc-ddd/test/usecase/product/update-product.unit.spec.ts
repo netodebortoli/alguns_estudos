@@ -74,7 +74,7 @@ describe('Update product use case unit test', () => {
         }
 
         // then
-        await expect(useCase.execute(input)).rejects.toThrow("Invalid name")
+        await expect(useCase.execute(input)).rejects.toThrow("Product: Invalid name")
     });
 
     
@@ -91,7 +91,7 @@ describe('Update product use case unit test', () => {
         }
 
         // then
-        await expect(useCase.execute(input)).rejects.toThrow("Price value must be greater or equal zero")
+        await expect(useCase.execute(input)).rejects.toThrow("Product: Price value must be greater or equal zero")
     });
 
 });

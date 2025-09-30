@@ -61,4 +61,17 @@ describe('Notification pattern unit tests', () => {
         expect(notification.hasErrors('product')).toBeTruthy()
     });
 
+    it('should get erros', () => {
+        const notification = new NotificationError();       
+    
+        notification.addErros([
+            { context: 'customer', message: 'Name is required' },
+            { context: 'customer', message: 'Id is required' },
+        ])
+
+        expect(notification.errors).toBeDefined();
+        expect(notification.errors).toHaveLength(2);
+
+    })
+
 });

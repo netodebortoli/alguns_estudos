@@ -1,28 +1,32 @@
-export type Notification = {
+export type NotificationErrorData = {
     message: string;
     context: string;
 }
 
-export default class NotificationError {
+export default class Notification {
 
-    private erros: Notification[] = [];
+    private _errors: NotificationErrorData[] = [];
 
-    public addErros(erros: Notification[]): void {
-        erros.forEach(newError => this.erros.push(newError));
+    public addErros(erros: NotificationErrorData[]): void {
+        erros.forEach(newError => this._errors.push(newError));
     }
 
-    public addError(newError: Notification): void {
-        this.erros.push(newError)
+    public addError(newError: NotificationErrorData): void {
+        this._errors.push(newError)
     }
 
     public getMessages(context?: string): string {
-        return this.erros.filter(error => !context || error.context === context)
+        return this._errors.filter(error => !context || error.context === context)
             .map(error => `${error.context}: ${error.message}`)
             .join(", ");
     }
 
     public hasErrors(context: string): boolean {
-        return this.erros.some(error => error.context === context);
+        return this._errors.some(error => error.context === context);
+    }
+
+    get errors () {
+        return this._errors;
     }
 
 }
