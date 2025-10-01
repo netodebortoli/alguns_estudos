@@ -1,5 +1,4 @@
 import Entity from "../../@shared/entity/abstract-entity";
-import DomainError from "../../@shared/errors/domain.error";
 import Name from "../../@shared/vo/name";
 import UUID from "../../@shared/vo/uuid";
 import Price from "../vo/price";
