@@ -1,6 +1,7 @@
 import Id from "../value-object/id";
+import AggregateRoot from "./aggregate-root";
 
-export default class BaseEntity {
+export default class BaseEntity implements AggregateRoot {
     private readonly _id: Id;
     private readonly _createdAt: Date;
     private _updatedAt: Date;
