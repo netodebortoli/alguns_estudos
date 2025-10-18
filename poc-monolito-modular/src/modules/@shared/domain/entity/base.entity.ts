@@ -3,7 +3,7 @@ import AggregateRoot from "./aggregate-root";
 
 export default class BaseEntity implements AggregateRoot {
     private readonly _id: Id;
-    private readonly _createdAt: Date;
+    private _createdAt: Date;
     private _updatedAt: Date;
 
     constructor(id?: string) {
@@ -22,6 +22,10 @@ export default class BaseEntity implements AggregateRoot {
 
     get updatedAt() {
         return this._updatedAt;
+    }
+
+    set createdAt(date: Date) {
+        this._createdAt = date;
     }
 
     set updatedAt(date: Date) {

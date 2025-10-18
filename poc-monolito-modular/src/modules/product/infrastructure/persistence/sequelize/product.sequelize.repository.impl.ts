@@ -17,7 +17,15 @@ export default class ProductSequelizeRepositoryImpl implements ProductGateway {
     }
 
     async find(id: string): Promise<Product> {
-        throw new Error("Method not implemented.");
+        const product = await ProductModel.findOne({
+            where: { id },
+        });
+
+        if (!product || product === null) {
+            throw new Error(`Product with id ${id} not found`);
+        }
+
+        return ProductModel.toDomain(product);
     }
 
 }
