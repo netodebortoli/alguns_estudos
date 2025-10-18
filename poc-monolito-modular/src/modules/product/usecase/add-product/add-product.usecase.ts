@@ -1,7 +1,8 @@
+import UseCase from "../../../@shared/domain/use-case/use-case";
 import Product from "../../domain/product";
 import ProductGateway from "../../gateway/product.gateway";
 
-export default class AddProductUseCase {
+export default class AddProductUseCase implements UseCase {
 
     private _repository: ProductGateway;
 
