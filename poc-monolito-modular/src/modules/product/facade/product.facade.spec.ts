@@ -4,6 +4,7 @@ import ProductModel from "../infrastructure/persistence/sequelize/product.model"
 
 describe("Product facade impl test", () => {
 
+    const facade = ProductFacadeFactory.create();
     let sequelize: Sequelize;
 
     beforeEach(async () => {
@@ -23,8 +24,6 @@ describe("Product facade impl test", () => {
     });
 
     it("should create a product", async () => {
-        const facade = ProductFacadeFactory.create();
-
         // given
         const inputAddProduct = {
             name: "Product",
@@ -37,7 +36,7 @@ describe("Product facade impl test", () => {
         const outputFacade = await facade.addProduct(inputAddProduct);
 
         // then
-        const productDb = await ProductModel.findOne({ where: { id: outputFacade.id } });        
+        const productDb = await ProductModel.findOne({ where: { id: outputFacade.id } });
 
         expect(productDb.get()).toBeDefined();
         expect(productDb.get().id).toBe(outputFacade.id);
@@ -47,6 +46,27 @@ describe("Product facade impl test", () => {
         expect(productDb.get().stock).toBe(outputFacade.stock);
         expect(productDb.get().createdAt).toStrictEqual(outputFacade.createdAt);
         expect(productDb.get().updatedAt).toStrictEqual(outputFacade.updatedAt);
+    });
+
+    it("should find product stock number", async () => {
+        const inputAddProduct = {
+            name: "Product",
+            description: "Description",
+            purchasePrice: 100,
+            stock: 999
+        };
+
+        const outputFacade = await facade.addProduct(inputAddProduct);
+
+        // given
+        const input = { productId: outputFacade.id };
+
+        // when
+        const checkStock = await facade.checkStock(input);
+
+        // then
+        expect(checkStock.productId).toBe(outputFacade.id);
+        expect(checkStock.stock).toBe(999);
     });
 
 })

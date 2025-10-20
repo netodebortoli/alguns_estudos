@@ -1,15 +1,17 @@
 import ProductFacadeImpl from "../../facade/product.facade.impl";
 import AddProductUseCase from "../../usecase/add-product/add-product.usecase";
+import CheckStockUseCase from "../../usecase/check-stock/check-stock.usecase";
 import ProductSequelizeRepositoryImpl from "../persistence/sequelize/product.sequelize.repository.impl";
 
 export default class ProductFacadeFactory {
 
     static create() {
         const repository = new ProductSequelizeRepositoryImpl();
-        const useCase = new AddProductUseCase(repository);
+        const checkStockUseCase = new CheckStockUseCase(repository);
+        const addProductUseCase = new AddProductUseCase(repository);
         const facade = new ProductFacadeImpl({
-            addProductUseCase: useCase,
-            checkStockUseCase: undefined
+            addProductUseCase: addProductUseCase,
+            checkStockUseCase: checkStockUseCase
         });
         return facade;
     }
