@@ -1,3 +1,4 @@
+import ProductFacade from "../../facade/product.facade";
 import ProductFacadeImpl from "../../facade/product.facade.impl";
 import AddProductUseCase from "../../usecase/add-product/add-product.usecase";
 import CheckStockUseCase from "../../usecase/check-stock/check-stock.usecase";
@@ -5,7 +6,7 @@ import ProductSequelizeRepositoryImpl from "../persistence/sequelize/product.seq
 
 export default class ProductFacadeFactory {
 
-    static create() {
+    static create(): ProductFacade {
         const repository = new ProductSequelizeRepositoryImpl();
         const checkStockUseCase = new CheckStockUseCase(repository);
         const addProductUseCase = new AddProductUseCase(repository);
