@@ -4,7 +4,7 @@ import ProductModel from "./product.model";
 import ProductSequelizeRepositoryImpl from "./product.sequelize.repository.impl";
 import { v4 as uuid4 } from 'uuid';
 
-describe('Product Sequelize Repository tests', () => {
+describe('Product sequelize repository integration tests', () => {
 
     let sequelize: Sequelize;
 
