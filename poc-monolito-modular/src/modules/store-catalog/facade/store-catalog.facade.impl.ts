@@ -1,4 +1,4 @@
-import UseCase from "../../@shared/domain/use-case/use-case";
+import UseCase from "../../@shared/domain/usecase/use-case";
 import StoreCatalogFacade, { InputFindProductDTO, OutputFindAllProductsDTO, OutputFindProductDTO } from "./store-catalog.facade";
 
 export interface UseCaseProps {

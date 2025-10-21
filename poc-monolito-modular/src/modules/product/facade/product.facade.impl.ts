@@ -1,4 +1,4 @@
-import UseCase from "../../@shared/domain/use-case/use-case";
+import UseCase from "../../@shared/domain/usecase/use-case";
 import ProductFacade, { InputAddProductDTO, InputCheckStockDTO, OutputCheckStockDTO } from "./product.facade";
 
 export interface UseCaseProps {

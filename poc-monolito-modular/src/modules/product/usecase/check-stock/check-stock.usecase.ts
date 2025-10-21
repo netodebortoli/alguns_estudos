@@ -1,4 +1,4 @@
-import UseCase from "../../../@shared/domain/use-case/use-case";
+import UseCase from "../../../@shared/domain/usecase/use-case";
 import ProductGateway from "../../gateway/product.gateway";
 
 export default class CheckStockUseCase implements UseCase {
