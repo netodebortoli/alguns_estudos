@@ -1,11 +1,13 @@
+import { Sequelize } from 'sequelize-typescript';
 import { v4 as uuidv4 } from 'uuid';
 import PaymentFacadeFactory from '../infrasctructure/factory/payment.facade.factory';
-import { Sequelize } from 'sequelize-typescript';
+import PaymentMemoryRepositoryImpl from '../infrasctructure/persistence/memory/payment.memory.repository.impl';
 import TransactionModel from '../infrasctructure/persistence/sequelize/transaction.model';
 
 describe('Payment facade integration tests', () => {
 
-    const facade = PaymentFacadeFactory.create();
+    const repository = new PaymentMemoryRepositoryImpl();
+    const facade = PaymentFacadeFactory.create(repository);
     let sequelize: Sequelize;
 
     beforeEach(async () => {
@@ -35,16 +37,15 @@ describe('Payment facade integration tests', () => {
         const result = await facade.processTransaction(input);
 
         // then
-        const transaction = await TransactionModel.findOne({ where: { id: result.transactionId } });
+        const transaction = await repository.find(result.transactionId);
         expect(result).toBeDefined();
-        expect(transaction.get()).toBeDefined();
-        expect(transaction.get().id).toBe(result.transactionId);
-        expect(transaction.get().orderId).toBe(result.orderId);
-        expect(transaction.get().amount).toBe(result.amount);
-        expect(transaction.get().status).toBe('approved');
-        expect(transaction.get().createdAt).toBeInstanceOf(Date);
-        expect(transaction.get().updatedAt).toBeInstanceOf(Date);
-
+        expect(transaction).toBeDefined();
+        expect(transaction.id.value).toBe(result.transactionId);
+        expect(transaction.orderId.value).toBe(result.orderId);
+        expect(transaction.amount).toBe(result.amount);
+        expect(transaction.status).toBe('approved');
+        expect(transaction.createdAt).toBeInstanceOf(Date);
+        expect(transaction.updatedAt).toBeInstanceOf(Date);
     })
 
     it('should not process payment', async () => {

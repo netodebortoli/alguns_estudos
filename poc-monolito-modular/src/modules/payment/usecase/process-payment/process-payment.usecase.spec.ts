@@ -5,7 +5,8 @@ describe('Process payment usecase unit tests', () => {
 
     it('should process a payment', async () => {
         const repository = {
-            save: jest.fn()
+            save: jest.fn(),
+            find: jest.fn()
         }
 
         const useCase = new ProcessPaymentUseCase(repository);
@@ -34,7 +35,8 @@ describe('Process payment usecase unit tests', () => {
 
     it('should decline a transaction', async () => {
         const repository = {
-            save: jest.fn()
+            save: jest.fn(),
+            find: jest.fn()
         }
 
         const useCase = new ProcessPaymentUseCase(repository);
