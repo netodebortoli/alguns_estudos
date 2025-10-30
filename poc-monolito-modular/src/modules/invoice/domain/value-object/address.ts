@@ -1,10 +1,12 @@
+import ValueObject from "../../../@shared/domain/value-object/value-object";
+
 export interface AddressProps {
     street: string;
     city: string;
     state: string;
 }
 
-export default class Address {
+export default class Address implements ValueObject {
     private _street: string;
     private _city: string;
     private _state: string;
