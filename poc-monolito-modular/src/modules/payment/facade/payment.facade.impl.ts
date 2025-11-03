@@ -6,14 +6,14 @@ export interface UseCaseProps {
 }
 
 export default class PaymentFacadeImpl implements PaymentFacade {
-    private _processPaymentUse: UseCase;
+    private _processPaymentUseCase: UseCase;
 
     constructor(props: UseCaseProps) {
-        this._processPaymentUse = props.processPaymentUseCase;
+        this._processPaymentUseCase = props.processPaymentUseCase;
     }
 
     async processTransaction(input: InputProcessTransactionDTO): Promise<OutputProcessTransactionDTO> {
-        return await this._processPaymentUse.execute(input);
+        return await this._processPaymentUseCase.execute(input);
     }
 
 }
