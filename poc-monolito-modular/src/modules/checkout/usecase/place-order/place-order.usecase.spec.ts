@@ -258,6 +258,10 @@ describe('Place order usecase unit tests', () => {
         const spyGetProducts = jest.spyOn(useCase, 'getProducts');
         //@ts-ignore
         const spyCreateClient = jest.spyOn(useCase, 'createClient');
+        //@ts-ignore
+        const spyGenerateInvoice = jest.spyOn(useCase, 'generateInvoice');
+        //@ts-ignore
+        const spyHandlerOrderInvoice = jest.spyOn(useCase, 'handlerOrderInvoice');
 
         it('should not be approved', async () => {
             const rejectedTransaction = {
@@ -287,6 +291,8 @@ describe('Place order usecase unit tests', () => {
             expect(spyGetProducts).toHaveBeenCalledTimes(1);
             expect(spyValidateProducts).toHaveBeenCalledTimes(1);
             expect(spyCreateClient).toHaveBeenCalledTimes(1);
+            expect(spyHandlerOrderInvoice).toHaveBeenCalledTimes(1);
+            expect(spyGenerateInvoice).toHaveBeenCalledTimes(0);
 
             expect(checkoutRepository.add).toHaveBeenCalledTimes(1);
             expect(paymentFacadeMock.processTransaction).toHaveBeenCalledTimes(1);
@@ -361,11 +367,11 @@ describe('Place order usecase unit tests', () => {
             expect(result.total).toBe(product1.salesPrice + product2.salesPrice);
             expect(result.products[0].id).toBe(product1.id);
             expect(result.products[1].id).toBe(product2.id);
-
             expect(spyGetProducts).toHaveBeenCalledTimes(1);
             expect(spyValidateProducts).toHaveBeenCalledTimes(1);
             expect(spyCreateClient).toHaveBeenCalledTimes(1);
-
+            expect(spyHandlerOrderInvoice).toHaveBeenCalledTimes(1);
+            expect(spyGenerateInvoice).toHaveBeenCalledTimes(1);
             expect(checkoutRepository.add).toHaveBeenCalledTimes(1);
             expect(paymentFacadeMock.processTransaction).toHaveBeenCalledTimes(1);
             expect(paymentFacadeMock.processTransaction).toHaveBeenCalledWith({
