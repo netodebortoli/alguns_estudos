@@ -13,7 +13,9 @@ export default class FindClientUseCase implements UseCase {
             id: client.id.value,
             name: client.name,
             email: client.email,
-            address: client.address,
+            street: client.address.street,
+            city: client.address.city,
+            state: client.address.state,
             createdAt: client.createdAt,
             updatedAt: client.updatedAt,
         };
@@ -29,7 +31,9 @@ type Output = {
     id: string;
     name: string;
     email: string;
-    address: string;
+    street: string;
+    city: string;
+    state: string;
     createdAt: Date;
     updatedAt: Date;
 }

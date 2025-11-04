@@ -6,7 +6,9 @@ export default interface ClientAdmFacade {
 export interface InputAddClientDTO {
     name: string;
     email: string;
-    address: string;
+    street: string;
+    city: string;
+    state: string;
 }
 
 export interface InputFindClientDTO {
@@ -17,7 +19,9 @@ export interface OutputFindClientDTO {
     id: string;
     name: string;
     email: string;
-    address: string;
+    street: string;
+    city: string;
+    state: string;
     createdAt: Date;
     updatedAt: Date;
 }

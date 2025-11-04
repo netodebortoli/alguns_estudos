@@ -9,7 +9,9 @@ export default class ClientSequelizeRepositoryImpl implements ClientGateway {
             id: client.id.value,
             name: client.name,
             email: client.email,
-            address: client.address,
+            street: client.address.street,
+            city: client.address.city,
+            state: client.address.state,
             createdAt: client.createdAt,
             updatedAt: client.updatedAt,
         });

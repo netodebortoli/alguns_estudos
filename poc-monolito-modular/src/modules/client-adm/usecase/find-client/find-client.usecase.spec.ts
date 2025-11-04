@@ -7,7 +7,9 @@ describe('Find client usecase unit tests', () => {
         const client = new Client({
             name: 'Client',
             email: 'email@example.com',
-            address: 'Client address',
+            street: 'street',
+            city: 'city',
+            state: 'state'
         });
 
         const repository = {
@@ -30,7 +32,9 @@ describe('Find client usecase unit tests', () => {
         expect(output.id).toBe(client.id.value);
         expect(output.name).toBe(client.name);
         expect(output.email).toBe(client.email);
-        expect(output.address).toBe(client.address);
+        expect(output.street).toBe(client.address.street);
+        expect(output.city).toBe(client.address.city);
+        expect(output.state).toBe(client.address.state);
         expect(output.createdAt).toBe(client.createdAt);
         expect(output.updatedAt).toBe(client.updatedAt);
     });

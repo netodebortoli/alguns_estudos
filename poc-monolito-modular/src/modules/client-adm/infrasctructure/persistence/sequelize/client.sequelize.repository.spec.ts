@@ -29,7 +29,9 @@ describe('Client sequelize repository integration tests', () => {
         const client = new Client({
             name: 'Client',
             email: 'email@client.com',
-            address: 'Address',
+            street: 'street',
+            state: 'state',
+            city: 'city'
         });
 
         // when
@@ -44,7 +46,9 @@ describe('Client sequelize repository integration tests', () => {
         expect(result.get().id).toBeDefined();
         expect(result.get().id).toBe(client.id.value);
         expect(result.get().name).toBe(client.name);
-        expect(result.get().address).toBe(client.address);
+        expect(result.get().street).toBe(client.address.street);
+        expect(result.get().city).toBe(client.address.city);
+        expect(result.get().state).toBe(client.address.state);
         expect(result.get().email).toBe(client.email);
         expect(result.get().createdAt).toStrictEqual(client.createdAt);
         expect(result.get().updatedAt).toStrictEqual(client.updatedAt);
@@ -57,14 +61,18 @@ describe('Client sequelize repository integration tests', () => {
         const client = new Client({
             name: 'Client',
             email: 'email@client.com',
-            address: 'Address',
+            street: 'street',
+            state: 'state',
+            city: 'city'
         });
 
         await ClientModel.create({
             id: client.id.value,
             name: client.name,
             email: client.email,
-            address: client.address,
+            street: client.address.street,
+            city: client.address.city,
+            state: client.address.state,
             createdAt: client.createdAt,
             updatedAt: client.updatedAt,
         });
@@ -77,7 +85,9 @@ describe('Client sequelize repository integration tests', () => {
         expect(result.id).toBeDefined();
         expect(result.id.value).toBe(client.id.value);
         expect(result.name).toBe(client.name);
-        expect(result.address).toBe(client.address);
+        expect(result.address.street).toBe(client.address.street);
+        expect(result.address.state).toBe(client.address.state);
+        expect(result.address.city).toBe(client.address.city);
         expect(result.email).toBe(client.email);
         expect(result.createdAt).toStrictEqual(client.createdAt);
         expect(result.updatedAt).toStrictEqual(client.updatedAt);

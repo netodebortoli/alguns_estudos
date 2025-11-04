@@ -1,6 +1,6 @@
 import UseCase from "../../../@shared/domain/usecase/use-case";
 import ClientAdmFacade, { OutputFindClientDTO } from "../../../client-adm/facade/client-adm.facade";
-import InvoiceFacade, { OutputGenerateInvoiceDTO } from "../../../invoice/facade/invoice.facade";
+import InvoiceFacade from "../../../invoice/facade/invoice.facade";
 import PaymentFacade, { OutputProcessTransactionDTO } from "../../../payment/facade/payment.facade";
 import ProductFacade from "../../../product/facade/product.facade";
 import StoreCatalogFacade, { OutputFindProductDTO } from "../../../store-catalog/facade/store-catalog.facade";
@@ -77,16 +77,14 @@ export default class PlaceOrderUseCase implements UseCase {
         const input = {
             name: client.name,
             document: 'document',
-            street: client.address,
-            city: 'city',
-            state: 'state',
+            street: client.address.street,
+            city: client.address.city,
+            state: client.address.state,
             items: products.map(p => ({
                 name: p.name,
                 price: p.salesPrice
             }))
         };
-
-        console.log(input)
 
         return await this._invoiceFacade.generate(input);
     }
@@ -133,7 +131,9 @@ export default class PlaceOrderUseCase implements UseCase {
             id: from.id,
             name: from.name,
             email: from.email,
-            address: from.address,
+            street: from.street,
+            city: from.city,
+            state: from.state,
         })
     }
 

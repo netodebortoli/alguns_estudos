@@ -14,7 +14,9 @@ describe('Add client usecase unit tests', () => {
         const input = {
             name: 'Client',
             email: 'email@example.com',
-            address: 'Client address',
+            street: "street",
+            city: 'city',
+            state: 'state'
         }
 
         // when
@@ -25,7 +27,9 @@ describe('Add client usecase unit tests', () => {
         expect(output.id).toBeDefined();
         expect(output.name).toBe(input.name);
         expect(output.email).toBe(input.email);
-        expect(output.address).toBe(input.address);
+        expect(output.street).toBe(input.street);
+        expect(output.city).toBe(input.city);
+        expect(output.state).toBe(input.state);
         expect(output.createdAt).toBeDefined();
         expect(output.updatedAt).toBeDefined();
     });

@@ -11,7 +11,9 @@ export default class AddClientUseCase implements UseCase {
         const props = {
             name: input.name,
             email: input.email,
-            address: input.address,
+            street: input.street,
+            city: input.city,
+            state: input.state,
         };
 
         const client = new Client(props);
@@ -22,7 +24,9 @@ export default class AddClientUseCase implements UseCase {
             id: client.id.value,
             name: client.name,
             email: client.email,
-            address: client.address,
+            street: client.address.street,
+            city: client.address.city,
+            state: client.address.state,
             createdAt: client.createdAt,
             updatedAt: client.updatedAt,
         }
@@ -33,14 +37,18 @@ export default class AddClientUseCase implements UseCase {
 type Input = {
     name: string;
     email: string;
-    address: string;
+    street: string;
+    city: string;
+    state: string;
 }
 
 type Output = {
     id: string;
     name: string;
     email: string;
-    address: string;
+    street: string;
+    city: string;
+    state: string;
     createdAt: Date;
     updatedAt: Date;
 }

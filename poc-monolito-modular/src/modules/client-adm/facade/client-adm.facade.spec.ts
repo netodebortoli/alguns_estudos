@@ -29,7 +29,9 @@ describe("Client facade integration tests", () => {
         const input = {
             name: "John Doe",
             email: "john.doe@example.com",
-            address: "123 Main St, Anytown, USA"
+            street: "street",
+            city: 'city',
+            state: 'state'
         }
 
         // when
@@ -42,7 +44,9 @@ describe("Client facade integration tests", () => {
         expect(client.get().id).toBeDefined();
         expect(client.get().name).toBe("John Doe");
         expect(client.get().email).toBe("john.doe@example.com");
-        expect(client.get().address).toBe("123 Main St, Anytown, USA");
+        expect(client.get().street).toBe("street");
+        expect(client.get().city).toBe("city");
+        expect(client.get().state).toBe("state");
         expect(client.get().createdAt).toBeDefined();
         expect(client.get().updatedAt).toBeDefined();
     });
@@ -51,14 +55,18 @@ describe("Client facade integration tests", () => {
         const client = new Client({
             name: "John Doe",
             email: "john.doe@example.com",
-            address: "123 Main St, Anytown, USA"
+            street: 'street',
+            city: 'city',
+            state: 'state'
         });
 
         await ClientModel.create({
             id: client.id.value,
             name: client.name,
             email: client.email,
-            address: client.address,
+            street: client.address.street,
+            state: client.address.state,
+            city: client.address.city,
             createdAt: client.createdAt,
             updatedAt: client.updatedAt
         });
@@ -74,7 +82,9 @@ describe("Client facade integration tests", () => {
         expect(result.id).toBe(client.id.value);
         expect(result.name).toBe(client.name);
         expect(result.email).toBe(client.email);
-        expect(result.address).toBe(client.address);
+        expect(result.street).toBe(client.address.street);
+        expect(result.city).toBe(client.address.city);
+        expect(result.state).toBe(client.address.state);
         expect(result.updatedAt).toStrictEqual(client.updatedAt);
         expect(result.createdAt).toStrictEqual(client.createdAt);
     });

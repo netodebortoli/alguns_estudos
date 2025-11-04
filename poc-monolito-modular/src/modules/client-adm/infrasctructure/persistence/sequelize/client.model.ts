@@ -18,7 +18,13 @@ export default class ClientModel extends Model {
     email!: string;
 
     @Column({ allowNull: false })
-    address!: string;
+    street!: string;
+
+    @Column({ allowNull: false })
+    city!: string;
+
+    @Column({ allowNull: false })
+    state!: string;
 
     @Column({ field: "created_at", allowNull: false })
     createdAt!: Date;
@@ -31,7 +37,9 @@ export default class ClientModel extends Model {
             id: clientModel.get().id,
             name: clientModel.get().name,
             email: clientModel.get().email,
-            address: clientModel.get().address,
+            street: clientModel.get().street,
+            city: clientModel.get().city,
+            state: clientModel.get().state,
             createdDt: clientModel.get().createdAt,
             updatedDt: clientModel.get().updatedAt
         });

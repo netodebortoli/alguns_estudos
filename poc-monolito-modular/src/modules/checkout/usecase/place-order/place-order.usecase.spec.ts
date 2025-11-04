@@ -186,7 +186,9 @@ describe('Place order usecase unit tests', () => {
             id: uuuidv4(),
             name: "Client name",
             email: "client@email.com",
-            address: "My addres",
+            street: "street",
+            city: "city",
+            state: "state",
             createdAt: new Date(),
             updatedAt: new Date(),
         }
@@ -295,9 +297,9 @@ describe('Place order usecase unit tests', () => {
                 name: 'name',
                 document: 'document',
                 address: {
-                    street: 'street',
-                    city: 'city',
-                    state: 'state'
+                    street: client.street,
+                    city: client.city,
+                    state: client.state
                 },
                 items: [{
                     id: product.id,
@@ -349,9 +351,9 @@ describe('Place order usecase unit tests', () => {
             expect(invoiceFacadeMock.generate).toHaveBeenCalledWith({
                 name: client.name,
                 document: 'document',
-                street: client.address,
-                city: 'city',
-                state: 'state',
+                street: client.street,
+                state: client.state,
+                city: client.city,
                 items: [{ name: product.name, price: product.salesPrice }]
             })
         });
