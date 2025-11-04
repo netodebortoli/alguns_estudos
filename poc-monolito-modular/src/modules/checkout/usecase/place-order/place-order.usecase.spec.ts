@@ -199,14 +199,20 @@ describe('Place order usecase unit tests', () => {
 
         // Mock store catalog facade
         const productId = uuuidv4();
-        const product = {
+        const product1 = {
             id: uuuidv4(),
             name: "Product 1",
             salesPrice: 199,
             description: "Description product 1"
         }
+        const product2 = {
+            id: uuuidv4(),
+            name: "Product 2",
+            salesPrice: 299,
+            description: "Description product 2"
+        }
         const storeCatalogFacadeMock = {
-            find: jest.fn().mockReturnValue(Promise.resolve(product)),
+            find: jest.fn().mockReturnValue(Promise.resolve(product1)),
             findAll: jest.fn()
         }
 
@@ -257,7 +263,7 @@ describe('Place order usecase unit tests', () => {
             const rejectedTransaction = {
                 transactionId: uuuidv4(),
                 orderId: uuuidv4(),
-                amount: product.salesPrice,
+                amount: product1.salesPrice,
                 status: 'declined',
                 createdAt: new Date(),
                 updatedAt: new Date(),
@@ -266,7 +272,7 @@ describe('Place order usecase unit tests', () => {
                 .mockReturnValue(Promise.resolve(rejectedTransaction));
 
             // given
-            const input = { clientId: client.id, products: [{ id: product.id }] }
+            const input = { clientId: client.id, products: [{ id: product1.id }] }
 
             // when
             const result = await useCase.execute(input);
@@ -274,8 +280,8 @@ describe('Place order usecase unit tests', () => {
             // then
             expect(result.id).toBeDefined();
             expect(result.invoiceId).toBe('');
-            expect(result.products[0].id).toBe(product.id);
-            expect(result.total).toBe(product.salesPrice);
+            expect(result.products[0].id).toBe(product1.id);
+            expect(result.total).toBe(product1.salesPrice);
             expect(result.status).toBe("declined");
 
             expect(spyGetProducts).toHaveBeenCalledTimes(1);
@@ -292,6 +298,17 @@ describe('Place order usecase unit tests', () => {
         });
 
         it('should place a order', async () => {
+            storeCatalogFacadeMock.find = storeCatalogFacadeMock.find
+                .mockImplementation(({ productId }) => {
+                    if (productId === product1.id) {
+                        return Promise.resolve(product1);
+                    }
+                    if (productId === product2.id) {
+                        return Promise.resolve(product2);
+                    }
+                    return Promise.resolve(null);
+                });
+
             const invoice = {
                 id: uuuidv4(),
                 name: 'name',
@@ -301,14 +318,21 @@ describe('Place order usecase unit tests', () => {
                     city: client.city,
                     state: client.state
                 },
-                items: [{
-                    id: product.id,
-                    name: product.name,
-                    price: product.salesPrice
-                }],
+                items: [
+                    {
+                        id: product1.id,
+                        name: product1.name,
+                        price: product1.salesPrice
+                    },
+                    {
+                        id: product2.id,
+                        name: product2.name,
+                        price: product2.salesPrice
+                    }
+                ],
                 createdAt: new Date(),
                 updatedAt: new Date(),
-                total: product.salesPrice
+                total: product1.salesPrice + product2.salesPrice
             }
             invoiceFacadeMock.generate = invoiceFacadeMock.generate
                 .mockReturnValue(Promise.resolve(invoice))
@@ -316,7 +340,7 @@ describe('Place order usecase unit tests', () => {
             const transaction = {
                 transactionId: uuuidv4(),
                 orderId: uuuidv4(),
-                amount: product.salesPrice,
+                amount: product1.salesPrice + product2.salesPrice,
                 status: 'approved',
                 createdAt: new Date(),
                 updatedAt: new Date(),
@@ -325,7 +349,7 @@ describe('Place order usecase unit tests', () => {
                 .mockReturnValue(Promise.resolve(transaction));
 
             // given
-            const input = { clientId: client.id, products: [{ id: product.id }] }
+            const input = { clientId: client.id, products: [{ id: product1.id }, { id: product2.id }] }
 
             // when
             const result = await useCase.execute(input);
@@ -334,8 +358,9 @@ describe('Place order usecase unit tests', () => {
             expect(result.id).toBeDefined();
             expect(result.invoiceId).toBe(invoice.id);
             expect(result.status).toBe("approved");
-            expect(result.total).toBe(product.salesPrice);
-            expect(result.products[0].id).toBe(product.id);
+            expect(result.total).toBe(product1.salesPrice + product2.salesPrice);
+            expect(result.products[0].id).toBe(product1.id);
+            expect(result.products[1].id).toBe(product2.id);
 
             expect(spyGetProducts).toHaveBeenCalledTimes(1);
             expect(spyValidateProducts).toHaveBeenCalledTimes(1);
@@ -354,7 +379,10 @@ describe('Place order usecase unit tests', () => {
                 street: client.street,
                 state: client.state,
                 city: client.city,
-                items: [{ name: product.name, price: product.salesPrice }]
+                items: [
+                    { name: product1.name, price: product1.salesPrice },
+                    { name: product2.name, price: product2.salesPrice }
+                ]
             })
         });
     });
