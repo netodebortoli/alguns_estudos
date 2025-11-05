@@ -23,7 +23,7 @@ export default class Order extends BaseEntity {
         this._status = props.status || "pending";
         this.validate()
     }
-    
+
     approve() {
         this._status = "approved";
     }
@@ -37,7 +37,6 @@ export default class Order extends BaseEntity {
             throw new Error('An order must be at least one product')
         }
     }
-
 
     get totalSalesPrice() {
         return this._products.reduce((total, product) => total + product.salesPrice, 0);

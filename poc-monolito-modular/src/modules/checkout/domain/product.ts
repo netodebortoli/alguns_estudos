@@ -2,7 +2,7 @@ import AggregateRoot from "../../@shared/domain/entity/aggregate-root";
 import BaseEntity from "../../@shared/domain/entity/base.entity";
 
 type ProductProps = {
-    id: string;
+    id?: string;
     name: string;
     description: string;
     salesPrice: number;
