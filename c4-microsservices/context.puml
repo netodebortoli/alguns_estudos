@@ -1,0 +1,20 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+title "Internet Banking Digital Wallet - System Context Diagram"
+
+Person(customer, "Customer", "A user of the digital wallet")
+System(wallet, "Digital Wallet System", "Allows users to store and manage digital currency")
+
+System_Ext(secret_manager, "AWS Secret Manager", "Manages sensitive information securely")
+System_Ext(apm, "APM", "Application Performance Monitoring tool")
+System_Ext(collect, "OTEL", "OpenTelemetry for tracing and metrics collection")
+System_Ext(payment_gateway, "Payment Gateway", "Handles payment processing")
+
+Rel(customer, wallet, "Uses", "HTTPS")
+Rel(wallet, secret_manager, "Uses", "HTTPS")
+Rel(wallet, apm, "Uses", "HTTPS")
+Rel(wallet, collect, "Uses", "HTTPS")
+Rel(wallet, payment_gateway, "Uses", "HTTPS")
+
+@enduml

@@ -1,0 +1,40 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+AddRelTag("async", $lineStyle = DashedLine())
+
+title "Internet Banking Digital Wallet - System Container Diagram"
+
+Person(customer, "Customer", "A user of the digital wallet")
+
+System_Ext(payment_gateway, "Payment Gateway", "Handles payment processing")
+
+System_Boundary(container, "Digital Wallet System") {
+    Container(web_app, "Web Application", "Angular", "Web application for customer interaction")
+    Container(wallet_core, "Wallet Core", "Node.js", "Handles business logic for the transactions")
+    Container(balance_service, "Balance Service", "Node.js", "Manages user balance")
+    Container(statement_service, "Statement Service", "Node.js", "Manages customer statements")
+    Container(payment_service_acl, "Payment Service ACL", "Node.js", "Manages access control for payment services")
+
+    ContainerDb(wallet_core_db, "Wallet DB", "MySQL")
+    ContainerDb(balance_db, "Balance DB", "MySQL")
+    ContainerDb(statement_db, "Statement DB", "MySQL")
+    ContainerDb(payment_acl_db, "Payment ACL DB", "MySQL")
+
+    Rel(wallet_core, wallet_core_db, "Reads from and writes to", "MySQL Driver")
+    Rel(balance_service, balance_db, "Reads from and writes to", "MySQL Driver")
+    Rel(statement_service, statement_db, "Reads from and writes to", "MySQL Driver")
+    Rel(payment_service_acl, payment_acl_db, "Reads from and writes to", "MySQL Driver")
+
+    Rel(balance_service, wallet_core, "Consumes", "Topic", $tags = "async")
+    Rel(statement_service, wallet_core, "Consumes", "Topic", $tags = "async")
+}
+
+Rel(customer, web_app, "Uses", "HTTPS")
+Rel(web_app, wallet_core, "Uses", "JSON/HTTPS")
+Rel(web_app, statement_service, "Uses", "JSON/HTTPS")
+Rel(web_app, balance_service, "Uses", "JSON/HTTPS")
+Rel(wallet_core, payment_service_acl, "Uses", "JSON/HTTPS")
+Rel(payment_service_acl, payment_gateway, "Uses", "JSON/HTTPS")
+
+@enduml
