@@ -1,5 +1,6 @@
 package aristides.dev.walletcore.domain.entity;
 
+import aristides.dev.walletcore.infrasctructure.repository.jpa.account.AccountEntity;
 import aristides.dev.walletcore.shared.Entity;
 
 import java.math.BigDecimal;
@@ -14,9 +15,9 @@ public class Account extends Entity {
         this.balance = BigDecimal.ZERO;
     }
 
-    public Account(Customer c) {
+    public Account(Customer customer) {
         super();
-        this.customer = c;
+        this.customer = customer;
         this.balance = BigDecimal.ZERO;
         validate();
     }

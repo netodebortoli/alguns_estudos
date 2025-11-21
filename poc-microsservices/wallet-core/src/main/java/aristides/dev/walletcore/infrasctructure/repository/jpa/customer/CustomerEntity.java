@@ -7,7 +7,6 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 
 @Data
 @Entity
@@ -15,7 +14,7 @@ import java.util.UUID;
 public class CustomerEntity {
 
     @Id
-    private UUID id;
+    private String id;
 
     @Column(nullable = false)
     private String name;
@@ -34,7 +33,7 @@ public class CustomerEntity {
 
     public static CustomerEntity fromDomain(Customer customer) {
         var entity = new CustomerEntity();
-        entity.id = UUID.fromString(customer.id());
+        entity.id = customer.id();
         entity.name = customer.name();
         entity.email = customer.email();
         entity.accounts = customer.accounts()

@@ -7,14 +7,14 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Data
 @Entity
 @Table(name = "accounts")
 public class AccountEntity {
+
     @Id
-    private UUID id;
+    private String id;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id", nullable = false)
@@ -31,7 +31,7 @@ public class AccountEntity {
 
     public static AccountEntity fromDomain(Account account) {
         var entity = new AccountEntity();
-        entity.id = UUID.fromString(account.id());
+        entity.id = account.id();
         entity.balance = account.balance();
         entity.customer = CustomerEntity.fromDomain(account.customer());
         entity.createdAt = account.createdAt();
