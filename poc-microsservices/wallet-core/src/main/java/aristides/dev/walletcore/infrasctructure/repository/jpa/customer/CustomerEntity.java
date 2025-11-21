@@ -22,7 +22,7 @@ public class CustomerEntity {
     @Column(nullable = false)
     private String email;
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<AccountEntity> accounts;
 
     @Column(nullable = false, name = "created_at", updatable = false)
@@ -38,7 +38,7 @@ public class CustomerEntity {
         entity.email = customer.email();
         entity.accounts = customer.accounts()
                 .stream()
-                .map(AccountEntity::fromDomain)
+                .map(ac -> AccountEntity.fromDomain(ac, entity))
                 .toList();
         entity.createdAt = customer.createdAt();
         entity.updatedAt = customer.updatedAt();

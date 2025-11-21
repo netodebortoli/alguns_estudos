@@ -3,7 +3,6 @@ package aristides.dev.walletcore.domain.entity;
 import aristides.dev.walletcore.infrasctructure.repository.jpa.customer.CustomerEntity;
 import aristides.dev.walletcore.shared.Entity;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -25,7 +24,10 @@ public class Customer extends Entity {
         super(entity.getId(), entity.getCreatedAt(), entity.getUpdatedAt());
         this.name = entity.getName();
         this.email = entity.getEmail();
-        this.accounts = new LinkedList<>(); //TODO impl
+        this.accounts = entity.getAccounts()
+                .stream()
+                .map(ac -> new Account(ac, this))
+                .toList();
     }
 
     public static Customer of(String name, String email) {

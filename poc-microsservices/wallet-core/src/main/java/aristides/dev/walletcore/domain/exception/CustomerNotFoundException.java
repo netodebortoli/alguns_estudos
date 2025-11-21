@@ -1,7 +1,9 @@
 package aristides.dev.walletcore.domain.exception;
 
-public class CustomerNotFoundException extends RuntimeException {
+import aristides.dev.walletcore.shared.NotFoundException;
+
+public class CustomerNotFoundException extends NotFoundException {
     public CustomerNotFoundException(String id) {
-        super(String.format("Customer with id %s not found", id));
+        super("Customer", id);
     }
 }

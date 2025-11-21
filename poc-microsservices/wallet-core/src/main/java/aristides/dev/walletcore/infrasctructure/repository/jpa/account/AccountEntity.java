@@ -29,11 +29,14 @@ public class AccountEntity {
     @Column(nullable = false, name = "updated_at")
     private LocalDateTime updatedAt;
 
-    public static AccountEntity fromDomain(Account account) {
+    public static AccountEntity fromDomain(
+            Account account,
+            CustomerEntity customerEntity
+    ) {
         var entity = new AccountEntity();
         entity.id = account.id();
         entity.balance = account.balance();
-        entity.customer = CustomerEntity.fromDomain(account.customer());
+        entity.customer = customerEntity;
         entity.createdAt = account.createdAt();
         entity.updatedAt = account.updatedAt();
         return entity;

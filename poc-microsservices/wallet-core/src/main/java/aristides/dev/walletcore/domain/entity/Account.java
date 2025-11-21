@@ -22,6 +22,12 @@ public class Account extends Entity {
         validate();
     }
 
+    public Account(AccountEntity entity, Customer customer) {
+        super(entity.getId(), entity.getCreatedAt(), entity.getUpdatedAt());
+        this.customer = customer;
+        this.balance = entity.getBalance();
+    }
+
     public static Account of(Customer c, BigDecimal balance) {
         var account = new Account();
         account.customer = c;
