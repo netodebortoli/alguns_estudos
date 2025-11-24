@@ -3,11 +3,12 @@ package aristides.dev.walletcore.infrasctructure.repository.jpa.account;
 import aristides.dev.walletcore.domain.entity.Account;
 import aristides.dev.walletcore.domain.entity.Customer;
 import aristides.dev.walletcore.domain.exception.AccountNotFoundException;
-import aristides.dev.walletcore.infrasctructure.repository.jpa.AccountJpaRepository;
+import aristides.dev.walletcore.domain.exception.CustomerNotFoundException;
 import aristides.dev.walletcore.infrasctructure.repository.jpa.customer.CustomerEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 
@@ -22,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class AccountRepositoryIT {
 
     @Autowired
-    private AccountJpaRepository jpaRepository;
+    private TestEntityManager testEntityManager;
 
     @Autowired
     private AccountRepositoryImpl accountRepositoryImpl;
@@ -31,17 +32,29 @@ class AccountRepositoryIT {
     void shouldSaveAccount() {
         // given
         var customer = new Customer("JonDoe", "john@email.com");
+        testEntityManager.persist(CustomerEntity.fromDomain(customer));
         var account = new Account(customer);
 
         // when
         accountRepositoryImpl.save(account);
 
         // then
-        var savedAccount = jpaRepository.findById(account.id());
-        assertTrue(savedAccount.isPresent());
-        assertEquals(account.id(), savedAccount.get().getId());
-        assertEquals(account.customer().id(), savedAccount.get().getCustomer().getId());
-        assertEquals(account.balance(), savedAccount.get().getBalance());
+        var savedAccount = testEntityManager.find(AccountEntity.class, account.id());
+        assertNotNull(savedAccount);
+        assertEquals(account.id(), savedAccount.getId());
+        assertEquals(account.customer().id(), savedAccount.getCustomer().getId());
+        assertEquals(account.balance(), savedAccount.getBalance());
+    }
+
+    @Test
+    void shouldThrowErrorWhenSaveAccountWithInvalidCustomer() {
+        // given
+        var customer = new Customer("JonDoe", "john@email.com");
+        var account = new Account(customer);
+
+        var ex = assertThrows(CustomerNotFoundException.class, () -> accountRepositoryImpl.save(account));
+
+        assertEquals("Customer with id " + customer.id() + " not found", ex.getMessage());
     }
 
     @Test
@@ -53,7 +66,7 @@ class AccountRepositoryIT {
         entity.setCustomer(CustomerEntity.fromDomain(customer));
         entity.setCreatedAt(LocalDateTime.now());
         entity.setUpdatedAt(LocalDateTime.now());
-        jpaRepository.save(entity);
+        testEntityManager.persist(entity);
 
         // when
         var foundAccount = accountRepositoryImpl.findById("1223344");
