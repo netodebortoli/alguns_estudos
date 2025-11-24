@@ -41,4 +41,16 @@ public class Transaction extends Entity {
         from.withdraw(transactionAmount);
         to.deposit(transactionAmount);
     }
+
+    public Account from() {
+        return from;
+    }
+
+    public Account to() {
+        return to;
+    }
+
+    public BigDecimal transactionAmount() {
+        return transactionAmount;
+    }
 }

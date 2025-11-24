@@ -3,7 +3,6 @@ package aristides.dev.walletcore.infrasctructure.repository.jpa.account;
 import aristides.dev.walletcore.domain.entity.Account;
 import aristides.dev.walletcore.domain.entity.Customer;
 import aristides.dev.walletcore.domain.exception.AccountNotFoundException;
-import aristides.dev.walletcore.domain.exception.CustomerNotFoundException;
 import aristides.dev.walletcore.gateway.AccountGateway;
 import aristides.dev.walletcore.infrasctructure.repository.jpa.AccountJpaRepository;
 import aristides.dev.walletcore.infrasctructure.repository.jpa.customer.CustomerEntity;
@@ -26,15 +25,7 @@ public class AccountRepositoryImpl implements AccountGateway {
 
     @Override
     public void save(Account account) {
-        var customerEntity = entityManager.find(
-                CustomerEntity.class,
-                account.customer().id()
-        );
-
-        if (customerEntity == null) {
-            throw new CustomerNotFoundException(account.customer().id());
-        }
-
+        var customerEntity = entityManager.getReference(CustomerEntity.class, account.customer().id());
         var entity = AccountEntity.fromDomain(account, customerEntity);
         repository.save(entity);
     }

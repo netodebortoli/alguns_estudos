@@ -3,7 +3,6 @@ package aristides.dev.walletcore.infrasctructure.repository.jpa.account;
 import aristides.dev.walletcore.domain.entity.Account;
 import aristides.dev.walletcore.domain.entity.Customer;
 import aristides.dev.walletcore.domain.exception.AccountNotFoundException;
-import aristides.dev.walletcore.domain.exception.CustomerNotFoundException;
 import aristides.dev.walletcore.infrasctructure.repository.jpa.customer.CustomerEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,17 +43,6 @@ class AccountRepositoryIT {
         assertEquals(account.id(), savedAccount.getId());
         assertEquals(account.customer().id(), savedAccount.getCustomer().getId());
         assertEquals(account.balance(), savedAccount.getBalance());
-    }
-
-    @Test
-    void shouldThrowErrorWhenSaveAccountWithInvalidCustomer() {
-        // given
-        var customer = new Customer("JonDoe", "john@email.com");
-        var account = new Account(customer);
-
-        var ex = assertThrows(CustomerNotFoundException.class, () -> accountRepositoryImpl.save(account));
-
-        assertEquals("Customer with id " + customer.id() + " not found", ex.getMessage());
     }
 
     @Test

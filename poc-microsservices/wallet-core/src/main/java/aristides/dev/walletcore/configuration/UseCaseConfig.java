@@ -21,8 +21,8 @@ public class UseCaseConfig {
         return new CreateAccountUseCase(customerGateway, accountGateway);
     }
 
-//    @Bean
-//    public CreateTransactionUseCase createTransactionUseCase(TransactionGateway transactionGateway,AccountGateway accountGateway) {
-//        return new CreateTransactionUseCase(accountGateway, transactionGateway);
-//    }
+    @Bean
+    public CreateTransactionUseCase createTransactionUseCase(TransactionGateway transactionGateway, AccountGateway accountGateway) {
+        return new CreateTransactionUseCase(accountGateway, transactionGateway);
+    }
 }
