@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class EventDispatcherImpl implements EventDispatcher {
 
@@ -31,9 +33,15 @@ public class EventDispatcherImpl implements EventDispatcher {
     public void dispatch(BaseEvent event) {
         List<EventHandler> handlers = eventHandlers.get(event.name());
         if (handlers != null) {
-            for (EventHandler eventHandler : handlers) {
-                eventHandler.handle(event); //TODO PONTO DE MELHORIA. Executar em paralelo
-            }
+            executeHandlers(handlers, event);
+        }
+    }
+
+    private void executeHandlers(List<EventHandler> handlers, BaseEvent event) {
+        try (ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor()) {
+            handlers.forEach(handler ->
+                    executor.submit(() -> handler.handle(event))
+            );
         }
     }
 
