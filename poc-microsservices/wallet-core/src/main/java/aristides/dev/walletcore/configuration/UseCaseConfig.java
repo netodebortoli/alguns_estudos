@@ -1,5 +1,7 @@
 package aristides.dev.walletcore.configuration;
 
+import aristides.dev.shared.events.EventDispatcher;
+import aristides.dev.shared.events.EventDispatcherImpl;
 import aristides.dev.walletcore.gateway.AccountGateway;
 import aristides.dev.walletcore.gateway.CustomerGateway;
 import aristides.dev.walletcore.gateway.TransactionGateway;
@@ -12,6 +14,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class UseCaseConfig {
     @Bean
+    public EventDispatcher eventDispatcher() {
+        return new EventDispatcherImpl();
+    }
+
+    @Bean
     public CreateCustomerUseCase createCustomerUseCase(CustomerGateway customerGateway) {
         return new CreateCustomerUseCase(customerGateway);
     }
@@ -22,7 +29,11 @@ public class UseCaseConfig {
     }
 
     @Bean
-    public CreateTransactionUseCase createTransactionUseCase(TransactionGateway transactionGateway, AccountGateway accountGateway) {
-        return new CreateTransactionUseCase(accountGateway, transactionGateway);
+    public CreateTransactionUseCase createTransactionUseCase(
+            TransactionGateway transactionGateway,
+            AccountGateway accountGateway,
+            EventDispatcher eventDispatcher
+    ) {
+        return new CreateTransactionUseCase(accountGateway, transactionGateway, eventDispatcher);
     }
 }

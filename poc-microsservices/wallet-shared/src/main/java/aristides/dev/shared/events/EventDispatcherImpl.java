@@ -8,9 +8,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 public class EventDispatcherImpl implements EventDispatcher {
 
+    private final Logger logger = Logger.getLogger(EventDispatcherImpl.class.getName());
+
+    //PONTO CRÍTICO: o MAP nao está compartilhado entre threads.
     private final Map<String, List<EventHandler>> eventHandlers = new HashMap<>();
 
     @Override
@@ -39,9 +45,17 @@ public class EventDispatcherImpl implements EventDispatcher {
 
     private void executeHandlers(List<EventHandler> handlers, BaseEvent event) {
         try (ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor()) {
-            handlers.forEach(handler ->
-                    executor.submit(() -> handler.handle(event))
-            );
+            List<Future<?>> futures = handlers.stream()
+                    .map(handler -> executor.submit(() -> handler.handle(event)))
+                    .collect(Collectors.toUnmodifiableList());
+            executor.shutdown();
+            futures.forEach(future -> {
+                try {
+                    future.get(); // Aguarda conclusão das tarefas
+                } catch (Exception e) {
+                    logger.severe("Error executing event handler: " + e.getMessage());
+                }
+            });
         }
     }
 

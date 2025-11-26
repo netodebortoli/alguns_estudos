@@ -127,20 +127,10 @@ class EventDispatcherImplTest {
     }
 }
 
-class TestEvent implements BaseEvent {
-    @Override
-    public String name() {
-        return "TestEvent";
-    }
+class TestEvent extends BaseEvent {
 
-    @Override
-    public LocalDateTime timestamp() {
-        return LocalDateTime.now();
-    }
-
-    @Override
-    public Object payload() {
-        return new Object(){};
+    public TestEvent() {
+        super("TestEvent", LocalDateTime.now(), new Object(){});
     }
 }
 

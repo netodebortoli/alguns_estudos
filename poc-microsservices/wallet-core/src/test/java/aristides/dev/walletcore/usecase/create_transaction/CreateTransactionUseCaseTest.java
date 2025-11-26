@@ -1,5 +1,6 @@
 package aristides.dev.walletcore.usecase.create_transaction;
 
+import aristides.dev.shared.events.EventDispatcher;
 import aristides.dev.walletcore.domain.entity.Account;
 import aristides.dev.walletcore.domain.entity.Customer;
 import aristides.dev.walletcore.gateway.AccountGateway;
@@ -27,6 +28,9 @@ class CreateTransactionUseCaseTest {
 
     @Mock
     private TransactionGateway repository;
+
+    @Mock
+    private EventDispatcher eventDispatcher;
 
     @Test
     void testCreateTransaction() {
@@ -57,6 +61,6 @@ class CreateTransactionUseCaseTest {
         verify(accountGateway, times(1)).findById(accountTo.id());
         verify(repository, times(1)).save(any());
         verify(accountGateway, times(2)).save(any());
+        verify(eventDispatcher, times(1)).dispatch(any());
     }
-
 }
